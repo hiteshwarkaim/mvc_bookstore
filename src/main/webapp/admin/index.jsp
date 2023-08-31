@@ -5,6 +5,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="../static/css/style.css"/>
         <title>JSP Page</title>
     </head>
     <body>
@@ -13,7 +14,6 @@
             
             
             <h1>Admin Dashboard</h1>
-            <h2>Quick action</h2>
             
             <%@include file="/components/footer.jsp" %>
 

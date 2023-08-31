@@ -1,4 +1,5 @@
 
+<%@include file="common_style.jsp" %>
 
 <!DOCTYPE html>
 <html>

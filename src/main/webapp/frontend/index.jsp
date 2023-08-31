@@ -5,6 +5,7 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Book World - Online Store</title>
+<link rel="stylesheet" href="../static/css/style.css"/>
 </head>
 <body>
 	<jsp:include page="/components/header_frontend.jsp"/>
