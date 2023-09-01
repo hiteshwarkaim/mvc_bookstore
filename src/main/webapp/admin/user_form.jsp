@@ -17,7 +17,7 @@
             </div>
              
               <div class="form">
-                     <form action="create-form" method="POST" onsubmit="return validateForm()">
+                     <form action="create-user" method="POST" onsubmit="return validateForm()">
                      
 						 <div class="mb-3">
 						 	<label for="input-1">Name:</label>
@@ -31,7 +31,7 @@
 						 
 						 <div class="mb-3">
 							 <label for="input-3">Password:</label>
-							 <input id="input-3" class="form-control" placeholder="Enter password" type="password"/>
+							 <input id="input-3" class="form-control" placeholder="Enter password" name="password"  type="password"/>
 						 </div>
 						
 						 <div class="mb-3">
