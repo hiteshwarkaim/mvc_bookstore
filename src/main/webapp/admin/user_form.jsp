@@ -17,7 +17,7 @@
             </div>
              
               <div class="form">
-                     <form action="create-user" method="POST">
+                     <form action="create-form" method="POST" onsubmit="return validateForm()">
                      
 						 <div class="mb-3">
 						 	<label for="input-1">Name:</label>
@@ -36,7 +36,7 @@
 						
 						 <div class="mb-3">
 					   		<button type="submit" class="btn btn-primary" >Sign-Up</button> &nbsp;&nbsp;
-		                   	 <button class="btn btn-dark">Cancel</button>
+		                   	 <button class="btn btn-dark" onclick="javascript:history.go(-1);">Cancel</button>
 			                </div> 
                    </form>
       		</div>
@@ -44,7 +44,36 @@
 
         </div>
             <%@include file="/components/footer.jsp" %>
+            
+            
     </body>
+    
+    <script type="text/javascript">
+				function validateForm(){
+					var name=document.getElementById("input-1");
+					var email=document.getElementById("input-2");
+					var pwd=document.getElementById("input-3");
+					
+					if(name.value.length==0){
+						alert("Name is required");
+						name.focus();
+						return false;
+					}
+
+					if(email.value.length==0){
+						alert("Email is required");
+						email.focus();
+						return false;
+					}
+
+					if(pwd.value.length==0){
+						alert("Password is required");
+						pwd.focus();
+						return false;
+					}
+				return true;
+				}
+            </script>
 </html>
 
 
