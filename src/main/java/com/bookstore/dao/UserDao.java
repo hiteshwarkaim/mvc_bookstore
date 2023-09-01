@@ -48,6 +48,51 @@ public class UserDao implements GenericDao<User>{
         return usersList;
     }
 
+    public User getById(int id) {
+		 User user=new User();
+        try {
+            query="select * from users where user_id=?";
+            ps=this.con.prepareStatement(query);
+            ps.setInt(1,id);
+            rs=ps.executeQuery();
+            while(rs.next())
+            {
+                user.setId(rs.getInt("user_id"));
+                user.setName(rs.getString("full_name"));
+                user.setEmail(rs.getString("email"));
+                user.setPassword(rs.getString("password"));
+                
+                return user;
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return user;
+	}
+	
+	public User getByEmail(String email) {
+		User user=null;
+       try {
+           query="select * from users where email=?";
+           ps=this.con.prepareStatement(query);
+           ps.setString(1, email);
+           rs = ps.executeQuery();
+           
+            while(rs.next()){
+               user=new User();
+               user.setId(rs.getInt("user_id"));
+               user.setName(rs.getString("full_name"));
+               user.setEmail(rs.getString("email"));
+               
+           }
+          
+       } catch (Exception e) {
+           e.printStackTrace();
+       }
+       return  user;
+	}
+	
 	@Override
 	public int create(User user) {
 		int status=0;
@@ -81,51 +126,6 @@ public class UserDao implements GenericDao<User>{
 		
 	}
 
-	public User getById(int id) {
-		 User user=new User();
-         try {
-             query="select * from users where user_id=?";
-             ps=this.con.prepareStatement(query);
-             ps.setInt(1,id);
-             rs=ps.executeQuery();
-             while(rs.next())
-             {
-                 user.setId(rs.getInt("user_id"));
-                 user.setName(rs.getString("full_name"));
-                 user.setEmail(rs.getString("email"));
-                 user.setPassword(rs.getString("password"));
-                 
-                 return user;
-             }
-             
-         } catch (Exception e) {
-             e.printStackTrace();
-         }
-         return user;
-	}
-	
-	public User getByEmail(String email) {
-		User user=null;
-        try {
-            query="select * from users where email=?";
-            ps=this.con.prepareStatement(query);
-            ps.setString(1, email);
-            rs = ps.executeQuery();
-            
-             while(rs.next()){
-                user=new User();
-                user.setId(rs.getInt("user_id"));
-                user.setName(rs.getString("full_name"));
-                user.setEmail(rs.getString("email"));
-                
-            }
-           
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return  user;
-	}
-
 	@Override
 	public long count() {
 		// TODO Auto-generated method stub
@@ -133,5 +133,4 @@ public class UserDao implements GenericDao<User>{
 	}
 
 
-	
  }

@@ -29,16 +29,21 @@ public class UserService {
     
     
     public void getAllUsers() throws IOException,ServletException{
+    	getAllUsers(null);
+    }
+    
+    public void getAllUsers(String message) throws IOException,ServletException{
         List<User> allUsers = userDao.listAll();
         request.setAttribute("allUsers", allUsers);
         
+        if(message!=null)
+        	request.setAttribute("message", message);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("user_list.jsp");
         requestDispatcher.forward(request, response);
 
     }
     
     public void createUser() throws ServletException,IOException{
-        
         int status=0;
         User newUser=null;
         
@@ -49,7 +54,6 @@ public class UserService {
         //fetch  the user with this email
         User userByEmail = userDao.getByEmail(email);
         
-        
         //check email is already exist or not
         if(userByEmail!=null){
             System.out.println("exist krti hai ye");
@@ -58,31 +62,14 @@ public class UserService {
             request.setAttribute("message", message);
             
             RequestDispatcher rd=request.getRequestDispatcher("message.jsp");
-            rd.include(request, response);
+            rd.forward(request, response);
         }
         else{
-            
             //if email is not already exist, then insert the data
             newUser=new User(name,email,password);
             status = userDao.create(newUser);
+            getAllUsers("created user ho gaya");
             
-                if(status !=0 ){
-                    System.out.println("inserted data");
-                    String message="User is created successfully"+newUser.getName();
-                    request.setAttribute("message", message);
-                    RequestDispatcher rd=request.getRequestDispatcher("message.jsp");
-                    rd.include(request, response);
-                    
-                    
-                }
-                else
-                {
-                    System.out.println("error");
-                    String message="error aa gai";
-                    request.setAttribute("message", message);
-                    RequestDispatcher rd=request.getRequestDispatcher("message.jsp");
-                    rd.include(request, response);
-                }
         }
          
 } 
