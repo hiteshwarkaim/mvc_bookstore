@@ -12,7 +12,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDao {
+public class UserDao implements GenericDao<User>{
 
     private Connection con=null;
     private String query;
@@ -23,6 +23,7 @@ public class UserDao {
         this.con=con;
     }
     
+    @Override
     public List<User> listAll(){
         List<User> usersList=new ArrayList<>();
         try {
@@ -46,4 +47,34 @@ public class UserDao {
         }
         return usersList;
     }
+
+	@Override
+	public User create(User t) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User update(User t) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void delete(Object id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public User get(Object id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public long count() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
  }

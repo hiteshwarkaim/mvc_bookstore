@@ -44,7 +44,7 @@
                             <td>${user.name}</td>
                             <td>${user.email}</td>
                             <td> 
-                                <a hred="">Edit</a> &nbsp;&nbsp; &nbsp;&nbsp; 
+                                <a href="">Edit</a> &nbsp;&nbsp; &nbsp;&nbsp; 
                                 <a href=""> Remove</a>
                             </td>
                         </tr>
