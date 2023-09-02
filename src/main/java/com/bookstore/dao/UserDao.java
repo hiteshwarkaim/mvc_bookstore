@@ -115,9 +115,23 @@ public class UserDao implements GenericDao<User>{
 	}
 
 	@Override
-	public User update(User t) {
-		// TODO Auto-generated method stub
-		return null;
+	public int update(User u) {
+		int status=0;
+        try {
+            query="update users set full_name=?, email=?, password=? where user_id=?";
+            ps=this.con.prepareStatement(query);
+            
+            ps.setString(1, u.getName());
+            ps.setString(2, u.getEmail());
+            ps.setString(3, u.getPassword());
+            ps.setInt(4,u.getId());
+            status=ps.executeUpdate();
+            
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return status;
 	}
 
 	@Override

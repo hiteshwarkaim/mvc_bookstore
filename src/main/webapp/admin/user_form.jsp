@@ -1,5 +1,6 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@include file="/components/common_style.jsp" %>
 
 <!DOCTYPE html>
@@ -13,25 +14,35 @@
     <%@include file="/components/header.jsp" %>
         <div class="user-form">
            <div>
-                <h2>Create New Use </h2>
+                <h2>
+                    <c:if test="${user!=null}">Edit User</c:if>
+                    <c:if test="${user==null}">Create New User</c:if>
+                        
+                </h2>
             </div>
              
               <div class="form">
-                     <form action="create-user" method="POST" onsubmit="return validateForm()">
+                      <c:if test="${user!=null}">
+                            <form action="update-user" method="POST" onsubmit="return validateForm()">
+                             <input type="hidden" name="id" value="${user.id}">
+                        </c:if>
+                        <c:if test="${user==null}">
+                            <form action="create-user" method="POST" onsubmit="return validateForm()">
+                        </c:if>
                      
 						 <div class="mb-3">
 						 	<label for="input-1">Name:</label>
-						 	<input id="input-1" class="form-control" placeholder="Enter name" name="name" type="text"/>
+						 	<input id="input-1" class="form-control" placeholder="Enter name" name="name" type="text" value="${user.name}"/>
 						 </div>
 						 
 						<div class="mb-3">
 							 <label for="input-2">Email:</label>
-							 <input id="input-2" class="form-control" placeholder="Enter email id" name="email" type="email"/>
+							 <input id="input-2" class="form-control" placeholder="Enter email id" name="email" type="email" value="${user.email}"/>
 						</div>
 						 
 						 <div class="mb-3">
 							 <label for="input-3">Password:</label>
-							 <input id="input-3" class="form-control" placeholder="Enter password" name="password"  type="password"/>
+							 <input id="input-3" class="form-control" placeholder="Enter password" name="password"  type="password" value="${user.email}"/>
 						 </div>
 						
 						 <div class="mb-3">

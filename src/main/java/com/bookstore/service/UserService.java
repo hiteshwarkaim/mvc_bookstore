@@ -72,6 +72,59 @@ public class UserService {
             
         }
          
-} 
+    }
+    
+    public void editUser() throws ServletException,IOException{
+        
+        int id = Integer.parseInt(request.getParameter("id"));
+        
+        User user = userDao.getById(id);
+//        userDao.findUserByEmail(email)
+        
+        request.setAttribute("user", user);
+        
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("user_form.jsp");
+        requestDispatcher.forward(request, response);
+            
+    }
+    
+    public void updateUser() throws ServletException,IOException{
+        
+        int id = Integer.parseInt(request.getParameter("id"));
+        
+        String name=request.getParameter("name");
+        String email=request.getParameter("email");
+        String password=request.getParameter("password");
+        
+        User userById = userDao.getById(id);
+        User userByEmail = userDao.getByEmail(email);
+         
+        if(userByEmail!=null && userByEmail.getId()!=userById.getId())
+        {
+            System.out.println("could not update");
+            String message="could not update "+email+" already exist";
+            request.setAttribute("message", message);
+            
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("message.jsp");
+            requestDispatcher.forward(request, response);
+            
+        }
+        else{
+            User user=new User(id,name,email,password);
+            int updateUserDetails = userDao.update(user);
+
+            if(updateUserDetails!=0)
+            {
+                System.out.println("user updated");
+                String message="user updated successfully";
+                request.setAttribute("message", message);
+                getAllUsers();
+            }
+
+            else
+                System.out.println("error on update");
+            }
+        
+    }
 
 }
