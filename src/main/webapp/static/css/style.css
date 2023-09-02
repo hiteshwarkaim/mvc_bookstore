@@ -133,7 +133,7 @@ a:active { text-decoration: none; }
 
 
 
-
+/*user form*/
 .user-form .form{
 	border:1px solid blue;
 	margin: auto;
@@ -158,4 +158,39 @@ a:active { text-decoration: none; }
 	margin: 0 auto;
 }
 
+
+
+
+/*admin - category management*/
+.category-list-div > div{
+	margin: 2rem;
+	width: 60%;
+	margin:10px auto 12px auto;
+	text-align: center;
+}
+
+.category-list-div > div > h1{
+	color: #9F0D7F;
+	margin-bottom: 20px;
+}
+.category-list-div > div > a{
+	background-color:darkblue;
+	padding:8px 12px;
+	color: white;
+}
+.category-list-div table{
+	margin-left: auto;
+	margin-right: auto;
+	width: 60%;
+	background-color: #F4EEEE;
+	
+}
+.category-list-div table tr th{
+	background-color: #183D3D;
+	color: white;
+}
+.pageheading {
+	color:red;
+	text-align: center;
+}
 
