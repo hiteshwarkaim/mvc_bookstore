@@ -126,5 +126,19 @@ public class UserService {
             }
         
     }
+    
+    public void removeUser() throws IOException,ServletException{
+        int id = Integer.parseInt(request.getParameter("id"));
+        
+        int deleteUser = userDao.delete(id);
+        if(deleteUser!=0)
+        {
+            String message="user deleted successfully";
+            request.setAttribute("message", message);
+            
+            getAllUsers(message);
+            
+        }
+    }
 
 }

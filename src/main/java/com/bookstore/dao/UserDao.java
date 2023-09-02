@@ -135,9 +135,17 @@ public class UserDao implements GenericDao<User>{
 	}
 
 	@Override
-	public void delete(Object id) {
-		// TODO Auto-generated method stub
-		
+	public int delete(int id) {
+		int status=0;
+        try {
+            query="delete from users where user_id=?";
+           ps=this.con.prepareStatement(query);
+           ps.setInt(1, id);
+           status = ps.executeUpdate();
+           
+        } catch (Exception e) {
+        }
+        return  status;
 	}
 
 	@Override

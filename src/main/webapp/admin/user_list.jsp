@@ -51,7 +51,7 @@
                             <td>${user.email}</td>
                             <td> 
                                 <a href="edit-user?id=${user.id}">Edit</a> &nbsp;&nbsp; &nbsp;&nbsp; 
-                                <a href=""> Remove</a>
+                                <a href="javascript:confirmDelete(${user.id})"> Remove</a>
                             </td>
                         </tr>
                     </c:forEach>
@@ -61,6 +61,13 @@
             <%@include file="/components/footer.jsp" %>
 
         </div>
-
+		<script>
+                function confirmDelete(userId) {
+                    if(confirm("are sure to delete: "+userId+"?"))
+                    {
+                        window.location='delete-user?id=' + userId;
+                    }
+                }
+            </script>
     </body>
 </html>
