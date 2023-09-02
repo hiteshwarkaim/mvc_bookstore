@@ -44,7 +44,7 @@
                             <td>${cat.name}</td>
                             <td> 
                                 <a href="edit-category?id=${cat.cat_id}">Edit</a> &nbsp;&nbsp; 
-                                <a href="">Remove</a>
+                                <a href="javascript:confirmDelete(${cat.cat_id})">Remove</a>
                             </td>
                         </tr>
                     </c:forEach>
@@ -56,5 +56,14 @@
         </div>
 	<%@include file="/components/footer.jsp" %>
             
+            
+            <script>
+                function confirmDelete(catId) {
+                    if(confirm("are sure to delete: "+catId+"?"))
+                    {
+                        window.location='delete-category?id=' + catId;
+                    }
+                }
+            </script>
     </body>
 </html>

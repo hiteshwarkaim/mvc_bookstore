@@ -116,4 +116,19 @@ public class CategoryService {
             getAllCategory("Category updated successfully"); 
         }
     }
+    
+    
+    public void removeCategory() throws IOException,ServletException{
+        int id = Integer.parseInt(request.getParameter("id"));
+        int deleteCategory = categoryDao.delete(id);
+        
+        if(deleteCategory!=0)
+        {
+            String message="category deleted successfully";
+            request.setAttribute("message", message);
+            
+            getAllCategory(message);
+            
+        }
+    }
 }
