@@ -43,7 +43,7 @@
                             <td>${cat.cat_id}</td>
                             <td>${cat.name}</td>
                             <td> 
-                                <a href="">Edit</a> &nbsp;&nbsp; 
+                                <a href="edit-category?id=${cat.cat_id}">Edit</a> &nbsp;&nbsp; 
                                 <a href="">Remove</a>
                             </td>
                         </tr>

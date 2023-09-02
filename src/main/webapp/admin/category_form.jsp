@@ -11,23 +11,48 @@
     <body>
      <%@include file="/components/header.jsp" %>
         <div align="center">
-           
-          
-            <div>
-                <h2>Create New Category</h2>
+          <div>
+                <h2>
+                    <c:if test="${category!=null}">Edit Category</c:if>
+                    <c:if test="${category==null}">Create new Category</c:if>
+                        
+                </h2>
             </div>
+          
              
               <div>
-                      <form action="create-category" method="POST">
+                      <c:if test="${category!=null}">
+                            <form action="update-category" method="POST" onsubmit="return validateForm()">
+                             <input type="hidden" name="id" value="${category.cat_id}">
+                        </c:if>
+                        <c:if test="${category==null}">
+                            <form action="create-category" method="POST" onsubmit="return validateForm()">
+                        </c:if>
              
-                       Name:<input type="text" name="name"/><br>
-                       <input type="submit" value="Add category"/>
+                       Name:<input type="text" id="cat" name="name" value="${category.name}"/><br>
+                       <input type="submit" value="Add category" "/>
 
               		</form>
       		 </div>
         </div>
        <%@include file="/components/footer.jsp" %>
+       
+       
     </body>
+    
+    <script type="text/javascript">
+       function validateForm(){
+    	   var catName=document.getElementById("cat");
+    	   
+			if(catName.value.length==0)
+			{
+				alert("Name is required");
+				catName.focus();
+				return false;
+			}
+			return true;
+       }
+       </script>
 </html>
 
 

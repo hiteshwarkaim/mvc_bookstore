@@ -110,9 +110,21 @@ public class CategoryDao implements GenericDao<Category>{
 
 
 	@Override
-	public int update(Category t) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int update(Category cat) {
+		int status=0;
+        try {
+            query="update category set category_name=? where category_id=?";
+            ps=this.con.prepareStatement(query);
+            
+            ps.setString(1, cat.getName());
+            ps.setInt(2,cat.getCat_id());
+            status=ps.executeUpdate();
+            
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return status;
 	}
 
 

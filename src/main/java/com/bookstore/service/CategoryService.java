@@ -54,7 +54,7 @@ public class CategoryService {
         
         String name=request.getParameter("name");
         
-    //fetch  the category with this name
+        //fetch  the category with this name
         Category categoryByName = categoryDao.getCategoryByName(name);
         
         
@@ -79,11 +79,41 @@ public class CategoryService {
          
 } 
 
+    public void editCategory() throws ServletException,IOException{
+        
+        int id = Integer.parseInt(request.getParameter("id"));
+        
+        Category getCategoryById = categoryDao.getCategoryById(id);
+        request.setAttribute("category", getCategoryById);
+        System.out.println(getCategoryById);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("category_form.jsp");
+        requestDispatcher.forward(request, response);
+            
+    }
     
-    
-
-    
- 
-   
-    
+    public void updateCategory() throws ServletException,IOException{
+        
+        int id = Integer.parseInt(request.getParameter("id"));
+        
+        String name=request.getParameter("name");
+        
+	    Category categoryById = categoryDao.getCategoryById(id);
+	    Category categoryByName = categoryDao.getCategoryByName(name);
+        
+	    if(categoryByName!=null && categoryByName.getCat_id()!=categoryById.getCat_id())
+        {
+            System.out.println("could not update");
+            String message="could not update "+name+" already exist";
+            request.setAttribute("message", message);
+            
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("message.jsp");
+            requestDispatcher.forward(request, response);
+            
+        }
+        else{
+            Category category=new Category(id,name);
+            int updateCategoryDetails = categoryDao.update(category);
+            getAllCategory("Category updated successfully"); 
+        }
+    }
 }
