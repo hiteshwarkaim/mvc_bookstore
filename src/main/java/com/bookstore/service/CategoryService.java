@@ -47,6 +47,39 @@ public class CategoryService {
     }
     
     
+    public void createCategory() throws ServletException,IOException{
+        
+        int status=0;
+        Category newCategory=null;
+        
+        String name=request.getParameter("name");
+        
+    //fetch  the category with this name
+        Category categoryByName = categoryDao.getCategoryByName(name);
+        
+        
+        //check name is already exist or not
+        if(categoryByName!=null){
+            System.out.println("exist krti hai ye");
+            
+            String message="category name already exist: "+name;
+            request.setAttribute("message", message);
+            
+            RequestDispatcher rd=request.getRequestDispatcher("message.jsp");
+            rd.forward(request, response);
+        }
+        else{
+            
+            //if email is not already exist, then insert the data
+            newCategory=new Category(name);
+            status = categoryDao.create(newCategory);
+            getAllCategory("category is created successfully: "+newCategory.getName());
+            
+        }
+         
+} 
+
+    
     
 
     

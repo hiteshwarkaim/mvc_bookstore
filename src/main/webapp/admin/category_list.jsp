@@ -18,10 +18,12 @@
             
             <div>
                  <h1 class="pageheading">Category management</h1>    
-                 <a href="category_form.jsp">Create new Category</a>
+                 <a href="category_form.jsp">Create New Category</a>
             </div> 
-            <c:if test="${message!=null}">
-                <h4>${message}</h4>
+            <c:if test="${message !=null }">
+            	<div align="center">
+            		<h4><i>${message}</i></h4>
+            	</div>
             </c:if>
             <table class="table table-strips" border="1" width="800">
                 <thead>

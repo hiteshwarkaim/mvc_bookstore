@@ -58,7 +58,7 @@ public class UserService {
         if(userByEmail!=null){
             System.out.println("exist krti hai ye");
             
-            String message="email already exist"+email;
+            String message="email already exist: "+email;
             request.setAttribute("message", message);
             
             RequestDispatcher rd=request.getRequestDispatcher("message.jsp");

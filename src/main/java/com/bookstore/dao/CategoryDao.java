@@ -12,7 +12,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoryDao {
+public class CategoryDao implements GenericDao<Category>{
 
     private Connection con=null;
     private String query;
@@ -46,6 +46,95 @@ public class CategoryDao {
         }
         return categoryList;
     }
+
+    public Category getCategoryByName(String name){
+        Category category=null;
+        try {
+            query="select * from category where category_name=?";
+            ps=this.con.prepareStatement(query);
+            ps.setString(1, name);
+            rs = ps.executeQuery();
+            
+             while(rs.next()){
+                category=new Category();
+                category.setCat_id(rs.getInt("category_id"));
+                category.setName(rs.getString("category_name"));
+               
+            }
+           
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return  category;
+    }
+    
+    public Category getCategoryById(int id){
+        Category cat=new Category();
+        try {
+            query="select * from category where category_id=?";
+            ps=this.con.prepareStatement(query);
+            ps.setInt(1,id);
+            rs=ps.executeQuery();
+            while(rs.next())
+            {
+                cat.setCat_id(rs.getInt("category_id"));
+                cat.setName(rs.getString("category_name"));
+
+                return cat;
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return cat;
+        }
+
+	@Override
+	public int create(Category cat) {
+		int status=0;
+        try {
+           
+            query="insert into category(category_name) values(?)";
+            ps=this.con.prepareStatement(query);
+            
+            ps.setString(1, cat.getName());
+            status = ps.executeUpdate();
+            System.out.println(status);
+             
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return status;
+	}
+
+
+	@Override
+	public int update(Category t) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public int delete(int id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public List<Category> listAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public long count() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
     
     
    
