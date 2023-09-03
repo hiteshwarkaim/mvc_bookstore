@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 	
 <%@include file="common_style.jsp" %>
 
@@ -11,7 +12,7 @@
     <body>
         <div class="adminheader">	
             
-            <h4 class="welcome">Welcome, admin</h4>
+            <h4 class="welcome">Welcome, <c:out value="${sessionScope.userEmail}"></c:out> | <a href="logout">Logout</a> </h4>
             <div class="headermenu">
                 
                     <div>

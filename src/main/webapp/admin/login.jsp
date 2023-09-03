@@ -14,6 +14,11 @@
             <h1>BookStore Admin</h1>
             <h2>Admin Login</h2>
            
+           <c:if test="${message !=null }">
+            	<div align="center" style="color: red;">
+            		<h5><i>${message}</i></h5>
+            	</div>
+            </c:if>
             
              <div>
                  <form action="login" method="POST" id="loginForm">
