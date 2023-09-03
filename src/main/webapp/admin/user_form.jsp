@@ -64,13 +64,21 @@
 			$(document).ready(function(){
 				$("#userForm").validate({
 						rules:{
+							email:{
+								required: true,
+								email:true
+							},
+
 							name:"required",
-							email:"required",
 							password:"required",
 						},
 						messages:{
+							email:{
+								required: "Please enetr email",
+								email:"Please enter valid email"
+							},
+							
 							name:"Please enter name",
-							email:"Please enter email",
 							password:"Please enter password",
 							
 						}
