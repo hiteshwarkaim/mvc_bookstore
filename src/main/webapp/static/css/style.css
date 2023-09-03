@@ -231,3 +231,39 @@ a:active {
 	text-align: center;
 }
 
+
+
+/*admin login*/
+.login-form div{
+	margin: auto;
+}
+.login-form h1{
+	text-align: center;
+	color: #9F0D7F;
+}
+.login-form h2{
+	margin-top:100px;
+	text-align: center;
+}
+
+
+.login-form form div{
+	width: 20%;
+}
+.login-form form div input{
+	margin: 5px;
+}
+.login-form form div .error{
+	color: red;
+	font-style: italic;
+}
+
+.login-form form div button{
+	margin-left:4px;
+	margin-top: 10px;
+	width: 383px;;
+}
+
+
+
+
