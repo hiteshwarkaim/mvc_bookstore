@@ -59,10 +59,15 @@ a:link { text-decoration: none; }
 a:visited { text-decoration: none; }
 
 
-a:hover { text-decoration: none; }
+a:hover { 
+	text-decoration: underline; 
+	color: darkblue;
+}
 
 
-a:active { text-decoration: none; }
+a:active { 
+	color: red;	
+}
 
 
 
@@ -80,6 +85,10 @@ a:active { text-decoration: none; }
 
 .adminheader .headermenu div{
 	margin-left: 36px;	
+}
+
+.adminheader .headermenu div a:link{
+		font-size: larger;
 }
 
 .adminheader{
@@ -129,12 +138,28 @@ a:active { text-decoration: none; }
 	text-align: center;
 }
 
+.user-form .error{
+	color: red;
+	font-style: italic;
+	margin-top: 3px;
+}
+
 
 /*admin index page*/
 .quick-action-links ul li{
 	display: inline-block;
 	margin-top: 1.3rem;
 }
+.admin-index hr{
+	width: 40%;
+}
+.quick-action-links hr{
+	margin-top: 4rem;
+}
+.admin-index h2{
+	color: #279EFF;
+}
+
 .quick-action-links ul li a{
 	margin-left: 20px;
 	font-size: 20px;

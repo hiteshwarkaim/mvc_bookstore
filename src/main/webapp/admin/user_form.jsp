@@ -23,26 +23,26 @@
              
               <div class="form">
                       <c:if test="${user!=null}">
-                            <form action="update-user" method="POST" onsubmit="return validateForm()">
+                            <form action="update-user" method="POST" id="userForm">
                              <input type="hidden" name="id" value="${user.id}">
                         </c:if>
                         <c:if test="${user==null}">
-                            <form action="create-user" method="POST" onsubmit="return validateForm()">
+                            <form action="create-user" method="POST" id="userForm">
                         </c:if>
                      
 						 <div class="mb-3">
-						 	<label for="input-1">Name:</label>
-						 	<input id="input-1" class="form-control" placeholder="Enter name" name="name" type="text" value="${user.name}"/>
+						 	<label for="name">Name:</label>
+						 	<input id="name" class="form-control error" placeholder="Enter name" name="name" type="text" value="${user.name}"/>
 						 </div>
 						 
 						<div class="mb-3">
-							 <label for="input-2">Email:</label>
-							 <input id="input-2" class="form-control" placeholder="Enter email id" name="email" type="email" value="${user.email}"/>
+							 <label for="email">Email:</label>
+							 <input id="email" class="form-control error" placeholder="Enter email id" name="email" type="email" value="${user.email}"/>
 						</div>
 						 
 						 <div class="mb-3">
-							 <label for="input-3">Password:</label>
-							 <input id="input-3" class="form-control" placeholder="Enter password" name="password"  type="password" value="${user.email}"/>
+							 <label for="password">Password:</label>
+							 <input id="password" class="form-control error" placeholder="Enter password" name="password"  type="password" value="${user.email}"/>
 						 </div>
 						
 						 <div class="mb-3">
@@ -60,30 +60,24 @@
     </body>
     
     <script type="text/javascript">
-				function validateForm(){
-					var name=document.getElementById("input-1");
-					var email=document.getElementById("input-2");
-					var pwd=document.getElementById("input-3");
-					
-					if(name.value.length==0){
-						alert("Name is required");
-						name.focus();
-						return false;
-					}
 
-					if(email.value.length==0){
-						alert("Email is required");
-						email.focus();
-						return false;
-					}
-
-					if(pwd.value.length==0){
-						alert("Password is required");
-						pwd.focus();
-						return false;
-					}
-				return true;
-				}
+			$(document).ready(function(){
+				$("#userForm").validate({
+						rules:{
+							name:"required",
+							email:"required",
+							password:"required",
+						},
+						messages:{
+							name:"Please enter name",
+							email:"Please enter email",
+							password:"Please enter password",
+							
+						}
+					});
+				});
+	
+				
             </script>
 </html>
 

@@ -25,7 +25,7 @@
             		<h4><i>${message}</i></h4>
             	</div>
             </c:if>
-            <table class="table table-strips" border="1" width="800">
+            <table class="table table-strips" border="1" width="500">
                 <thead>
                     <tr>
                         <th>Index</th>
