@@ -90,7 +90,7 @@ a:active { text-decoration: none; }
 }
 
 .welcome{
-	margin-left: 90rem;
+	margin-left: 70rem;
 }
 
 
@@ -129,6 +129,18 @@ a:active { text-decoration: none; }
 	text-align: center;
 }
 
+
+/*admin index page*/
+.quick-action-links ul li{
+	display: inline-block;
+	margin-top: 1.3rem;
+}
+.quick-action-links ul li a{
+	margin-left: 20px;
+	font-size: 20px;
+	color: #4D2DB7;
+	font-weight: bold;
+}
 
 
 

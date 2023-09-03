@@ -14,6 +14,14 @@
             
             
             <h1>Admin Dashboard</h1>
+            <div class="quick-action-links">
+            	<ul>
+            		<li><a href="user_form.jsp">New User</a></li>
+            		<li><a href="category_form.jsp">New Category</a></li>
+            		<li><a href="create-book">New Book</a></li>
+            		<li><a href="create-customer">New Customer</a></li>
+            	</ul>
+            </div>
             
             <%@include file="/components/footer.jsp" %>
 
