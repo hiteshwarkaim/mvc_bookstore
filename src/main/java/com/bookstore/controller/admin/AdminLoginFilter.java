@@ -31,20 +31,16 @@ public class AdminLoginFilter implements Filter {
         
     }
 
-  
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)throws IOException, ServletException {
         
         HttpServletRequest httpRequest=(HttpServletRequest)request;
         HttpSession session=httpRequest.getSession(false); //get session object, don't create new session if session does't exist
-        
         
         boolean loggedIn= (session!=null) && (session.getAttribute("userEmail")!=null);
         
         String loginURI=httpRequest.getContextPath()+"/admin/login";	//--> /BookStore1/admin/login
         boolean loginRequest=httpRequest.getRequestURI().equals(loginURI);
         boolean loginPage=httpRequest.getRequestURI().endsWith("login.jsp");
-        
-        
         
         if(loggedIn && (loginRequest||loginPage))
         {
@@ -62,9 +58,6 @@ public class AdminLoginFilter implements Filter {
             RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
             rd.forward(request, response);
         }
-        
-        
-        
     }
 
     public void destroy() {        
