@@ -12,6 +12,7 @@ import com.bookstore.dao.BookDao;
 import com.bookstore.dao.CategoryDao;
 import com.bookstore.dao.DB_Connection;
 import com.bookstore.entities.Book;
+import com.bookstore.entities.Category;
 
 public class BookService {
 	private BookDao bookDao;
@@ -33,5 +34,16 @@ public class BookService {
               
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("book_list.jsp");
         requestDispatcher.forward(request, response);
-    } 
+    }
+
+	public void showBookForm() throws IOException,ServletException{
+		List<Category> listCategory=categoryDao.getAllCategory();
+		System.out.println(listCategory);
+		request.setAttribute("listCategory", listCategory);
+		
+		RequestDispatcher rd=request.getRequestDispatcher("book_form.jsp");
+		rd.forward(request, response);
+	} 
+     
+    
 }
