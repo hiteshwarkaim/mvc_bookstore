@@ -5,6 +5,7 @@
  */
 package com.bookstore.entities;
 
+import java.beans.Transient;
 import java.io.Serializable;
 import java.util.*;
 
@@ -143,10 +144,12 @@ public class Book implements Serializable{
     }
     
     
+    @Transient
     public String getBase64Image(){
         this.base64Image=Base64.getEncoder().encodeToString(this.pic);
         return  this.base64Image;
     }
+    @Transient
     public void setBase64Image(String base64){
         this.base64Image=base64;
     }
