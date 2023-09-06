@@ -24,12 +24,8 @@ public class AdminLoginServlet extends HttpServlet {
             
           //contact service to create the new user
             UserService service=new UserService(request,response);
-            try {
-                
-                service.userLogin();
+            service.userLogin();
 
-            } catch (Exception e) {
-            }
         }
     }
 }
