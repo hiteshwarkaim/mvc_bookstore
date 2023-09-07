@@ -17,9 +17,8 @@
         </script>
     </head>
     <body>
-        <div align="center">
-            <%@include file="/components/header.jsp" %>
-           
+   		 <%@include file="/components/header.jsp" %>
+        <div class="book-list-div" align="center">
             <div>
                  <h1 class="pageheading">Book management</h1>    
                  <a href="new-book">Create new book</a>
@@ -66,9 +65,9 @@
                 </tbody>
             </table>
 
-            <%@include file="/components/footer.jsp" %>
 
         </div>
+            <%@include file="/components/footer.jsp" %>
 
     </body>
 </html>

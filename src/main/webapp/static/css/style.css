@@ -266,4 +266,32 @@ a:active {
 
 
 
+/*admin book management*/
+.book-list-div .pageheading{
+	color: #9F0D7F;
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+.book-list-div>div a{
+	background-color:darkblue;
+	padding:8px 12px;
+	color: white;
+	margin-top: 20px;
+}
+.book-list-div table{
+	margin-left: auto;
+	margin-right: auto;
+	width: 60%;
+	background-color: #F4EEEE;
+	margin-top: 15px;
+	
+}
+.book-list-div table tr th{
+	background-color: #183D3D;
+	color: white;
+}
+.book-list-div table tr td{
+	border: 1px solid black;
+	padding: 10px;
+}
 

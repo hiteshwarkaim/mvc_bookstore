@@ -112,18 +112,16 @@ public class BookDao implements GenericDao<Book>{
                     fos.write(barr);
                     fos.flush();
                     fos.close();
-                    book.setPic(barr);
+//                    book.setPic(barr);
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 }
 //                 
-                 
-                 
+              
                  book.setPic(rs.getBytes("image"));
                  book.setPrice(rs.getFloat("price"));
                  book.setPublishDate(rs.getDate("publish_date"));
                  book.setLastUpdateTime(rs.getTimestamp("last_update_time"));
-                 
                
                  int catid=rs.getInt("category_id");
                  
@@ -132,13 +130,9 @@ public class BookDao implements GenericDao<Book>{
                 ps1.setInt(1, catid);
                 rs1=ps1.executeQuery();
                 while(rs1.next()){
-             
-                
                     cat=new Category();
                     cat.setName(rs1.getString("category_name"));
                     book.setCategory(cat);
-
-                    
                 }
                 booksList.add(book);
             }           
@@ -146,7 +140,6 @@ public class BookDao implements GenericDao<Book>{
             e.printStackTrace();
         }
         return booksList;
-
 	}
 
 	@Override
