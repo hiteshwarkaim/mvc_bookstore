@@ -53,4 +53,66 @@ public class BookService {
   		rd.forward(request, response);
   	} 
      
+     public void createBook() throws IOException,ServletException{
+         
+         int catId = Integer.parseInt(request.getParameter("category"));
+
+         String title = request.getParameter("title");
+         String author = request.getParameter("author");
+         String desc = request.getParameter("desc");
+         String isbn = request.getParameter("isbn");
+         float price = Float.parseFloat(request.getParameter("price"));
+         
+         
+         //convert/parse date string data to date object in java
+         DateFormat dateFormat=new SimpleDateFormat("MM/dd/yyyy");
+         Date publishdate=null;
+         try {
+             publishdate=dateFormat.parse(request.getParameter("publishdate"));
+         } catch (ParseException e) {
+             e.printStackTrace();
+         }
+         
+        
+         
+         Book newBook=new Book();
+         newBook.setB_title(title);
+         newBook.setAuthor(author);
+         newBook.setDesc(desc);
+         newBook.setIsbn(isbn);
+         newBook.setPublishDate(publishdate);
+         
+         Category category = categoryDao.getCategoryById(catId);
+         newBook.setCategory(category);
+         
+         newBook.setPrice(price);
+         
+         
+         //fetch image data from form
+         Part part=request.getPart("bookimage");
+         if(part!=null && part.getSize()>0){
+             long size=part.getSize();
+             byte[] imageBytes=new byte[(int)size];
+             
+             InputStream inputStream=part.getInputStream();
+             inputStream.read(imageBytes);
+             inputStream.close();
+         
+             newBook.setPic(imageBytes);
+         }
+         
+
+         int createdBook = bookDao.create(newBook);
+
+         if(createdBook!=0)
+         {
+             String message="New Book created successfully";
+             request.setAttribute("message", message);
+             
+             listBooks();
+         }
+         else
+             System.out.println("error in inserting book");
+     }
+     
 }

@@ -295,3 +295,28 @@ a:active {
 	padding: 10px;
 }
 
+
+
+/*book form*/
+.book-form-div h2{
+	color: #9F0D7F;
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
+.book-form-div .form-div{
+	width: 30%;
+}
+.book-form-div form div label{
+	float: left;
+}
+.book-form-div form div{
+	margin: 30px;
+}
+
+.book-form-div .error{
+	color: red;
+	font-style: italic;
+	margin-top: 3px;
+}
+

@@ -16,36 +16,69 @@
     <body>
     	<%@include file="/components/header.jsp" %>
         
-        <div align="center">
+        <div align="center" class="book-form-div">
              
             <div>
-                <h2>Create new Book</h2>
+                <h2>Create New Book</h2>
             </div>
              
-            <div>
+            <div class="form-div">
                         
-                <form action="create-book" method="POST" enctype="multipart/form-data">
+                <form action="create-book" method="POST" enctype="multipart/form-data" id="bookForm">
                     
-       
-                    Category:<select name="category">
-                                <c:forEach items="${listCategory}" var="category">
-                                      <option value="${category.cat_id}"> ${category.name}</option>
-                                </c:forEach>
-                    </select><br>
-                    Title:<input type="text" name="title" value="${book.b_title}"/><br>
-                    Author:<input type="text" name="author" value="${book.author}"/><br>
-                    ISBN:<input type="text" name="isbn" value="${book.isbn}"/><br>
-                    Publish Date:<input type="text" id="publishDate" name="publishdate" value="${book.publishDate}" ><br> <!--taki hume bar -bar date select na krni pade-->
-                    Price:<input type="text" name="price" value="${book.price}"/><br>
-                    Description:<textarea name="desc">
-                                    ${book.desc}
-                                </textarea><br>
-                    Book Image:<input type="file" id="bookImage" name="bookimage" />
-                     			<img src="data:image/jpg;base64,${book.base64Image}" alt="alt" id="thumbnail" style="width: 10%;"/> <br>
+							<div>
+								<label for="input-1">Category:</label>
+								
+									<select name="category" class="form-select" aria-label="Default select example">
+		                                <c:forEach items="${listCategory}" var="category">
+		                                      <option value="${category.cat_id}"> ${category.name}</option>
+		                                </c:forEach>
+                    				</select>
+								
+								
+							</div>
+							<div>
+								<label for="input-2">Title:</label>
+								<input type="text" class="form-control error" name="title" value="${book.b_title}"/>
+							</div>
+							<div>
+								<label for="input-3">Author:</label>
+								<input type="text" class="form-control error" name="author" value="${book.author}"/>
+							</div>
+							<div>
+								<label for="input-4">ISBN:</label>
+								<input type="text" class="form-control error" name="isbn" value="${book.isbn}"/>
+							</div>
+							<div>
+								<label for="input-5">Publish Date:</label>
+								<input type="text" class="form-control error" id="publishDate" name="publishdate" value="${book.publishDate}" >
+							</div>
+							<div>
+								<label for="input-6">Price:</label>
+								<input type="text" class="form-control error" name="price" value="${book.price}"/>
+							</div>
+							<div>
+								<label for="input-7">Description:</label>
+								
+									<textarea name="desc" class="form-control error" rows="6" cols="50"> ${book.desc} </textarea>
+								
+							</div>
+							<div>
+								<label for="input-8" class="form-label">Book Image:</label>
+								
+									<input type="file"  class="form-control error" id="bookImage" name="bookimage" /><img src="data:image/jpg;base64,${book.base64Image}" alt="alt" id="thumbnail" style="width: 10%;"/>
+                     				
+								
+							</div>
+							<div>
+								
+								<input class="btn btn-primary" type="submit" value="Add Book"/>
+								
+							</div>
+						
                     
-                	<input type="submit" value="Add Book"/>
-
        			 </form>
+       			 
             </div>
 
         </div>
@@ -60,6 +93,31 @@
                         showImageThumbnail(this);
                     });
 
+                    $("#bookForm").validate({
+						rules:{
+							category:"required",
+							title:"required",
+							author:"required",
+							isbn:"required",
+							publishdate:"required",
+							price:"required",
+							desc:"required",
+							bookimage:"required"
+						},
+						messages:{
+							
+							category:"Please select category",
+							title:"Please enter title",
+							author:"Please enter author",
+							isbn:"Please enter isbn",
+							publishdate:"Please enter publish date",
+							price:"Please enter price",
+							desc:"Please enter description",
+							bookimage:"Please select image"
+							
+						}
+					});
+					
                     function showImageThumbnail(fileInput){
                         var file=fileInput.files[0];
                         
@@ -71,6 +129,7 @@
                         
                         reader.readAsDataURL(file);
                     }
+                    
                 });
              </script>
     </body>
