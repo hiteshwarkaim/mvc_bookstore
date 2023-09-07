@@ -52,6 +52,11 @@
         
         <%@include file="/components/footer.jsp" %>
 			
+			<script type="text/javascript">
+                $(document).ready(function(){
+                    $('#publishDate').datepicker();
+                });
+             </script>
     </body>
     
     
