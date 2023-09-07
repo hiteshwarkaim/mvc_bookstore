@@ -39,8 +39,11 @@ public class BookService {
      public void listBooks(String message) throws IOException,ServletException{
          List<Book> allBooks = bookDao.listAll();
          request.setAttribute("allBooks", allBooks);
-         request.setAttribute("message", message);
-                
+         
+         if(message!=null) {
+        	 request.setAttribute("message", message);
+         }
+         
          RequestDispatcher requestDispatcher = request.getRequestDispatcher("book_list.jsp");
          requestDispatcher.forward(request, response);
      }
@@ -57,7 +60,16 @@ public class BookService {
          
          int catId = Integer.parseInt(request.getParameter("category"));
 
-         String title = request.getParameter("title");
+         String title = request.getParameter("title");	
+         
+         Book existBook = bookDao.findByTitle(title);
+         if(existBook!=null) {
+        	 String message="Cannot create book with this name "+title+", because this name is already exist";
+        	 request.setAttribute("message", message);
+        	 listBooks(message);
+        	 return;
+         }
+         
          String author = request.getParameter("author");
          String desc = request.getParameter("desc");
          String isbn = request.getParameter("isbn");
@@ -109,7 +121,7 @@ public class BookService {
              String message="New Book created successfully";
              request.setAttribute("message", message);
              
-             listBooks();
+             listBooks(message);
          }
          else
              System.out.println("error in inserting book");

@@ -148,4 +148,29 @@ public class BookDao implements GenericDao<Book>{
 		return 0;
 	}
 	
+	public Book findByTitle(String title) {
+		Book book=null;
+        try {
+            query="select * from book where title=?";
+            ps=this.con.prepareStatement(query);
+            ps.setString(1, title);
+            rs = ps.executeQuery();
+            
+             while(rs.next()){
+                book=new Book();
+                book.setB_id(rs.getInt("book_id"));
+                book.setB_title(rs.getString("title"));
+                book.setAuthor(rs.getString("author"));
+                book.setDesc(rs.getString("desc"));
+                book.setIsbn(rs.getString("isbn"));
+                book.setPic(rs.getBytes("image"));
+                book.setPublishDate(rs.getDate("publish_date"));
+                
+            }
+           
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return  book;
+	}
 }
