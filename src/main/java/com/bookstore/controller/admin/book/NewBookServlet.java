@@ -23,7 +23,7 @@ public class NewBookServlet extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             
         	BookService service =new BookService(request,response);
-            service.showBookForm();
+//            service.showBookForm();
            
         }
     }
