@@ -45,6 +45,12 @@ public class BookService {
          requestDispatcher.forward(request, response);
      }
 
-	
-    
+     public void showBookForm() throws IOException,ServletException{
+  		List<Category> listCategory=categoryDao.getAllCategory();
+  		request.setAttribute("listCategory", listCategory);
+  		
+  		RequestDispatcher rd=request.getRequestDispatcher("book_form.jsp");
+  		rd.forward(request, response);
+  	} 
+     
 }
