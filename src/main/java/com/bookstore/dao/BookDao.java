@@ -30,41 +30,7 @@ public class BookDao implements GenericDao<Book>{
 	
 	@Override
 	public int create(Book book) {
-		int status=0;
-        try {
-           
-            query="insert into book(title,author,description,isbn,image,price,publish_date,last_update_time,category_id) values(?,?,?,?,?,?,?,?,?)";
-            ps=this.con.prepareStatement(query);
-            
-            ps.setString(1, book.getB_title());
-            ps.setString(2, book.getAuthor());
-            ps.setString(3, book.getDesc());
-            ps.setString(4, book.getIsbn());
-            ps.setBytes(5, book.getPic());
-            ps.setFloat(6, book.getPrice());
-            ps.setObject(7, book.getPublishDate());
-            ps.setObject(8, new Date());
-            
-            //fetch category name by category_id
-            String query1="select * from category where category_name=?";
-            PreparedStatement ps1=this.con.prepareStatement(query1);
-            ps1.setString(1, book.getCategory().getName());
-            ResultSet rs1=ps1.executeQuery();
-            Category category=null;
-            
-            if(rs1.next()){
-                category=new Category();
-                int catid=rs1.getInt("category_id");
-                category.setCat_id(catid);
-            }
-            ps.setInt(9, category.getCat_id());
-            status = ps.executeUpdate();
-             
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        
-        return status;
+		return 0;
 	}
 
 	@Override

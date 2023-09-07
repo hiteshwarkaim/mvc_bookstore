@@ -48,14 +48,12 @@
                         <tr>
                             <td>${status.index+1}</td>
                             <td>${book.b_id}</td>
-                            <td style="height: 150px;width: 50px">
-                                <img src="data:image/jpg;base64,${book.base64Image}" alt="image" style="width: 140px;"/>
-                            </td>
+                            
                             <td>${book.b_title}</td>
                             <td>${book.author}</td>
                             <td>${book.category.name}</td>
                             <td>Rs. ${book.price}</td>
-                            <td> <fmt:formatDate pattern="MM/dd/yyyy" value='${book.lastUpdateTime}'/></td>
+                            <td></td>
                             <td> 
                                 <a href="">Edit</a> &nbsp;&nbsp; 
                                 <a href="">Remove</a>
