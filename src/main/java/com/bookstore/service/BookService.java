@@ -140,5 +140,90 @@ public class BookService {
              
      }
      
+     public void updateBook() throws ServletException,IOException{
+         System.out.println("update book service");
+         int id = Integer.parseInt(request.getParameter("id")); 
+         
+          String title = request.getParameter("title"); 
+         String author = request.getParameter("author");
+         String desc = request.getParameter("desc");
+         String isbn = request.getParameter("isbn");
+         float price = Float.parseFloat(request.getParameter("price"));
+
+     
+        DateFormat dateFormat=new SimpleDateFormat("MM/dd/yyyy");
+        Date publishdate=null;
+        try {
+            publishdate=dateFormat.parse(request.getParameter("publishdate"));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+          Book existBook = bookDao.getBookById(id);
+         Book bookBytitle = bookDao.findByTitle(title);
+          
+         if(!existBook.equals(bookBytitle)){
+             String message="could not update becoz another book has this title "+title;
+             
+             request.setAttribute("message", message);
+             
+             listBooks(message);
+             return;
+             
+         }
+         System.out.println("id:"+id);
+        
+        System.out.println("title:"+title);
+        System.out.println("author:"+author);
+        System.out.println("desc:"+desc);
+        System.out.println("isbn:"+isbn);
+        System.out.println("price:"+price);
+        System.out.println("publishdate:"+publishdate);
+       
+        Book book=new Book();
+        
+        book.setB_id(id);
+        book.setB_title(title);
+        book.setAuthor(author);
+        book.setDesc(desc);
+        book.setIsbn(isbn);
+        book.setPrice(price);
+        book.setPublishDate(publishdate);
+        
+        
+        int catId = Integer.parseInt(request.getParameter("category"));
+        
+        Category category = categoryDao.getCategoryById(catId);
+        book.setCategory(category);
+
+        System.out.println("reading data");
+        Part part=request.getPart("bookimage");
+        if(part!=null && part.getSize()>0){
+            long size=part.getSize();
+            byte[] imageBytes=new byte[(int)size];
+
+            InputStream inputStream=part.getInputStream();
+            inputStream.read(imageBytes);
+            inputStream.close();
+
+            book.setPic(imageBytes);
+        }
+
+         
+     int updateBookDetails = bookDao.update(book);
+     if(updateBookDetails!=0)
+     {
+         System.out.println("book updated");
+         
+         String message="Book updated successfully";
+         request.setAttribute("message", message);
+         listBooks(message);
+     }
+     else{
+         System.out.println("book not updated");
+     }         
+         
+ }
+     
      
 }

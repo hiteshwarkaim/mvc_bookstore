@@ -64,7 +64,7 @@
 							</div>
 							<div>
 								<label for="input-5">Publish Date:</label>
-								<input type="text" class="form-control error" id="publishDate" name="publishdate" value="${book.publishDate}" >
+								<input type="text" class="form-control error" id="publishDate" name="publishdate" value="<fmt:formatDate pattern="MM/dd/yyyy" value='${book.publishDate}'/>" >
 							</div>
 							<div>
 								<label for="input-6">Price:</label>
@@ -113,7 +113,10 @@
 							publishdate:"required",
 							price:"required",
 							desc:"required",
-							bookimage:"required"
+
+							<c:if test="${book==null}">
+								bookimage:"required"
+							</c:if>
 						},
 						messages:{
 							
