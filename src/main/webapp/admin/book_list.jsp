@@ -58,7 +58,7 @@
                             <td> <fmt:formatDate pattern="MM/dd/yyyy" value='${book.lastUpdateTime}'/></td>
                             <td> 
                                 <a href="edit-book?id=${book.b_id}">Edit</a> &nbsp;&nbsp; 
-                                <a href="">Remove</a>
+                                <a href="javascript:confirmDelete(${book.b_id})">Remove</a>
                             </td>
                         </tr>
                     </c:forEach>
@@ -69,5 +69,13 @@
         </div>
             <%@include file="/components/footer.jsp" %>
 
+			<script>
+                function confirmDelete(bookId) {
+                    if(confirm("Are sure to delete: "+bookId+"?"))
+                    {
+                        window.location='delete-book?id=' + bookId;
+                    }
+                }
+            </script>
     </body>
 </html>

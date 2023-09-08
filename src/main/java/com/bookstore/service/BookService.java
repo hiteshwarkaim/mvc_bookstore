@@ -225,5 +225,18 @@ public class BookService {
          
  }
      
+     public void deleteBook() throws IOException,ServletException{
+         int id = Integer.parseInt(request.getParameter("id"));
+         int deleteBook = bookDao.delete(id);
+         
+         if(deleteBook!=0)
+         {
+             String message="category deleted successfully";
+             request.setAttribute("message", message);
+             
+             listBooks(message);
+         }
+     }
+     
      
 }
