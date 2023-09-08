@@ -19,23 +19,36 @@
         <div align="center" class="book-form-div">
              
             <div>
-                <h2>Create New Book</h2>
+                <h2>
+                	<c:if test="${book!=null}">Edit Book</c:if>
+                    <c:if test="${book==null}">Create new Book</c:if>
+                </h2>
             </div>
              
             <div class="form-div">
-                        
-                <form action="create-book" method="POST" enctype="multipart/form-data" id="bookForm">
+                 <c:if test="${book!=null}">
+                            <form action="update-book" method="post" enctype="multipart/form-data" id="bookForm">
+                             <input type="hidden" name="id" value="${book.b_id}">
+                        </c:if>
+                        <c:if test="${book==null}">
+                            <form action="create-book" method="POST" enctype="multipart/form-data" id="bookForm">
+                        </c:if>
                     
 							<div>
 								<label for="input-1">Category:</label>
 								
 									<select name="category" class="form-select" aria-label="Default select example">
-		                                <c:forEach items="${listCategory}" var="category">
-		                                      <option value="${category.cat_id}"> ${category.name}</option>
-		                                </c:forEach>
+		                               <c:forEach items="${listCategory}" var="category">
+                                                <c:if test="${category.cat_id eq book.category.cat_id}">
+                                                    <option value="${category.cat_id}" selected>
+                                                </c:if>
+                                                <c:if test="${category.cat_id ne book.category.cat_id}">
+                                                    <option value="${category.cat_id}">
+                                                </c:if>
+                                                    ${category.name}    
+                                                    </option>
+                                            </c:forEach>
                     				</select>
-								
-								
 							</div>
 							<div>
 								<label for="input-2">Title:</label>
@@ -66,17 +79,15 @@
 							<div>
 								<label for="input-8" class="form-label">Book Image:</label>
 								
-									<input type="file"  class="form-control error" id="bookImage" name="bookimage" /><img src="data:image/jpg;base64,${book.base64Image}" alt="alt" id="thumbnail" style="width: 10%;"/>
-                     				
-								
-							</div>
+									<input type="file"  class="form-control error" id="bookImage" name="bookimage" />
+									<img src="data:image/jpg;base64,${book.base64Image}" alt="alt" id="thumbnail" style="width: 10%;"/>
+                     		</div>
 							<div>
 								
 								<input class="btn btn-primary" type="submit" value="Add Book"/>
 								
 							</div>
-						
-                    
+					
        			 </form>
        			 
             </div>

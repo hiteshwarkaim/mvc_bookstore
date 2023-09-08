@@ -57,7 +57,6 @@ public class BookService {
   	} 
      
      public void createBook() throws IOException,ServletException{
-         
          int catId = Integer.parseInt(request.getParameter("category"));
 
          String title = request.getParameter("title");	
@@ -75,7 +74,6 @@ public class BookService {
          String isbn = request.getParameter("isbn");
          float price = Float.parseFloat(request.getParameter("price"));
          
-         
          //convert/parse date string data to date object in java
          DateFormat dateFormat=new SimpleDateFormat("MM/dd/yyyy");
          Date publishdate=null;
@@ -86,7 +84,6 @@ public class BookService {
          }
          
         
-         
          Book newBook=new Book();
          newBook.setB_title(title);
          newBook.setAuthor(author);
@@ -126,5 +123,22 @@ public class BookService {
          else
              System.out.println("error in inserting book");
      }
+     
+     public void editBook() throws ServletException,IOException{
+         
+         int id = Integer.parseInt(request.getParameter("id"));
+         
+         Book bookById = bookDao.getBookById(id);
+        
+         List<Category> listCategory = categoryDao.getAllCategory();
+         
+         request.setAttribute("book", bookById);
+         request.setAttribute("listCategory", listCategory);
+         
+         RequestDispatcher requestDispatcher = request.getRequestDispatcher("book_form.jsp");
+         requestDispatcher.forward(request, response);
+             
+     }
+     
      
 }

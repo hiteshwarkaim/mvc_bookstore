@@ -27,7 +27,7 @@
                 <h4 class="message">${message}</h4>
             </c:if>
             
-            <table border="1" width="1000">
+            <table border="1" width="1000" class="table table-striped">
                 <thead>
                     <tr>
                         <th>Index</th>
@@ -57,7 +57,7 @@
                             <td>Rs. ${book.price}</td>
                             <td> <fmt:formatDate pattern="MM/dd/yyyy" value='${book.lastUpdateTime}'/></td>
                             <td> 
-                                <a href="">Edit</a> &nbsp;&nbsp; 
+                                <a href="edit-book?id=${book.b_id}">Edit</a> &nbsp;&nbsp; 
                                 <a href="">Remove</a>
                             </td>
                         </tr>
