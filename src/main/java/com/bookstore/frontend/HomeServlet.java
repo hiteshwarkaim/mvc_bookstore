@@ -6,7 +6,8 @@
 package com.bookstore.frontend;
 
 
-import com.bookstore.entities.Book;
+import com.bookstore.dao.CategoryDao;
+import com.bookstore.dao.DB_Connection;
 import com.bookstore.entities.Category;
 import java.io.IOException;
 import java.util.List;
@@ -20,10 +21,17 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "HomeServlet", urlPatterns = {""})
 public class HomeServlet extends HttpServlet {
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	private static final long serialVersionUID = 1L;
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-            
+        
+        CategoryDao categoryDao=new CategoryDao(DB_Connection.getConnection());
+        List<Category> allCategory = categoryDao.getAllCategory();
+        
+        request.setAttribute("allCategory", allCategory);
+        
         RequestDispatcher rd = request.getRequestDispatcher("frontend/index.jsp");
         rd.forward(request, response);
     }

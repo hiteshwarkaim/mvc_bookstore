@@ -39,14 +39,14 @@ public class CategoryService {
         List<Category> allCategory = categoryDao.getAllCategory();
         request.setAttribute("allCategory", allCategory);
         
+        
         if(message!=null)
         	request.setAttribute("message", message);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("category_list.jsp");
         requestDispatcher.forward(request, response);
 
     }
-    
-    
+      
     public void createCategory() throws ServletException,IOException{
         
         int status=0;
@@ -116,7 +116,6 @@ public class CategoryService {
             getAllCategory("Category updated successfully"); 
         }
     }
-    
     
     public void removeCategory() throws IOException,ServletException{
         int id = Integer.parseInt(request.getParameter("id"));

@@ -210,18 +210,18 @@ public class BookService {
         }
 
          
-     int updateBookDetails = bookDao.update(book);
-     if(updateBookDetails!=0)
-     {
-         System.out.println("book updated");
-         
-         String message="Book updated successfully";
-         request.setAttribute("message", message);
-         listBooks(message);
-     }
-     else{
-         System.out.println("book not updated");
-     }         
+	     int updateBookDetails = bookDao.update(book);
+	     if(updateBookDetails!=0)
+	     {
+	         System.out.println("book updated");
+	         
+	         String message="Book updated successfully";
+	         request.setAttribute("message", message);
+	         listBooks(message);
+	     }
+	     else{
+	         System.out.println("book not updated");
+	     }         
          
  }
      
@@ -238,5 +238,24 @@ public class BookService {
          }
      }
      
+//     public void listBooksByCategory() throws IOException,ServletException{
+//         int id = Integer.parseInt(request.getParameter("id"));
+//         List<Book> listBookByCategory = bookDao.listBookByCategory(id);
+//         
+//         Category category = categoryDao.getCategoryById(id);
+//         List<Category> listCategory = categoryDao.getAllCategory();
+//        
+//         System.out.println("category "+category);
+//         System.out.println("listCategory "+listCategory);
+//         System.out.println("listBookByCategory "+listBookByCategory);
+//         
+////         request.setAttribute("listBookByCategory", listBookByCategory);
+////         request.setAttribute("listCategory", listCategory);
+////         request.setAttribute("category", category);
+//             
+//         RequestDispatcher requestDispatcher = request.getRequestDispatcher("frontend/book_list_by_category.jsp");
+//         requestDispatcher.forward(request, response);
+//     }
+//     
      
 }

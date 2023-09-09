@@ -15,7 +15,7 @@
 	   <script src="../static/js/script.js"></script>
 	   <script src="https://kit.fontawesome.com/846c497550.js" crossorigin="anonymous"></script>
 	   <script type="text/javascript" src="../static/js/jquery.validate.min.js"></script>
-	   <script src="../static/js/jquery-ui.min.js"></script>    
+	   <script type="text/javascript" src="../static/js/jquery-ui.min.js"></script>    
 	   
   </body>
 </html>
