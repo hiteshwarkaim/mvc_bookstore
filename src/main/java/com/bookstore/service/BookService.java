@@ -249,7 +249,7 @@ public class BookService {
          System.out.println("allCategory "+allCategory);
 //         System.out.println("listBookByCategory "+listBookByCategory);
          
-//         request.setAttribute("listBookByCategory", listBookByCategory);
+         request.setAttribute("listBookByCategory", listBookByCategory);
          request.setAttribute("allCategory", allCategory);
          request.setAttribute("category", category);
              

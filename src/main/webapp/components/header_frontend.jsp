@@ -162,7 +162,7 @@
     		
     		<hr>
       
-      		<div style="margin-bottom: 55px;">
+      		<div style="margin-bottom: 30px;">
     		</div>
     		
     </body>
