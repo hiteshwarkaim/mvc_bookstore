@@ -30,10 +30,13 @@ public class HomeServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         CategoryDao categoryDao=new CategoryDao(DB_Connection.getConnection());
+        BookDao bookDao=new BookDao(DB_Connection.getConnection());
         
         List<Category> allCategory = categoryDao.getAllCategory();
+        List<Book> listNewBook = bookDao.listNewBook();
         
         request.setAttribute("allCategory", allCategory);
+        request.setAttribute("listNewBook", listNewBook);
         
         RequestDispatcher rd = request.getRequestDispatcher("frontend/index.jsp");
         rd.forward(request, response);

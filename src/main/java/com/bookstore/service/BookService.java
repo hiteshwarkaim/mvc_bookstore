@@ -245,10 +245,6 @@ public class BookService {
          Category category = categoryDao.getCategoryById(id);
          List<Category> allCategory = categoryDao.getAllCategory();
         
-//         System.out.println("category "+category);
-         System.out.println("allCategory "+allCategory);
-//         System.out.println("listBookByCategory "+listBookByCategory);
-         
          request.setAttribute("listBookByCategory", listBookByCategory);
          request.setAttribute("allCategory", allCategory);
          request.setAttribute("category", category);
