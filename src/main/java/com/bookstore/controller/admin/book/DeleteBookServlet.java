@@ -8,6 +8,8 @@ package com.bookstore.controller.admin.book;
 import com.bookstore.service.BookService;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,7 +27,9 @@ public class DeleteBookServlet extends HttpServlet {
                    BookService service =new BookService(request,response);
                    service.deleteBook();
             
-            
-        }
+        } catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 }

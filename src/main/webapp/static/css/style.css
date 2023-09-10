@@ -328,14 +328,14 @@ a:active {
 
 
 /*customer form*/
-.customer-form-div >div h2{
+.customer-form-div h2{
 	color: #9F0D7F;
 	margin-top: 10px;
 	margin-bottom: 20px;
 	text-align: center;
 }
 .customer-form-div .form-div{
-	width: 30%;
+	width: 800px;
 	margin:0 auto;
 }
 .customer-form-div form div label{
@@ -344,6 +344,7 @@ a:active {
 .customer-form-div form div{
 	margin: 30px;
 }
+
 .customer-form-div .error{
 	color: red;
 	font-style: italic;

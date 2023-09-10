@@ -146,7 +146,7 @@
     		
     		<div class="register-links">
     			<ul>
-					<li><a href="register-customer">Register</a></li>
+					<li><a href="register">Register</a></li>
                     <li><a href="login-customer">Signin</a></li>
                 </ul>
     		</div>
