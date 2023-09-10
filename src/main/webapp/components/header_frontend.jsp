@@ -134,8 +134,8 @@
                 </ul>
     		</div>
     		<div class="form-div1">
-				<form id="form-1">
-					<input placeholder="Search here" type="text" size="35"/>
+				<form id="form-1" action="search">
+					<input placeholder="Search here" name="search" type="text" size="35"/>
 					<button>Search</button>
 				</form>
     		</div>

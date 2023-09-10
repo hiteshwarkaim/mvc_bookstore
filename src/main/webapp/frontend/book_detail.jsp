@@ -11,8 +11,7 @@
 <body>
 	<div align="center">
             <%@include file="/components/header_frontend.jsp" %>
-            
-            
+          
             <div style="width: 80%;">
                 <table>
                     <tr>
@@ -50,9 +49,6 @@
                     </tr>
                 </table>
             </div>
-            
-            
-            
             
             <%@include file="/components/footer.jsp" %>
 

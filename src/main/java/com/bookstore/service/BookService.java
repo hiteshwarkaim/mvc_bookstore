@@ -267,4 +267,29 @@ public class BookService {
          
      }
      
+     public void searchBook() throws IOException,ServletException{
+         String keyword = request.getParameter("search");
+         List<Category> allCategory = categoryDao.getAllCategory();
+         
+         List<Book> result = null; 
+         
+         if(keyword.equals("")){
+             result=bookDao.listAll();
+             String message="Sorry no Result found!!!!!!";
+             request.setAttribute("message", message);
+             
+         }
+         else{
+             result=bookDao.searchBook(keyword);
+             
+         }
+         request.setAttribute("searchBook", result);
+         request.setAttribute("keyword", keyword);
+         request.setAttribute("allCategory", allCategory);    
+         
+         RequestDispatcher requestDispatcher = request.getRequestDispatcher("frontend/search.jsp");
+         requestDispatcher.forward(request, response);
+         
+     }
+     
 }
