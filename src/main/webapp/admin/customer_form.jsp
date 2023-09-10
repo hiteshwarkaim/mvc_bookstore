@@ -28,7 +28,7 @@
             	</div>
             </c:if> 
                     <div class="form-div">
-                            <form action="register" method="POST" id="customerForm">
+                            <form action="create-customer" method="POST" id="customerForm">
                                
                              
 							<div>

@@ -30,19 +30,65 @@ public class CustomerService {
     
     
     
-//    public void getAllUsersData() throws IOException,ServletException{{
-//        getAllUsersData(null);
-//    }
-    
     public void listAllCustomer() throws IOException,ServletException{
+        listAllCustomer(null);
+    }
+    
+    public void listAllCustomer(String message) throws IOException,ServletException{
         List<Customer> allCustomers = customerDao.listAll();
+        if(message!=null)
+        	request.setAttribute("message", message);
+        
         request.setAttribute("allCustomers", allCustomers);
-
-                    
+             
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("customer_list.jsp");
         requestDispatcher.forward(request, response);
     } 
     
+    public void createCustomer() throws ServletException,IOException{
+        
+        int status=0;
+        Customer newCustomer=null;
+        
+        
+        String email=request.getParameter("email");
+        String fullname=request.getParameter("fullname");
+        String pwd1=request.getParameter("pwd1");
+        String pwd2=request.getParameter("pwd2");
+        String phone=request.getParameter("phone");
+        String address=request.getParameter("address");
+        String city=request.getParameter("city");
+        String zipcode=request.getParameter("zipcode");
+        String country=request.getParameter("country");
+        Date register=new Date();
+        
+	    //fetch  the user with this email
+	    Customer customerByEmail = customerDao.getCustomerByEmail(email);
+        
+        //check email is already exist or not
+        if(customerByEmail!=null){
+            System.out.println("exist krti hai ye");
+            
+            String message="email already exist: "+email;
+            request.setAttribute("message", message);
+            
+            listAllCustomer(message);
+        }
+        else{
+            
+            //if email is not already exist, then insert the data
+            newCustomer=new Customer(email, fullname, address, city, country, phone, zipcode,pwd1, register);
+            customerDao.create(newCustomer);
+            
+            String message="customer is created successfully: "+newCustomer.getFullName();
+            request.setAttribute("message", message);
+            
+            listAllCustomer(message);        
+            }
+               
+        }
+         
+} 
+    
     
 
-}

@@ -64,4 +64,76 @@ import java.util.List;
 				return 0;
 			}
 
+			@Override
+			public int create(Customer customer) {
+				 int status=0;
+			        try {
+			           
+			            query="insert into customer(email,fullname,address,city,country,phone,zipcode,password,register_date) values(?,?,?,?,?,?,?,?,?)";
+			            ps=this.con.prepareStatement(query);
+			            
+			            System.out.println(customer.getEmail()+" "+customer.getFullName()+" "+customer.getRegister());
+			            
+			            ps.setString(1, customer.getEmail());
+			            ps.setString(2, customer.getFullName());
+			            ps.setString(3, customer.getAddress());
+			            ps.setString(4, customer.getCity());
+			            ps.setString(5, customer.getCountry());
+			            ps.setString(6, customer.getPhone());
+			            ps.setString(7, customer.getZipcode());
+			            ps.setString(8, customer.getPassword());
+			            ps.setObject(9, customer.getRegister());
+			            
+			            status = ps.executeUpdate();
+			          
+			             
+			        } catch (Exception e) {
+			            e.printStackTrace();
+			        }
+			        
+			        return status;
+			}
+
+			@Override
+			public int update(Customer t) {
+				// TODO Auto-generated method stub
+				return 0;
+			}
+
+			@Override
+			public int delete(int id) {
+				// TODO Auto-generated method stub
+				return 0;
+			}
+			
+			 public Customer getCustomerByEmail(String email){
+			        Customer customer=null;
+			        try {
+			            query="select * from customer where email=?";
+			            ps=this.con.prepareStatement(query);
+			            ps.setString(1, email);
+			            rs = ps.executeQuery();
+			            
+			             while(rs.next()){
+			                customer=new Customer();
+			                
+			                 customer.setCust_id(rs.getInt("customer_id"));
+			                 customer.setEmail(rs.getString("email"));
+			                 customer.setFullName(rs.getString("fullname"));
+			                 customer.setAddress(rs.getString("address"));
+			                 customer.setCity(rs.getString("city"));
+			                 customer.setCountry(rs.getString("country"));
+			                 customer.setPhone(rs.getString("phone"));
+			                 customer.setZipcode(rs.getString("zipcode"));
+			                 customer.setPassword(rs.getString("password"));
+			                 customer.setRegister(rs.getDate("register_date"));
+			                
+			            }
+			           
+			        } catch (Exception e) {
+			            e.printStackTrace();
+			        }
+			        return  customer;
+			    }
+
 	}
