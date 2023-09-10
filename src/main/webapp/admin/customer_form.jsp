@@ -18,18 +18,27 @@
           
         <div class="customer-form-div">
             
-            
             <div>
-                <h2>Customer Registration </h2>
+                <h2>
+                	<c:if test="${customer!=null}">Edit Customer</c:if>
+                    <c:if test="${customer==null}">Create New Customer</c:if>
+                </h2>
             </div>
+            
              <c:if test="${message !=null }">
             	<div align="center">
             		<h4><i>${message}</i></h4>
             	</div>
             </c:if> 
                     <div class="form-div">
-                            <form action="create-customer" method="POST" id="customerForm">
-                               
+                    
+                    		<c:if test="${customer!=null}">
+                            <form action="update-customer" method="post" id="customerForm">
+                             	<input type="hidden" name="id" value="${customer.cust_id}">
+	                        </c:if>
+	                        <c:if test="${customer==null}">
+	                            <form action="create-customer" method="POST" id="customerForm">
+	                        </c:if>
                              
 							<div>
 								<label for="input-2">Email:</label>
