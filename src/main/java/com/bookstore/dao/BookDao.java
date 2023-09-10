@@ -300,7 +300,6 @@ public class BookDao implements GenericDao<Book>{
         try {
             query="select * from book order by publish_date desc";
             ps=this.con.prepareStatement(query);
-//            ps.setInt(1,categoryId);
             rs=ps.executeQuery();
             while(rs.next())
             {
