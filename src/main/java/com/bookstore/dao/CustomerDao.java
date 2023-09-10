@@ -95,9 +95,30 @@ import java.util.List;
 			}
 
 			@Override
-			public int update(Customer t) {
-				// TODO Auto-generated method stub
-				return 0;
+			public int update(Customer customer) {
+				 int status=0;
+		            try {
+		                query="update customer set email=?, fullname=?, address=?,city=?,country=?,phone=?,zipcode=?,password=?,register_date=? where customer_id=?";
+		                ps=this.con.prepareStatement(query);
+		                
+		                ps.setString(1, customer.getEmail());
+		                ps.setString(2, customer.getFullName());
+		                ps.setString(3, customer.getAddress());
+		                ps.setString(4, customer.getCity());
+		                ps.setString(5, customer.getCountry());
+		                ps.setString(6, customer.getPhone());
+		                ps.setString(7, customer.getZipcode());
+		                ps.setString(8, customer.getPassword());
+		                ps.setObject(9, customer.getRegister());
+		                ps.setInt(10, customer.getCust_id());
+		                
+		                status=ps.executeUpdate();
+		                
+		                
+		            } catch (Exception e) {
+		                e.printStackTrace();
+		            }
+		            return status;
 			}
 
 			@Override

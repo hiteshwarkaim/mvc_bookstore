@@ -31,7 +31,7 @@
             </div>
              
             <div class="form-div">
-                 <c:if test="${book!=null}">
+                 		<c:if test="${book!=null}">
                             <form action="update-book" method="post" enctype="multipart/form-data" id="bookForm">
                              <input type="hidden" name="id" value="${book.b_id}">
                         </c:if>

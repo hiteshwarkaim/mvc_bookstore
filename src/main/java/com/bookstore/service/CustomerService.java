@@ -102,6 +102,61 @@ public class CustomerService {
         requestDispatcher.forward(request, response);
             
     }
+    
+    public void updateCustomer() throws ServletException,IOException{
+        
+        int id = Integer.parseInt(request.getParameter("id"));
+        
+        String email=request.getParameter("email");
+        String fullname=request.getParameter("fullname");
+        String pwd1=request.getParameter("pwd1");
+        String pwd2=request.getParameter("pwd2");
+        String phone=request.getParameter("phone");
+        String address=request.getParameter("address");
+        String city=request.getParameter("city");
+        String zipcode=request.getParameter("zipcode");
+        String country=request.getParameter("country");
+        Date register=new Date();
+        
+        Customer customerById = customerDao.getCustomerById(id);
+        Customer customerByEmail = customerDao.getCustomerByEmail(email);
+        
+        if(customerByEmail!=null && customerByEmail.getCust_id()!=customerById.getCust_id())  
+        {
+            System.out.println("could not update");
+            String message="could not update "+email+" already exist";
+            request.setAttribute("message", message);
+            
+            listAllCustomer(message);
+        }
+        else{
+            Customer customer=new Customer();
+            
+            customer.setCust_id(id);
+            customer.setEmail(email);
+            customer.setAddress(address);
+            customer.setFullName(fullname);
+            customer.setCity(city);
+            customer.setCountry(country);
+            customer.setPassword(pwd1);
+            customer.setPhone(phone);
+            customer.setZipcode(zipcode);
+            customer.setRegister(register);
+            
+            int updateCustomerDetails = customerDao.update(customer);
+
+            if(updateCustomerDetails!=0)
+            {
+                System.out.println("customer updated");
+                String message="customer updated successfully";
+                request.setAttribute("message", message);
+                listAllCustomer(message);
+            }
+
+            else
+                System.out.println("error on update");
+            }
+} 
          
 } 
     
