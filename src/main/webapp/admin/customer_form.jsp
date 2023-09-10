@@ -41,7 +41,7 @@
 							</div>
 							<div>
 								<label for="input-4">Password:</label>
-								<input type="password" class="form-control error" name="pwd1"/>
+								<input type="password" class="form-control error" name="pwd1" id="password"/>
 							</div>
 							<div>
 								<label for="input-5">Confirm Password:</label>
@@ -92,7 +92,11 @@
 
 							fullname:"required",
 							pwd1:"required",
-							pwd2:"required",
+							
+							pwd2:{
+								required: true,
+								equalTo:"#password"
+							},
 							phone:"required",
 							address:"required",
 							city:"required",
@@ -107,7 +111,10 @@
 							
 							fullname:"Please enter name",
 							pwd1:"Please enter password",
-							pwd2:"Please enter confirm password",
+							pwd2:{
+								required:"Please enter confirm password",
+								equalTo: "Confirm password does not match"
+							},
 							phone:"Please enter phone",
 							address:"Please enter address",
 							city:"Please enter city",
