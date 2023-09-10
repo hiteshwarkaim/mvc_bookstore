@@ -22,8 +22,12 @@ public class DeleteCategoryServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
      
-            CategoryService service=new CategoryService(request,response);
-            service.removeCategory();
+            try {
+            	CategoryService service=new CategoryService(request,response);
+                service.removeCategory();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
         }
     }
 }

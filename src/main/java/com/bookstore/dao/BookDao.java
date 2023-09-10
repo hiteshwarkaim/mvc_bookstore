@@ -10,6 +10,7 @@ import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -359,4 +360,16 @@ public class BookDao implements GenericDao<Book>{
         }
         return booksList;
      }
+	  
+	  public long countByCategory(int catId) throws SQLException {
+		  query="select count(*) from book b join category c on b.category_id=c.category_id and c.category_id=?";
+          ps=this.con.prepareStatement(query);
+          ps.setInt(1,catId);
+          int count=0;
+          rs=ps.executeQuery();
+          while(rs.next()) {
+        	  count=rs.getInt(1);
+          }
+          return count;
+	  }
 }

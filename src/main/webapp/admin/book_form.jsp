@@ -11,6 +11,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <link rel="stylesheet" href="../static/css/jquery-ui.min.css"/>
+        <link rel="stylesheet" href="/path/to/font-awesome.min.css" />
+        <link rel="stylesheet" href="../static/css/richtext.min.css">
+        
+        <script type="text/javascript" src="../static/js/jquery.richtext.min.js"></script>
+        <script src="/path/to/cdn/jquery.min.js"></script>
         
     </head>
     <body>
@@ -73,7 +78,7 @@
 							<div>
 								<label for="input-7">Description:</label>
 								
-									<textarea name="desc" class="form-control error" rows="6" cols="50"> ${book.desc} </textarea>
+									<textarea name="desc" id="description" class="form-control error" rows="6" cols="50"> ${book.desc} </textarea>
 								
 							</div>
 							<div>
@@ -99,7 +104,8 @@
 			<script type="text/javascript">
                 $(document).ready(function(){
                     $('#publishDate').datepicker();
-
+                    $('#description').richText();
+					
                     $('#bookImage').change(function(){
                         showImageThumbnail(this);
                     });

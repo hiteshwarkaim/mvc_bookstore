@@ -7,6 +7,7 @@ import com.bookstore.entities.Book;
 import com.bookstore.entities.Category;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -225,7 +226,7 @@ public class BookService {
          
  }
      
-     public void deleteBook() throws IOException,ServletException{
+     public void deleteBook() throws IOException,ServletException, SQLException{
          int id = Integer.parseInt(request.getParameter("id"));
          int deleteBook = bookDao.delete(id);
          
@@ -236,6 +237,7 @@ public class BookService {
              
              listBooks(message);
          }
+        
      }
      
      public void listBooksByCategory() throws IOException,ServletException{
@@ -291,5 +293,6 @@ public class BookService {
          requestDispatcher.forward(request, response);
          
      }
+    
      
 }

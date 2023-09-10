@@ -6,6 +6,7 @@
 package com.bookstore.service;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -121,18 +122,25 @@ public class CategoryService {
         }
     }
     
-    public void removeCategory() throws IOException,ServletException{
+    public void removeCategory() throws IOException,ServletException, SQLException{
         int id = Integer.parseInt(request.getParameter("id"));
         int deleteCategory = categoryDao.delete(id);
         
-        if(deleteCategory!=0)
-        {
-            String message="category deleted successfully";
-            request.setAttribute("message", message);
-            
-            getAllCategory(message);
-            
+        long numberOfBooks = bookDao.countByCategory(id);
+        System.out.println(numberOfBooks);
+        String message;
+        
+        if(numberOfBooks>0) {
+        	message="Could not delete this category, because it contains some(%d) books";
+        	message=String.format(message, numberOfBooks);
         }
+        else
+        {
+            message="category deleted successfully";
+        }
+        request.setAttribute("message", message);
+        
+        getAllCategory(message);
     }
 
     public void listByBooksByCategory() throws IOException,ServletException{

@@ -16,7 +16,7 @@
             <div class="headermenu">
 	                <div>
 	                	<a href="${pageContext.request.contextPath}/admin">
-	                		<img alt="" src="../static/images/logo.png" style="float: left;margin-left:-300px;margin-right:150px; height: 200px;width: 200px;"/>
+	                		<img src="../static/images/logo.png" style="float: left;margin-left:-300px;margin-right:150px; height: 200px;width: 200px;"/>
 	                	</a>
 	                </div>
                     <div>
