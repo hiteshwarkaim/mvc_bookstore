@@ -19,7 +19,5 @@ public class SearchBookServlet extends HttpServlet {
         
         BookService service=new BookService(request,response);
         service.searchBook();
-        
-//      
     }
 }

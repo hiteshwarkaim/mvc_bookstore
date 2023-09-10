@@ -48,11 +48,6 @@
                  </div>
             </c:if>
                 
-            
-            
-            
-            
-            
             <%@include file="/components/footer.jsp" %>
 
         </div>

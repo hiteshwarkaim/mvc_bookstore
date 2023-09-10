@@ -122,8 +122,9 @@
 
     	<div class="header">
     		<div class="logo-img">
-				<img alt="logo" src="./static/images/logo.png" height="100" width="150"/>
-				
+    			<a href="${pageContext.request.contextPath}">
+					<img alt="logo" src="./static/images/logo.png" height="100" width="150"/>
+				</a>
     		</div>
     		<div class="header-links">
     			<ul>

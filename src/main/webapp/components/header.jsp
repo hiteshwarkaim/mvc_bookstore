@@ -11,10 +11,14 @@
     </head>
     <body>
         <div class="adminheader">	
-            
+			
             <h4 class="welcome">Welcome, <c:out value="${sessionScope.userEmail}"></c:out> | <a href="logout">Logout</a> </h4>
             <div class="headermenu">
-                
+	                <div>
+	                	<a href="${pageContext.request.contextPath}/admin">
+	                		<img alt="" src="../static/images/logo.png" style="float: left;margin-left:-300px;margin-right:150px; height: 200px;width: 200px;"/>
+	                	</a>
+	                </div>
                     <div>
                         <a href="list-users">
                             <img src="../static/images/user.png" alt="alt" width="70" height="70"/><br>Users
