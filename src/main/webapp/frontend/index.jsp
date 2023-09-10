@@ -12,7 +12,7 @@
 
 </head>
 <body>
-	<jsp:include page="/components/header_frontend.jsp"/>
+	<jsp:include file="/components/header.jsp"/>
 	
 	<div align="center">
 		 <h2>New arrival</h2>

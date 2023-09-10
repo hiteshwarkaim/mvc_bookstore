@@ -325,3 +325,30 @@ a:active {
 	
 }
 
+
+
+/*customer form*/
+.customer-form-div >div h2{
+	color: #9F0D7F;
+	margin-top: 10px;
+	margin-bottom: 20px;
+	text-align: center;
+}
+.customer-form-div .form-div{
+	width: 30%;
+	margin:0 auto;
+}
+.customer-form-div form div label{
+	float: left;
+}
+.customer-form-div form div{
+	margin: 30px;
+}
+.customer-form-div .error{
+	color: red;
+	font-style: italic;
+	margin-top: 3px;
+}
+.customer-form-div form input[type="submit"]{
+	margin-left: 200px;
+}

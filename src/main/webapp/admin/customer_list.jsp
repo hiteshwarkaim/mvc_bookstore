@@ -17,8 +17,8 @@
         <div class="user-list-div">
             
             <div>
-                 <h1>User management</h1>    
-                 <a href="user_form.jsp">Create new user</a>
+                 <h1>Customer Management</h1>    
+                 <a href="customer_form.jsp">Create New Customer</a>
             </div> 
             
             <c:if test="${message !=null }">
