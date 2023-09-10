@@ -134,6 +134,35 @@ import java.util.List;
 			            e.printStackTrace();
 			        }
 			        return  customer;
-			    }
+			  }
+			 
+			 public Customer getCustomerById(int id){
+		            Customer customer=new Customer();
+		            try {
+		                query="select * from customer where customer_id=?";
+		                ps=this.con.prepareStatement(query);
+		                ps.setInt(1,id);
+		                rs=ps.executeQuery();
+		                while(rs.next())
+		                {
+		                 customer.setCust_id(rs.getInt("customer_id"));
+		                 customer.setEmail(rs.getString("email"));
+		                 customer.setFullName(rs.getString("fullname"));
+		                 customer.setAddress(rs.getString("address"));
+		                 customer.setCity(rs.getString("city"));
+		                 customer.setCountry(rs.getString("country"));
+		                 customer.setPhone(rs.getString("phone"));
+		                 customer.setZipcode(rs.getString("zipcode"));
+		                 customer.setPassword(rs.getString("password"));
+		                 customer.setRegister(rs.getDate("register_date"));
+		                    
+		                    return customer;
+		                }
+		                
+		            } catch (Exception e) {
+		                e.printStackTrace();
+		            }
+		            return customer;
+		        }
 
 	}

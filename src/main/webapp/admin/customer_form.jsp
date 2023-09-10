@@ -33,40 +33,40 @@
                              
 							<div>
 								<label for="input-2">Email:</label>
-								<input type="text" class="form-control error" name="email"/>
+								<input type="text" class="form-control error" name="email" value="${customer.email}"/>
 							</div>
 							<div>
 								<label for="input-3">Full Name:</label>
-								<input type="text" class="form-control error" name="fullname"/>
+								<input type="text" class="form-control error" name="fullname" value="${customer.fullName}"/>
 							</div>
 							<div>
 								<label for="input-4">Password:</label>
-								<input type="password" class="form-control error" name="pwd1" id="password"/>
+								<input type="password" class="form-control error" name="pwd1" id="password" value="${customer.password}"/>
 							</div>
 							<div>
 								<label for="input-5">Confirm Password:</label>
-								<input type="password" class="form-control error" name="pwd2"/>
+								<input type="password" class="form-control error" name="pwd2" value="${customer.password}"/>
 							</div>
 							
 							<div>
 								<label for="input-6">Phone No:</label>
-								<input type="text" class="form-control error" name="phone"/>
+								<input type="text" class="form-control error" name="phone" value="${customer.phone}"/>
 							</div>
 							<div>
 								<label for="input-7">Address:</label>
-								<input type="text" class="form-control error" name="address"/>
+								<input type="text" class="form-control error" name="address" value="${customer.address}"/>
 							</div>
 							<div>
 								<label for="input-8">City:</label>
-								<input type="text" class="form-control error" name="city"/>
+								<input type="text" class="form-control error" name="city" value="${customer.city}"/>
 							</div>
 							<div>
 								<label for="input-9">Zip Code:</label>
-								<input type="text" class="form-control error" name="zipcode"/>
+								<input type="text" class="form-control error" name="zipcode" value="${customer.zipcode}"/>
 							</div>
 							<div>
 								<label for="input-10">Country:</label>
-								<input type="text" class="form-control error" name="country"/>
+								<input type="text" class="form-control error" name="country" value="${customer.country}"/>
 							</div>
 							
                             <input type="submit" class="btn btn-primary" value="Save"/> &nbsp;<input class="btn btn-dark" type="reset" value="Cancel"/>

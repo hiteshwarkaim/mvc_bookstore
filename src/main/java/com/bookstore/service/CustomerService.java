@@ -8,6 +8,8 @@ package com.bookstore.service;
 import com.bookstore.dao.CustomerDao;
 import com.bookstore.dao.DB_Connection;
 import com.bookstore.entities.Customer;
+import com.bookstore.entities.User;
+
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
@@ -87,6 +89,19 @@ public class CustomerService {
             }
                
         }
+    
+    public void editCustomer() throws ServletException,IOException{
+        
+        int id = Integer.parseInt(request.getParameter("id"));
+        
+        Customer customer = customerDao.getCustomerById(id);
+        
+        request.setAttribute("customer", customer);
+        
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("customer_form.jsp");
+        requestDispatcher.forward(request, response);
+            
+    }
          
 } 
     

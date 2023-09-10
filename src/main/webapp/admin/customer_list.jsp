@@ -61,7 +61,7 @@
                             
                             
                             <td> 
-                                <a href="edit-user?id=${customer.cust_id}">Edit</a> &nbsp;&nbsp; &nbsp;&nbsp; 
+                                <a href="edit-customer?id=${customer.cust_id}">Edit</a> &nbsp;&nbsp; &nbsp;&nbsp; 
                                 <a href="javascript:confirmDelete(${customer.cust_id})"> Remove</a>
                             </td>
                         </tr>
