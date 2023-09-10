@@ -154,7 +154,9 @@
     	<div class="category">
     		
     			<c:forEach var="category" items="${allCategory}" varStatus="status">
-    				<a href="">${category.name}</a>
+    				  <a href="view-category?id=${category.cat_id}">
+                        <c:out value="${category.name}"/>
+                    </a>
     			</c:forEach>
     		</div>
     		

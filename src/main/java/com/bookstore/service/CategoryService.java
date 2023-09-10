@@ -13,13 +13,16 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.bookstore.dao.BookDao;
 import com.bookstore.dao.CategoryDao;
 import com.bookstore.dao.DB_Connection;
+import com.bookstore.entities.Book;
 import com.bookstore.entities.Category;
 
 public class CategoryService {
 
     private CategoryDao categoryDao;
+    private BookDao bookDao;
     private HttpServletRequest request;
     private HttpServletResponse response;
     
@@ -27,6 +30,7 @@ public class CategoryService {
         this.request=request;
         this.response=response;
         categoryDao=new CategoryDao(DB_Connection.getConnection());
+        bookDao=new BookDao(DB_Connection.getConnection());
     }
     
     
@@ -129,5 +133,20 @@ public class CategoryService {
             getAllCategory(message);
             
         }
+    }
+
+    public void listByBooksByCategory() throws IOException,ServletException{
+        int id = Integer.parseInt(request.getParameter("id"));
+        List<Book> listBookByCategory = bookDao.listBookByCategory(id);
+        
+        Category category = categoryDao.getCategoryById(id);
+        List<Category> allCategory = categoryDao.getAllCategory();
+        
+        request.setAttribute("listBookByCategory", listBookByCategory);
+        request.setAttribute("allCategory", allCategory);
+        request.setAttribute("category", category);
+            
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("frontend/book_list_by_category.jsp");
+        requestDispatcher.forward(request, response);
     }
 }

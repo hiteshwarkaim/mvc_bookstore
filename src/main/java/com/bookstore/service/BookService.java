@@ -238,24 +238,24 @@ public class BookService {
          }
      }
      
-//     public void listBooksByCategory() throws IOException,ServletException{
-//         int id = Integer.parseInt(request.getParameter("id"));
-//         List<Book> listBookByCategory = bookDao.listBookByCategory(id);
-//         
-//         Category category = categoryDao.getCategoryById(id);
-//         List<Category> listCategory = categoryDao.getAllCategory();
-//        
+     public void listBooksByCategory() throws IOException,ServletException{
+         int id = Integer.parseInt(request.getParameter("id"));
+         List<Book> listBookByCategory = bookDao.listBookByCategory(id);
+         
+         Category category = categoryDao.getCategoryById(id);
+         List<Category> allCategory = categoryDao.getAllCategory();
+        
 //         System.out.println("category "+category);
-//         System.out.println("listCategory "+listCategory);
+         System.out.println("allCategory "+allCategory);
 //         System.out.println("listBookByCategory "+listBookByCategory);
-//         
-////         request.setAttribute("listBookByCategory", listBookByCategory);
-////         request.setAttribute("listCategory", listCategory);
-////         request.setAttribute("category", category);
-//             
-//         RequestDispatcher requestDispatcher = request.getRequestDispatcher("frontend/book_list_by_category.jsp");
-//         requestDispatcher.forward(request, response);
-//     }
-//     
+         
+//         request.setAttribute("listBookByCategory", listBookByCategory);
+         request.setAttribute("allCategory", allCategory);
+         request.setAttribute("category", category);
+             
+         RequestDispatcher requestDispatcher = request.getRequestDispatcher("frontend/book_list_by_category.jsp");
+         requestDispatcher.forward(request, response);
+     }
+     
      
 }

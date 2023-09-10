@@ -6,8 +6,10 @@
 package com.bookstore.frontend;
 
 
+import com.bookstore.dao.BookDao;
 import com.bookstore.dao.CategoryDao;
 import com.bookstore.dao.DB_Connection;
+import com.bookstore.entities.Book;
 import com.bookstore.entities.Category;
 import java.io.IOException;
 import java.util.List;
@@ -28,6 +30,7 @@ public class HomeServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         
         CategoryDao categoryDao=new CategoryDao(DB_Connection.getConnection());
+        
         List<Category> allCategory = categoryDao.getAllCategory();
         
         request.setAttribute("allCategory", allCategory);
