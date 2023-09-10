@@ -123,8 +123,16 @@ import java.util.List;
 
 			@Override
 			public int delete(int id) {
-				// TODO Auto-generated method stub
-				return 0;
+				 int status=0;
+	             try {
+	                 query="delete from customer where customer_id=?";
+	                ps=this.con.prepareStatement(query);
+	                ps.setInt(1, id);
+	                status = ps.executeUpdate();
+	                
+	             } catch (Exception e) {
+	             }
+	             return  status;
 			}
 			
 			 public Customer getCustomerByEmail(String email){

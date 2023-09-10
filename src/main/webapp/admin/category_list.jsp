@@ -17,7 +17,7 @@
         <div class="category-list-div">
             
             <div>
-                 <h1 class="pageheading">Category management</h1>    
+                 <h1 class="pageheading">Category Management</h1>    
                  <a href="category_form.jsp">Create New Category</a>
             </div> 
             <c:if test="${message !=null }">

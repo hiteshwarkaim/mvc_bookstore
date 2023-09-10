@@ -20,8 +20,8 @@
    		 <%@include file="/components/header.jsp" %>
         <div class="book-list-div" align="center">
             <div>
-                 <h1 class="pageheading">Book management</h1>    
-                 <a href="new-book">Create new book</a>
+                 <h1 class="pageheading">Book Management</h1>    
+                 <a href="new-book">Create New Book</a>
             </div> 
             <c:if test="${message!=null}">
                 <h4 class="message">${message}</h4>

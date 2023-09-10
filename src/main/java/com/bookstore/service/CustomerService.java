@@ -156,7 +156,21 @@ public class CustomerService {
             else
                 System.out.println("error on update");
             }
-} 
+    	}
+    
+    	public void removeCustomer() throws IOException,ServletException{
+        int id = Integer.parseInt(request.getParameter("id"));
+        
+        int deleteCustomer = customerDao.delete(id);
+        if(deleteCustomer!=0)
+        {
+            String message="Customer deleted successfully";
+            request.setAttribute("message", message);
+
+            listAllCustomer(message);
+            
+        }
+    }
          
 } 
     
