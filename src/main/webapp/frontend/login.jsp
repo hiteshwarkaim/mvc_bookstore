@@ -16,11 +16,12 @@
 		}
 		
 		.login-div h2{
-			margin-left: 330px;
+			margin-left: 350px;
 			margin-bottom: -90px;
 		}
 		
 		.login-div form{
+			margin-left:150px;
 			padding: 18px 30px;
 			border-radius: 10px;
 			width: 500px;

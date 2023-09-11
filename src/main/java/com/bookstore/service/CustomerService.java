@@ -222,13 +222,13 @@ public void registerCustomer() throws ServletException,IOException{    //for fro
     	public void customerLogin() throws IOException,ServletException{
     		 String email = request.getParameter("email");
     	        String pass = request.getParameter("password");
+    	        	
+    	        Customer customer = customerDao.login(email,pass);
     	        
-    	        boolean loginStatus = customerDao.login(email,pass);
-    	        
-    	        if(loginStatus)
+    	        if(customer!=null)
     	        {
     	            System.out.println("Customer login success");
-    	            request.getSession().setAttribute("customerEmail", email);
+    	            request.getSession().setAttribute("loggedCustomer", customer);
     	            
     	            RequestDispatcher requestDispatcher = request.getRequestDispatcher("frontend/customer_profile.jsp");
     	            requestDispatcher.forward(request, response);

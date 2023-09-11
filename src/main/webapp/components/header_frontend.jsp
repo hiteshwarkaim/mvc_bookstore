@@ -21,7 +21,7 @@
         	}
         	.header-links{
         		margin-top:4rem;
-				margin-left: 150px;
+				margin-left: 12rem;
         	}
         	.header-links ul li{
         		display: inline-block;
@@ -38,7 +38,7 @@
         	}
         	form{
         		margin-top:4rem;
-				margin-left: 150px;
+				margin-left: 60px;
         	}
         	
         	form input{
@@ -132,8 +132,7 @@
     			<ul>
 					<li><a href="register-customer">Home</a></li>
                     <li><a href="login-customer">Contact-Us</a></li>
-                    <li><a href="#">Order</a></li>
-                    <li><a href="view-cart">Cart</a></li>
+                    <li><a href="">About-Us</a></li>
                 </ul>
     		</div>
     		<div class="form-div1">
@@ -146,8 +145,18 @@
     		
     		<div class="register-links">
     			<ul>
-					<li><a href="register">Register</a></li>
-                    <li><a href="login-customer">Signin</a></li>
+    				<c:if test="${loggedCustomer==null}">
+						<li><a href="register">Register</a></li>
+	                    <li><a href="login-customer">Signin</a></li>
+	                 </c:if>
+	                 
+	                 <c:if test="${loggedCustomer!=null}">
+						<li><a href="view_profile">${loggedCustomer.fullName}</a></li>
+	                    <li><a href="view_order">My Order</a></li>
+	                    <li><a href="view-cart">Cart</a></li>
+	                     <li><a href="logout">Signout</a></li>
+	                 </c:if>
+	                 
                 </ul>
     		</div>
     		
