@@ -230,8 +230,7 @@ public void registerCustomer() throws ServletException,IOException{    //for fro
     	            System.out.println("Customer login success");
     	            request.getSession().setAttribute("loggedCustomer", customer);
     	            
-    	            RequestDispatcher requestDispatcher = request.getRequestDispatcher("frontend/customer_profile.jsp");
-    	            requestDispatcher.forward(request, response);
+    	           showCustomerProfile();
     	            
     	        }
     	        else
@@ -241,6 +240,11 @@ public void registerCustomer() throws ServletException,IOException{    //for fro
     	            request.setAttribute("message", message);
     	            showCustomerLoginForm();
     	        }
+    	}
+    	
+    	public void showCustomerProfile() throws IOException,ServletException{
+    		 RequestDispatcher requestDispatcher = request.getRequestDispatcher("frontend/customer_profile.jsp");
+	            requestDispatcher.forward(request, response);
     	}
     	
          

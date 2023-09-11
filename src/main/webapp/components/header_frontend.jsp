@@ -151,8 +151,8 @@
 	                 </c:if>
 	                 
 	                 <c:if test="${loggedCustomer!=null}">
-						<li><a href="view_profile">${loggedCustomer.fullName}</a></li>
-	                    <li><a href="view_order">My Order</a></li>
+						<li><a href="view-profile">${loggedCustomer.fullName}</a></li>
+	                    <li><a href="view-order">My Order</a></li>
 	                    <li><a href="view-cart">Cart</a></li>
 	                     <li><a href="logout">Signout</a></li>
 	                 </c:if>
