@@ -25,7 +25,6 @@ public class ShowCustomerProfileServlet extends HttpServlet {
             
            CustomerService service=new CustomerService(request, response);
            service.showCustomerProfile();
-
         }
     }
 }
