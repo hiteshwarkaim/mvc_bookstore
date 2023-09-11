@@ -201,18 +201,48 @@ public void registerCustomer() throws ServletException,IOException{    //for fro
     	}
     
     	public void removeCustomer() throws IOException,ServletException{
-        int id = Integer.parseInt(request.getParameter("id"));
-        
-        int deleteCustomer = customerDao.delete(id);
-        if(deleteCustomer!=0)
-        {
-            String message="Customer deleted successfully";
-            request.setAttribute("message", message);
-
-            listAllCustomer(message);
-            
-        }
-    }
+	        int id = Integer.parseInt(request.getParameter("id"));
+	        
+	        int deleteCustomer = customerDao.delete(id);
+	        if(deleteCustomer!=0)
+	        {
+	            String message="Customer deleted successfully";
+	            request.setAttribute("message", message);
+	
+	            listAllCustomer(message);
+	            
+	        }
+    	}
+    	
+    	public void showCustomerLoginForm() throws IOException,ServletException{
+    		RequestDispatcher requestDispatcher = request.getRequestDispatcher("frontend/login.jsp");
+            requestDispatcher.forward(request, response);
+    	}
+    	
+    	public void customerLogin() throws IOException,ServletException{
+    		 String email = request.getParameter("email");
+    	        String pass = request.getParameter("password");
+    	        
+    	        boolean loginStatus = customerDao.login(email,pass);
+    	        
+    	        if(loginStatus)
+    	        {
+    	            System.out.println("Customer login success");
+    	            request.getSession().setAttribute("customerEmail", email);
+    	            
+    	            RequestDispatcher requestDispatcher = request.getRequestDispatcher("frontend/customer_profile.jsp");
+    	            requestDispatcher.forward(request, response);
+    	            
+    	        }
+    	        else
+    	        {
+    	            System.out.println("not login");
+    	            String message="Login Failed, Please try again";
+    	            request.setAttribute("message", message);
+    	            showCustomerLoginForm();
+    	        }
+    	}
+    	
          
 } 
     

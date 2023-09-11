@@ -40,7 +40,7 @@
 	height: 35px;
 	border-style:none;
 	border-radius: 5%;
-	background-color: lightgray;
+	background-color: #EEEDED;
 }
 
 .header #form-1 button{
@@ -353,3 +353,6 @@ a:active {
 .customer-form-div form input[type="submit"]{
 	margin-left: 200px;
 }
+
+
+

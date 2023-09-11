@@ -193,5 +193,28 @@ import java.util.List;
 		            }
 		            return customer;
 		        }
+			 
+			 public boolean login(String email, String pass){
+			        Customer customer=new Customer();
+			       try {
+			           query="select * from customer where email=? and password=?";
+			           ps=this.con.prepareStatement(query);
+			           ps.setString(1,email);
+			           ps.setString(2,pass);
+			           rs=ps.executeQuery();
+			           if(rs.next())
+			           {
+			        	   customer.setCust_id(rs.getInt("customer_id"));
+			        	   customer.setFullName(rs.getString("fullname"));
+			        	   customer.setEmail(rs.getString("email"));
+			        	   customer.setPassword(rs.getString("password"));
+			        	   return  true;
+			           }
+			           
+			       } catch (Exception e) {
+			           e.printStackTrace();
+			       }
+			       return false;
+			    }
 
 	}
