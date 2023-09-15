@@ -22,6 +22,9 @@ public class CategoryDao implements GenericDao<Category>{
     public CategoryDao(Connection con) {
         this.con=con;
     }
+    
+    public CategoryDao() {
+    }
   
     
     public List<Category> getAllCategory(){
