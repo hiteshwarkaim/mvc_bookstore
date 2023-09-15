@@ -9,8 +9,9 @@
         <title>JSP Page</title>
     </head>
     <body>
+     <%@include file="/components/header.jsp" %>
         <div align="center" class="admin-index">
-            <%@include file="/components/header.jsp" %>
+           
             
             
             <h1>Admin Dashboard</h1>
@@ -21,8 +22,8 @@
             	<ul>
             		<li><a href="user_form.jsp">New User</a></li>
             		<li><a href="category_form.jsp">New Category</a></li>
-            		<li><a href="create-book">New Book</a></li>
-            		<li><a href="create-customer">New Customer</a></li>
+            		<li><a href="book_form.jsp">New Book</a></li>
+            		<li><a href="customer_form.jsp">New Customer</a></li>
             	</ul>
             </div>
             <hr>
@@ -31,9 +32,8 @@
             <h2>Recent Reviews:</h2>
             <hr>
             <h2>Statistics:</h2>
-            
-            <%@include file="/components/footer.jsp" %>
 
         </div>
+        <%@include file="/components/footer.jsp" %>
     </body>
 </html>

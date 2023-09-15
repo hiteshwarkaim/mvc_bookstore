@@ -208,7 +208,11 @@ import java.util.List;
 			        	   customer.setFullName(rs.getString("fullname"));
 			        	   customer.setEmail(rs.getString("email"));
 			        	   customer.setPassword(rs.getString("password"));
-			        	   
+			        	   customer.setAddress(rs.getString("address"));
+			        	   customer.setCity(rs.getString("city"));
+			        	   customer.setCountry(rs.getString("country"));
+			        	   customer.setZipcode(rs.getString("zipcode"));
+			        	   customer.setPhone(rs.getString("phone"));
 			           }
 			           
 			       } catch (Exception e) {

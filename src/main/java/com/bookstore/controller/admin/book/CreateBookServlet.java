@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
     )
 public class CreateBookServlet extends HttpServlet {
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
