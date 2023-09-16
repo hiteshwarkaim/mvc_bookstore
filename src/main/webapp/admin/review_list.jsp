@@ -52,7 +52,7 @@
                             <td>${review.customer.fullName}</td>
                             <td>${review.reviewDate}</td>
                             <td> 
-                                <a href="">Edit</a> &nbsp;&nbsp; 
+                                <a href="edit-review?id=${review.review_id}">Edit</a> &nbsp;&nbsp; 
                                 <a href="">Remove</a>
                             </td>
                         </tr>

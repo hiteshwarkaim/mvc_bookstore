@@ -84,17 +84,17 @@ public class ReviewService {
 //         
 //} 
 //
-//    public void editCategory() throws ServletException,IOException{
-//        
-//        int id = Integer.parseInt(request.getParameter("id"));
-//        
-//        Category getCategoryById = categoryDao.getCategoryById(id);
-//        request.setAttribute("category", getCategoryById);
-//        System.out.println(getCategoryById);
-//        RequestDispatcher requestDispatcher = request.getRequestDispatcher("category_form.jsp");
-//        requestDispatcher.forward(request, response);
-//            
-//    }
+    public void editReview() throws ServletException,IOException{
+        
+        int id = Integer.parseInt(request.getParameter("id"));
+        
+        Review reviewById = reviewDao.getReviewById(id);
+        request.setAttribute("review", reviewById);
+        
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("review_form.jsp");
+        requestDispatcher.forward(request, response);
+            
+    }
 //    
 //    public void updateCategory() throws ServletException,IOException{
 //        
