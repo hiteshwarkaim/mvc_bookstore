@@ -35,6 +35,7 @@
                         <th>Rating</th>
                         <th>Headline</th>
                         <th>Customer</th>
+                        <th>Comment</th>
                         <th>Review On</th>
                         <th>Actions</th>
                         
@@ -50,6 +51,7 @@
                             <td>${review.rating}</td>
                             <td>${review.headline}</td>
                             <td>${review.customer.fullName}</td>
+                            <td>${review.comment}</td>
                             <td>${review.reviewDate}</td>
                             <td> 
                                 <a href="edit-review?id=${review.review_id}">Edit</a> &nbsp;&nbsp; 

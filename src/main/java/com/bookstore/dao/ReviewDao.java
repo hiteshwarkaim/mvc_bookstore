@@ -34,9 +34,22 @@ public class ReviewDao implements GenericDao<Review>{
 	}
 
 	@Override
-	public int update(Review t) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int update(Review review) {
+		int status=0;
+        try {
+            query="update Review set headline=?,comment=? where review_id=?";
+            ps=this.con.prepareStatement(query);
+            
+            ps.setString(1, review.getHeadline());
+            ps.setString(2,review.getComment());
+            ps.setInt(3,review.getReview_id());
+            status=ps.executeUpdate();
+            
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return status;
 	}
 
 	@Override

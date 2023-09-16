@@ -96,14 +96,20 @@ public class ReviewService {
             
     }
 //    
-//    public void updateCategory() throws ServletException,IOException{
-//        
-//        int id = Integer.parseInt(request.getParameter("id"));
-//        
-//        String name=request.getParameter("name");
-//        
-//	    Category categoryById = categoryDao.getCategoryById(id);
-//	    Category categoryByName = categoryDao.getCategoryByName(name);
+    public void updateReview() throws ServletException,IOException{
+        
+        int id = Integer.parseInt(request.getParameter("id"));
+        
+        String headline=request.getParameter("headline");
+        String comment=request.getParameter("comment");
+        
+        Review review=reviewDao.getReviewById(id);
+        review.setHeadline(headline);
+        review.setComment(comment);
+        
+        reviewDao.update(review);
+        
+        getAllReview("Updated Review");
 //        
 //	    if(categoryByName!=null && categoryByName.getCat_id()!=categoryById.getCat_id())
 //        {
@@ -120,7 +126,7 @@ public class ReviewService {
 //            int updateCategoryDetails = categoryDao.update(category);
 //            getAllCategory("Category updated successfully"); 
 //        }
-//    }
+    }
 //    
 //    public void removeCategory() throws IOException,ServletException, SQLException{
 //        int id = Integer.parseInt(request.getParameter("id"));
