@@ -20,7 +20,7 @@ import javax.servlet.http.HttpSession;
 @WebFilter(filterName = "CustomerLoginFilter", urlPatterns = {"/*"}) //* means it intercept all request came after admin URL
 public class CustomerLoginFilter implements Filter {
     
-
+	private static final String[] requiredURLs= { "/view_profile","/edit_profile","/update_profile"	};
     private FilterConfig filterConfig = null;
     
     public CustomerLoginFilter() {
@@ -45,8 +45,9 @@ public class CustomerLoginFilter implements Filter {
         
         boolean loggedIn= (session!=null) && (session.getAttribute("loggedCustomer")!=null);
         
+        String requestURL=httpRequest.getRequestURI().toString();
         
-        if(!loggedIn && path.startsWith("/view_profile"))
+        if(!loggedIn && isLoginRequired(requestURL))
         {
             RequestDispatcher rd = request.getRequestDispatcher("frontend/login.jsp");
             rd.forward(request, response);
@@ -58,6 +59,14 @@ public class CustomerLoginFilter implements Filter {
         }
     }
 
+    private boolean isLoginRequired(String requestURL) {
+    	for(String loginRequiredURL:requiredURLs) {
+    		if(requestURL.contains(loginRequiredURL)) {
+    			return true;
+    		}
+    	}
+    	return false;
+    }
     public void destroy() {        
     
     }
