@@ -45,7 +45,7 @@
                         </a>  
                      </div>
                     <div>
-                        <a href="#">
+                        <a href="list-reviews">
                             <img src="../static/images/review.png" alt="alt" width="70" height="70"/><br> Reviews
                         </a>
                      </div>
