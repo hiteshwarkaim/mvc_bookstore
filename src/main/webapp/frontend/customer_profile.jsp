@@ -47,6 +47,10 @@
 		 		<td>Country:	</td>
 		 		<td>${loggedCustomer.country}</td>
 		 	</tr>
+		 	<tr>
+		 		<td colspan="2" align="center"><a href="edit-profile">Edit My Profile</a></td>
+		 	</tr>
+		 	
 		 	
 		 </table>
 	</div>

@@ -247,7 +247,10 @@ public void registerCustomer() throws ServletException,IOException{    //for fro
 	            requestDispatcher.forward(request, response);
     	}
     	
-         
+        public void showCustomerEditForm() throws IOException,ServletException{
+        	 RequestDispatcher requestDispatcher = request.getRequestDispatcher("frontend/edit_profile.jsp");
+	            requestDispatcher.forward(request, response);
+        }
 } 
     
     
