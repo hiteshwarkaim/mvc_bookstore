@@ -251,6 +251,41 @@ public void registerCustomer() throws ServletException,IOException{    //for fro
         	 RequestDispatcher requestDispatcher = request.getRequestDispatcher("frontend/edit_profile.jsp");
 	            requestDispatcher.forward(request, response);
         }
+
+
+
+		public void updateCustomerProfile() throws IOException,ServletException {
+			Customer customer=new Customer();
+			Customer customer1=(Customer)request.getSession().getAttribute("loggedCustomer");
+			
+			String email=request.getParameter("email");
+	        String fullname=request.getParameter("fullname");
+	        String pwd1=request.getParameter("pwd1");
+	        String pwd2=request.getParameter("pwd2");
+	        String phone=request.getParameter("phone");
+	        String address=request.getParameter("address");
+	        String city=request.getParameter("city");
+	        String zipcode=request.getParameter("zipcode");
+	        String country=request.getParameter("country");
+	        
+	        if(email!=null && !email.equals(""))
+	        	customer1.setEmail(email);
+	        
+	        customer1.setFullName(fullname);
+		    
+	        if(pwd1!=null && !pwd1.equals(""))
+	        	customer1.setPassword(pwd1);
+	        
+	    	customer1.setPhone(phone);
+	    	customer1.setAddress(address);
+	    	customer1.setCity(city);
+	    	customer1.setZipcode(zipcode);
+	    	customer1.setCountry(country);
+	        
+	    	customerDao.update(customer1);
+	    	
+	    	showCustomerProfile();
+		}
 } 
     
     

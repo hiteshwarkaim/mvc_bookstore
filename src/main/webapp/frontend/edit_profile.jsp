@@ -30,8 +30,8 @@
              		<form action="update-profile" method="POST" id="customerForm">
                    
 						<div>
-							<label for="input-2">Email:</label>
-							<label id="label-1">${loggedCustomer.email} (Cannot be changed)</label>
+							<label for="input-2">Email:</label>+
+							<input type="text" class="form-control error" name="email" readonly="true" value="${loggedCustomer.email}"/>
 						</div>
 						<div>
 							<label for="input-3">Full Name:</label>
