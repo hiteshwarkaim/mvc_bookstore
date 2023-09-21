@@ -47,7 +47,7 @@ public class CommonFilter implements Filter {
     		List<Category> allCategory=categoryDao.getAllCategory();
       		request.setAttribute("allCategory", allCategory);	
       		
-      		System.out.println("common filter-> doFilter");
+      		System.out.println("common filter-> doFilter ");
     	}
     	
     	chain.doFilter(request, response);
