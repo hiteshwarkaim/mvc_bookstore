@@ -23,7 +23,7 @@ import com.bookstore.dao.CategoryDao;
 import com.bookstore.dao.DB_Connection;
 import com.bookstore.entities.Category;
 
-@WebFilter(filterName = "CommonFilter", urlPatterns = {"/*"}) //* means it intercept all request came after admin URL
+@WebFilter(filterName = "CommonFilter", urlPatterns = {"/*"}) //* means it intercept all request came after frontend URL
 public class CommonFilter implements Filter {
     
 
