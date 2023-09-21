@@ -49,7 +49,7 @@
 								Headline:<input type="text" class="form-control error" name="headline" value="${review.headline}"/>
 							</div>
 							<div>
-								Comment:<textarea rows="5" cols="62" name="comment">
+								Comment:<textarea rows="5" cols="62" name="comment" class="form-control error">
 									${review.comment}
 								</textarea>
 							</div>

@@ -85,17 +85,17 @@ public class ReviewService {
 //         
 //} 
 
-//    public void editReview() throws ServletException,IOException{
-//        
-//        int id = Integer.parseInt(request.getParameter("id"));
-//        
-//        Review reviewById = reviewDao.getReviewById(id);
-//        request.setAttribute("review", reviewById);
-//        
-//        RequestDispatcher requestDispatcher = request.getRequestDispatcher("review_form.jsp");
-//        requestDispatcher.forward(request, response);
-//            
-//    }
+    public void editReview() throws ServletException,IOException{
+        
+        int id = Integer.parseInt(request.getParameter("id"));
+        
+        Review reviewById = reviewDao.getReviewById(id);
+        request.setAttribute("review", reviewById);
+        
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("review_form.jsp");
+        requestDispatcher.forward(request, response);
+            
+    }
     
 //    public void updateReview() throws ServletException,IOException{
 //        

@@ -54,7 +54,7 @@
                             <td>${review.comment}</td>
                             <td>${review.reviewDate}</td>
                             <td> 
-                                <a>Edit</a> &nbsp;&nbsp; 
+                                <a href="edit-review?id=${review.review_id}">Edit</a> &nbsp;&nbsp; 
                                 <a>Remove</a>
                             </td>
                         </tr>
