@@ -20,6 +20,7 @@ import com.bookstore.dao.DB_Connection;
 import com.bookstore.dao.ReviewDao;
 import com.bookstore.entities.Book;
 import com.bookstore.entities.Category;
+import com.bookstore.entities.Customer;
 import com.bookstore.entities.Review;
 
 public class ReviewService {
@@ -44,9 +45,9 @@ public class ReviewService {
         List<Review> allReview = reviewDao.listAll();
         request.setAttribute("allReview", allReview);
         
-        
         if(message!=null)
         	request.setAttribute("message", message);
+        
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("review_list.jsp");
         requestDispatcher.forward(request, response);
 
@@ -83,71 +84,79 @@ public class ReviewService {
 //        }
 //         
 //} 
-//
-    public void editReview() throws ServletException,IOException{
-        
-        int id = Integer.parseInt(request.getParameter("id"));
-        
-        Review reviewById = reviewDao.getReviewById(id);
-        request.setAttribute("review", reviewById);
-        
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("review_form.jsp");
-        requestDispatcher.forward(request, response);
-            
-    }
-//    
-    public void updateReview() throws ServletException,IOException{
-        
-        int id = Integer.parseInt(request.getParameter("id"));
-        
-        String headline=request.getParameter("headline");
-        String comment=request.getParameter("comment");
-        
-        Review review=reviewDao.getReviewById(id);
-        review.setHeadline(headline);
-        review.setComment(comment);
-        
-        reviewDao.update(review);
-        
-        getAllReview("Updated Review");
+
+//    public void editReview() throws ServletException,IOException{
 //        
-//	    if(categoryByName!=null && categoryByName.getCat_id()!=categoryById.getCat_id())
-//        {
-//            System.out.println("could not update");
-//            String message="could not update "+name+" already exist";
-//            request.setAttribute("message", message);
-//            
-//            RequestDispatcher requestDispatcher = request.getRequestDispatcher("message.jsp");
-//            requestDispatcher.forward(request, response);
-//            
-//        }
-//        else{
-//            Category category=new Category(id,name);
-//            int updateCategoryDetails = categoryDao.update(category);
-//            getAllCategory("Category updated successfully"); 
-//        }
-    }
-//    
-//    public void removeCategory() throws IOException,ServletException, SQLException{
 //        int id = Integer.parseInt(request.getParameter("id"));
-//        int deleteCategory = categoryDao.delete(id);
 //        
-//        long numberOfBooks = bookDao.countByCategory(id);
-//        System.out.println(numberOfBooks);
-//        String message;
+//        Review reviewById = reviewDao.getReviewById(id);
+//        request.setAttribute("review", reviewById);
 //        
-//        if(numberOfBooks>0) {
-//        	message="Could not delete this category, because it contains some(%d) books";
-//        	message=String.format(message, numberOfBooks);
-//        }
-//        else
-//        {
-//            message="category deleted successfully";
-//        }
-//        request.setAttribute("message", message);
-//        
-//        getAllCategory(message);
+//        RequestDispatcher requestDispatcher = request.getRequestDispatcher("review_form.jsp");
+//        requestDispatcher.forward(request, response);
+//            
 //    }
+    
+//    public void updateReview() throws ServletException,IOException{
+//        
+//        int id = Integer.parseInt(request.getParameter("id"));
+//        
+//        String headline=request.getParameter("headline");
+//        String comment=request.getParameter("comment");
+//        
+//        Review review=reviewDao.getReviewById(id);
+//        review.setHeadline(headline);
+//        review.setComment(comment);
+//        
+//        reviewDao.update(review);
+//        
+//        getAllReview("Updated Review");
+//    }
+
+
+
+
+//	public void showReviewForm() throws IOException,ServletException{
+//		int id = Integer.parseInt(request.getParameter("bookId"));
+//		BookDao bookDao=new BookDao(DB_Connection.getConnection());
+//		Book bookById = bookDao.getBookById(id);
+//		request.setAttribute("book", bookById);
+//		
+//		RequestDispatcher requestDispatcher = request.getRequestDispatcher("frontend/review_form.jsp");
+//		requestDispatcher.forward(request, response);
+//	}
+
+
+
+//	public void submitReview() throws IOException,ServletException{
+//		int bookId = Integer.parseInt(request.getParameter("bookId"));System.out.println("bookId:"+bookId);
+//		int rating = Integer.parseInt(request.getParameter("rating"));System.out.println("rating: "+rating);
+//		String headline=request.getParameter("headline");
+//		String comment=request.getParameter("comment");
+//		
+//		BookDao bookDao=new BookDao(DB_Connection.getConnection());
+//		Book bookById = bookDao.getBookById(bookId);
+//		request.setAttribute("book", bookById);
+//		
+//		
+//		Review review=new Review();
+//		review.setHeadline(headline);
+//		review.setComment(comment);
+//		review.setRating(rating);
+//		
+//		Book book=new Book();
+//		book.setB_id(bookId);
+//		review.setBook(book);
+//		
+//		Customer customer=(Customer)request.getSession().getAttribute("loggedCustomer");
+//		review.setCustomer(customer);
+//		
+//		reviewDao.create(review);
+//		
+//		RequestDispatcher requestDispatcher = request.getRequestDispatcher("frontend/review_done.jsp");
+//		requestDispatcher.forward(request, response);
+//		
+//	}
 
 
 }

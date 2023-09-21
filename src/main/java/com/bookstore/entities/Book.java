@@ -26,6 +26,8 @@ public class Book implements Serializable{
     
     private String base64Image;
 
+    private float ratingStars;
+    
     public int getB_id() {
         return b_id;
     }
@@ -154,6 +156,52 @@ public class Book implements Serializable{
         this.base64Image=base64;
     }
 
+    @Transient
+    public float getAverageRating() {
+    	float averageRating=0.0f;
+    	float sum=0.0f;
+    	
+    	if(reviews.isEmpty())
+    		return 0.0f;
+    	
+    	for(Review review:reviews) {
+    		sum+=review.getRating();
+    	}
+    	
+    	averageRating=sum/reviews.size();
+    	
+    	return averageRating;
+    }
+    
+    @Transient
+    public String getRatingString(float averageRating) {
+    	String result="";
+    	
+    	int numberOfStarsOn=(int)averageRating;
+    	
+    	for (int i = 1; i <= numberOfStarsOn; i++) {
+			result+="on";
+		}
+    	
+    	int next= numberOfStarsOn+1;
+    	
+    	if(averageRating>numberOfStarsOn) {
+    		result+="half";
+    	}
+    	
+    	for (int i = next; i <= 5; i++) {
+			result+="off,";
+		}
+    	
+    	return result;
+    }
+    
+    @Transient
+    public String getRatingStars() {
+    	float averageRating=getAverageRating();
+    	return getRatingString(averageRating);
+    }
+    
     @Override
     public String toString() {
         return "Book{" + "b_id=" + b_id + ", b_title=" + b_title + ", author=" + author + ", desc=" + desc + ", isbn=" + isbn + ", pic=" + pic + ", price=" + price + ", publishDate=" + publishDate + ", lastUpdateTime=" + lastUpdateTime + ", category=" + category + ", reviews=" + reviews + ", orderDetails=" + orderDetails + '}';

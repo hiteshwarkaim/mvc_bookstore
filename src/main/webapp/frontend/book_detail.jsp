@@ -44,7 +44,7 @@
                     <tr>
                         <td><h2>Customer Review</h2></td>
                         <td colspan="2" align="center">
-                            <button>Write a Customer Review</button>
+                            <button id="writeReviewButton">Write a Customer Review</button>
                         </td>
                     </tr>
                 </table>
@@ -53,5 +53,13 @@
             <%@include file="/components/footer.jsp" %>
 
         </div>
+        
+        <script type="text/javascript">
+			$(document).ready(function(){
+				$('#writeReviewButton').click(function(){
+					window.location='write-review?bookId='+${book.b_id};
+					});
+			});
+        </script>
 </body>
 </html>

@@ -54,8 +54,8 @@
                             <td>${review.comment}</td>
                             <td>${review.reviewDate}</td>
                             <td> 
-                                <a href="edit-review?id=${review.review_id}">Edit</a> &nbsp;&nbsp; 
-                                <a href="">Remove</a>
+                                <a>Edit</a> &nbsp;&nbsp; 
+                                <a>Remove</a>
                             </td>
                         </tr>
                     </c:forEach>
