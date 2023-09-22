@@ -29,8 +29,7 @@
                         </strong>
                     </div>
                     <div>
-                    	
-                    	<jsp:include page="book_rating.jsp"></jsp:include>
+                    	<%@include file="book_rating.jsp"%>
                     </div>
                     <div>by ${book.author}</div>
                     <div>Rs. ${book.price}</div>

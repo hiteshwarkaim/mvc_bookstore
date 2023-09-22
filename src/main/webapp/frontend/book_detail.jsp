@@ -24,7 +24,7 @@
                             <img src="data:image/jpg;base64,${book.base64Image}" alt="image" style="width: 400px;"/>
                         </td>
                         <td valign="top" align="left">
-                            Rating *****
+                            <%@include file="book_rating.jsp"%>
                         </td>
                         <td rowspan="2" valign="top" width="20%">
                             Rs. ${book.price}

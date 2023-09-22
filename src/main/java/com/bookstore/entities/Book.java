@@ -180,13 +180,13 @@ public class Book implements Serializable{
     	int numberOfStarsOn=(int)averageRating;
     	
     	for (int i = 1; i <= numberOfStarsOn; i++) {
-			result+="on";
+			result+="on,";
 		}
     	
     	int next= numberOfStarsOn+1;
     	
     	if(averageRating>numberOfStarsOn) {
-    		result+="half";
+    		result+="half,";
     	}
     	
     	for (int i = next; i <= 5; i++) {
@@ -231,7 +231,5 @@ public class Book implements Serializable{
         }
         return true;
     }
-
-    
-    
+   
 }
