@@ -97,21 +97,21 @@ public class ReviewService {
             
     }
     
-//    public void updateReview() throws ServletException,IOException{
-//        
-//        int id = Integer.parseInt(request.getParameter("id"));
-//        
-//        String headline=request.getParameter("headline");
-//        String comment=request.getParameter("comment");
-//        
-//        Review review=reviewDao.getReviewById(id);
-//        review.setHeadline(headline);
-//        review.setComment(comment);
-//        
-//        reviewDao.update(review);
-//        
-//        getAllReview("Updated Review");
-//    }
+    public void updateReview() throws ServletException,IOException{
+        
+        int id = Integer.parseInt(request.getParameter("id"));
+        
+        String headline=request.getParameter("headline");
+        String comment=request.getParameter("comment");
+        
+        Review review=reviewDao.getReviewById(id);
+        review.setHeadline(headline);
+        review.setComment(comment);
+        
+        reviewDao.update(review);
+        
+        getAllReview("Updated Review");
+    }
 
 
 
