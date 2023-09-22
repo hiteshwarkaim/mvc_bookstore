@@ -30,26 +30,26 @@ public class ReviewDao implements GenericDao<Review>{
 
 	@Override
 	public int create(Review review) {
-//		int status=0;
-//        try {
-//           
-//            query="insert into Review(book_id, customer_id, rating, headline, comment, review_time) values(?,?,?,?,?,?)";
-//            ps=this.con.prepareStatement(query);
-//            
-//            ps.setObject(1, review.getBook().getB_id());
-//            ps.setObject(2, review.getCustomer().getCust_id());
-//            ps.setInt(3, review.getRating());
-//            ps.setString(4, review.getHeadline());
-//            ps.setString(5, review.getComment());
-//            ps.setObject(6, new Date());
-//            status = ps.executeUpdate();
-//             
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        
-//        return status;
-        return 0;
+		int status=0;
+        try {
+           
+            query="insert into Review(book_id, customer_id, rating, headline, comment, review_time) values(?,?,?,?,?,?)";
+            ps=this.con.prepareStatement(query);
+            
+            ps.setObject(1, review.getBook().getB_id());
+            ps.setObject(2, review.getCustomer().getCust_id());
+            ps.setInt(3, review.getRating());
+            ps.setString(4, review.getHeadline());
+            ps.setString(5, review.getComment());
+            ps.setObject(6, new Date());
+            status = ps.executeUpdate();
+             
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return status;
+        
 	}
 
 	@Override

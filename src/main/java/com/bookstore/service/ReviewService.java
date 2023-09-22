@@ -116,47 +116,47 @@ public class ReviewService {
 
 
 
-//	public void showReviewForm() throws IOException,ServletException{
-//		int id = Integer.parseInt(request.getParameter("bookId"));
-//		BookDao bookDao=new BookDao(DB_Connection.getConnection());
-//		Book bookById = bookDao.getBookById(id);
-//		request.setAttribute("book", bookById);
-//		
-//		RequestDispatcher requestDispatcher = request.getRequestDispatcher("frontend/review_form.jsp");
-//		requestDispatcher.forward(request, response);
-//	}
+	public void showReviewForm() throws IOException,ServletException{
+		int id = Integer.parseInt(request.getParameter("bookId"));
+		BookDao bookDao=new BookDao(DB_Connection.getConnection());
+		Book bookById = bookDao.getBookById(id);
+		request.setAttribute("book", bookById);
+		
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("frontend/review_form.jsp");
+		requestDispatcher.forward(request, response);
+	}
 
 
 
-//	public void submitReview() throws IOException,ServletException{
-//		int bookId = Integer.parseInt(request.getParameter("bookId"));System.out.println("bookId:"+bookId);
-//		int rating = Integer.parseInt(request.getParameter("rating"));System.out.println("rating: "+rating);
-//		String headline=request.getParameter("headline");
-//		String comment=request.getParameter("comment");
-//		
-//		BookDao bookDao=new BookDao(DB_Connection.getConnection());
-//		Book bookById = bookDao.getBookById(bookId);
-//		request.setAttribute("book", bookById);
-//		
-//		
-//		Review review=new Review();
-//		review.setHeadline(headline);
-//		review.setComment(comment);
-//		review.setRating(rating);
-//		
-//		Book book=new Book();
-//		book.setB_id(bookId);
-//		review.setBook(book);
-//		
-//		Customer customer=(Customer)request.getSession().getAttribute("loggedCustomer");
-//		review.setCustomer(customer);
-//		
-//		reviewDao.create(review);
-//		
-//		RequestDispatcher requestDispatcher = request.getRequestDispatcher("frontend/review_done.jsp");
-//		requestDispatcher.forward(request, response);
-//		
-//	}
+	public void submitReview() throws IOException,ServletException{
+		int bookId = Integer.parseInt(request.getParameter("bookId"));System.out.println("bookId:"+bookId);
+		int rating = Integer.parseInt(request.getParameter("rating"));System.out.println("rating: "+rating);
+		String headline=request.getParameter("headline");
+		String comment=request.getParameter("comment");
+		
+		BookDao bookDao=new BookDao(DB_Connection.getConnection());
+		Book bookById = bookDao.getBookById(bookId);
+		request.setAttribute("book", bookById);
+		
+		
+		Review review=new Review();
+		review.setHeadline(headline);
+		review.setComment(comment);
+		review.setRating(rating);
+		
+		Book book=new Book();
+		book.setB_id(bookId);
+		review.setBook(book);
+		
+		Customer customer=(Customer)request.getSession().getAttribute("loggedCustomer");
+		review.setCustomer(customer);
+		
+		reviewDao.create(review);
+		
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("frontend/review_done.jsp");
+		requestDispatcher.forward(request, response);
+		
+	}
 
 
 }

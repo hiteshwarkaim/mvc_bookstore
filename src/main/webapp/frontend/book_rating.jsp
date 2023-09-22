@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <div>
-                    	<c:forTokens delims="," items="${book.ratingStars}" var="star">
+                    	<c:forTokens delims="," items="${book.stars}" var="star">
                     		<c:if test="${star eq 'on'}">
 								<img src="./static/images/star.png"/>
                     		</c:if>

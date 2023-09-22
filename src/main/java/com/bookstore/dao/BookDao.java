@@ -13,10 +13,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.bookstore.entities.Book;
 import com.bookstore.entities.Category;
+import com.bookstore.entities.Review;
 
 public class BookDao implements GenericDao<Book>{
 
@@ -238,6 +241,8 @@ public class BookDao implements GenericDao<Book>{
                 book.setPublishDate(rs.getDate("publish_date"));
                 book.setLastUpdateTime(rs.getDate("last_update_time"));
                 
+                
+                
                 String query1="select * from category where category_id=?";
                 PreparedStatement ps2=this.con.prepareStatement(query1);
                 ps2.setInt(1, rs.getInt("category_id"));
@@ -251,6 +256,29 @@ public class BookDao implements GenericDao<Book>{
                 }
                 
                 book.setCategory(category);
+                
+                
+                
+                String query2="select * from Review where book_id=?";
+                PreparedStatement ps3=this.con.prepareStatement(query2);
+                ps3.setInt(1, rs.getInt("book_id"));
+                ResultSet rs3=ps3.executeQuery();
+                Review review=null;
+                Set<Review> setReviews1=null;
+                while(rs3.next())
+                {
+                	review=new Review();
+                	review.setHeadline(rs3.getString("headline"));
+                	review.setRating(rs3.getInt("rating"));
+                	 setReviews1=new HashSet<Review>();
+                	 setReviews1.add(review);
+                	 System.out.println(review);
+                	 System.out.println(setReviews1);
+                }
+               
+                
+                book.setReviews(setReviews1);
+                 
                 return book;
             }
             

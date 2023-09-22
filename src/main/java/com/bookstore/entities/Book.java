@@ -26,7 +26,7 @@ public class Book implements Serializable{
     
     private String base64Image;
 
-    private float ratingStars;
+    private float stars;
     
     public int getB_id() {
         return b_id;
@@ -174,32 +174,26 @@ public class Book implements Serializable{
     }
     
     @Transient
-    public String getRatingString(float averageRating) {
+    public String getStars() {
     	String result="";
     	
-    	int numberOfStarsOn=(int)averageRating;
+    	int numberOfStarsOn=(int)stars;;
     	
     	for (int i = 1; i <= numberOfStarsOn; i++) {
 			result+="on,";
 		}
     	
-    	int next= numberOfStarsOn+1;
-    	
-    	if(averageRating>numberOfStarsOn) {
-    		result+="half,";
-    	}
-    	
-    	for (int i = next; i <= 5; i++) {
+    	for (int i = numberOfStarsOn+1; i <= 5; i++) {
 			result+="off,";
 		}
     	
-    	return result;
-    }
+    	return result.substring(0, result.length()-1);
+    }	
     
     @Transient
     public String getRatingStars() {
-    	float averageRating=getAverageRating();
-    	return getRatingString(averageRating);
+    	getAverageRating();
+    	return getStars();
     }
     
     @Override
