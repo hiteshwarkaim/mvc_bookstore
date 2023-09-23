@@ -20,8 +20,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "AddBookToCartServlet", urlPatterns = {"/add-to-cart"})
-public class AddBookToCartServlet extends HttpServlet {
+@WebServlet(name = "RemoveBookToCartServlet", urlPatterns = {"/remove-from-cart"})
+public class RemoveBookToCartServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
@@ -33,20 +33,9 @@ public class AddBookToCartServlet extends HttpServlet {
         
         Object cartSessionObject=request.getSession().getAttribute("cart");
         
-        ShoppingCart shoppingCart=null;
+        ShoppingCart shoppingCart=(ShoppingCart)cartSessionObject;
         
-        if(cartSessionObject!=null && cartSessionObject instanceof ShoppingCart) {
-        	shoppingCart=(ShoppingCart)cartSessionObject;
-        }
-        else {
-			shoppingCart=new ShoppingCart();
-			request.getSession().setAttribute("cart", shoppingCart);
-		}
-        
-        BookDao bookDao=new BookDao(DB_Connection.getConnection());
-        Book book1 = bookDao.getBookById(bookId);
-        
-        shoppingCart.addItem(book1);
+        shoppingCart.removeItem(new Book(bookId));
 
         String  cartPage=request.getContextPath().concat("/view-cart");
         response.sendRedirect(cartPage);
