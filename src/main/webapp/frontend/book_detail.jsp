@@ -23,9 +23,6 @@
                         <td rowspan="2">
                             <img src="data:image/jpg;base64,${book.base64Image}" alt="image" style="width: 400px;"/>
                         </td>
-                        <td valign="top" align="left">
-                            <%@include file="book_rating.jsp"%>
-                        </td>
                         <td rowspan="2" valign="top" width="20%">
                             Rs. ${book.price}
                             <br>
@@ -47,30 +44,7 @@
                             <button id="writeReviewButton">Write a Customer Review</button>
                         </td>
                     </tr>
-                    <tr>
-                    	<td colspan="3">
-                    		<table border="1">
-								<c:forEach items="${book.reviews}" var="review">
-									<tr>
-										<td>
-											<c:forTokens delims="," items="${review.rating}" var="star">
-						                   		<c:if test="${star eq 'on'}">
-													<img src="./static/images/star.png"/>
-						                   		</c:if>
-						                   		<c:if test="${star eq 'off'}">
-													<img src="./static/images/star1.png" height="18" width="18"/>
-						                   		</c:if>	
-						                   		${review.rating}
-				                    		${review.headline}
-				                    		</c:forTokens>
-											
-				                    		
-										</td>
-									</tr>
-								</c:forEach>
-                    		</table>
-                    	</td>
-                    </tr>
+                   
                 </table>
             </div>
             

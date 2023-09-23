@@ -28,9 +28,6 @@
                             <a href="view-book?id=${book.b_id}">${book.b_title}</a>
                         </strong>
                     </div>
-                    <div>
-                    	<%@include file="book_rating.jsp"%>
-                    </div>
                     <div>by ${book.author}</div>
                     <div>Rs. ${book.price}</div>
                 </div>

@@ -148,6 +148,7 @@
     				<c:if test="${loggedCustomer==null}">
 						<li><a href="register">Register</a></li>
 	                    <li><a href="login-customer">Signin</a></li>
+	                    <li><a href="view-cart">Cart</a></li>
 	                 </c:if>
 	                 
 	                 <c:if test="${loggedCustomer!=null}">

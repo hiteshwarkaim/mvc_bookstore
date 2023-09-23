@@ -259,26 +259,26 @@ public class BookDao implements GenericDao<Book>{
                 
                 
                 
-                String query2="select * from Review where book_id=?";
-                PreparedStatement ps3=this.con.prepareStatement(query2);
-                ps3.setInt(1, rs.getInt("book_id"));
-                ResultSet rs3=ps3.executeQuery();
-                Review review=null;
-                Set<Review> setReviews1=null;
-                while(rs3.next())
-                {
-                	review=new Review();
-                	review.setHeadline(rs3.getString("headline"));
-                	review.setRating(rs3.getInt("rating"));
-                	 setReviews1=new HashSet<Review>();
-                	 setReviews1.add(review);
-                	 System.out.println(review);
-                	 System.out.println(setReviews1);
-                }
-               
-                
-                book.setReviews(setReviews1);
-                 
+//                String query2="select * from Review where book_id=?";
+//                PreparedStatement ps3=this.con.prepareStatement(query2);
+//                ps3.setInt(1, rs.getInt("book_id"));
+//                ResultSet rs3=ps3.executeQuery();
+//                Review review=null;
+//                Set<Review> setReviews1=null;
+//                while(rs3.next())
+//                {
+//                	review=new Review();
+//                	review.setHeadline(rs3.getString("headline"));
+//                	review.setRating(rs3.getInt("rating"));
+//                	 setReviews1=new HashSet<Review>();
+//                	 setReviews1.add(review);
+//                	 System.out.println(review);
+//                	 System.out.println(setReviews1);
+//                }
+//               
+//                
+//                book.setReviews(setReviews1);
+//                 
                 return book;
             }
             
