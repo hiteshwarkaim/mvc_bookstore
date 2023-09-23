@@ -44,7 +44,7 @@ public class AddBookToCartServlet extends HttpServlet {
 		}
         
         BookDao bookDao=new BookDao(DB_Connection.getConnection());
-        Book book1 = bookDao.getBookById(10);
+        Book book1 = bookDao.getBookById(bookId);
         
         shoppingCart.addItem(book1);
 
