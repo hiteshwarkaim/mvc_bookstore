@@ -36,12 +36,20 @@ public class ViewCartServlet extends HttpServlet {
         	request.getSession().setAttribute("cart", shoppingCart);
         }
         
-        Book book=new Book();
-        book.setB_title("maths");
-        book.setPrice(20);
+//        Book book=new Book();
+//        book.setB_title("maths");
+//        book.setPrice(20);
+        
+        BookDao bookDao=new BookDao(DB_Connection.getConnection());
+        Book book1 = bookDao.getBookById(10);
+        Book book2 = bookDao.getBookById(5);
+        Book book3 = bookDao.getBookById(7);
         
         ShoppingCart shoppingCart=(ShoppingCart)request.getSession().getAttribute("cart");
-        shoppingCart.addItem(book);
+        shoppingCart.addItem(book1);
+        shoppingCart.addItem(book2);
+        shoppingCart.addItem(book2);
+        shoppingCart.addItem(book3);
         
         RequestDispatcher rd = request.getRequestDispatcher("frontend/shopping_cart.jsp");
         rd.forward(request, response);

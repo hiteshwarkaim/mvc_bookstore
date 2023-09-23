@@ -50,7 +50,7 @@
 						<tr>
 							<td>${status.index+1}</td>
 							<td>
-								<img src="data:image/jpg;base64,${book.base64Image}" alt="image" style="width: 100px;"/>
+								<img src="data:image/jpg;base64,${item.key.base64Image}" alt="image" style="width: 100px;"/>
 								&nbsp;
 								${item.key.b_title}
 							</td>
