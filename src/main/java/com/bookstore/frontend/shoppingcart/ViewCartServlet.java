@@ -45,11 +45,11 @@ public class ViewCartServlet extends HttpServlet {
         Book book2 = bookDao.getBookById(5);
         Book book3 = bookDao.getBookById(7);
         
-        ShoppingCart shoppingCart=(ShoppingCart)request.getSession().getAttribute("cart");
-        shoppingCart.addItem(book1);
-        shoppingCart.addItem(book2);
-        shoppingCart.addItem(book2);
-        shoppingCart.addItem(book3);
+        ShoppingCart cartSession=(ShoppingCart)request.getSession().getAttribute("cart");
+        cartSession.addItem(book3);
+        cartSession.addItem(book3);
+        cartSession.addItem(book2);
+        cartSession.addItem(book3);
         
         RequestDispatcher rd = request.getRequestDispatcher("frontend/shopping_cart.jsp");
         rd.forward(request, response);
