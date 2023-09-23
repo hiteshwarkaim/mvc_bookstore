@@ -56,7 +56,12 @@
 			$(document).ready(function(){
 				$('#writeReviewButton').click(function(){
 					window.location='write-review?bookId='+${book.b_id};
-					});
+				});
+
+				$('#buttonAddToCart').click(function(){
+					window.location='add-to-cart?bookId='+${book.b_id};
+				});
+				
 			});
         </script>
 </body>

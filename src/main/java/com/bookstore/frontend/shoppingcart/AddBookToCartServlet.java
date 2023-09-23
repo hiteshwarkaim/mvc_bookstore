@@ -20,38 +20,35 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "ViewCartServlet", urlPatterns = {"/view-cart"})
-public class ViewCartServlet extends HttpServlet {
+@WebServlet(name = "AddBookToCartServlet", urlPatterns = {"/add-to-cart"})
+public class AddBookToCartServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+
+        Integer bookId=Integer.parseInt(request.getParameter("bookId"));
         
         Object cartObject=request.getSession().getAttribute("cart");
         
-        if(cartObject==null) {
-        	ShoppingCart shoppingCart=new ShoppingCart();
-        	request.getSession().setAttribute("cart", shoppingCart);
+        ShoppingCart shoppingCart=null;
+        
+        if(cartObject!=null && cartObject instanceof ShoppingCart) {
+        	shoppingCart=(ShoppingCart)cartObject;
         }
+        else {
+			shoppingCart=new ShoppingCart();
+			request.getSession().setAttribute("cart", shoppingCart);
+		}
         
-//        Book book=new Book();
-//        book.setB_title("maths");
-//        book.setPrice(20);
+        BookDao bookDao=new BookDao(DB_Connection.getConnection());
+        Book book1 = bookDao.getBookById(10);
         
-//        BookDao bookDao=new BookDao(DB_Connection.getConnection());
-//        Book book1 = bookDao.getBookById(10);
-//        Book book2 = bookDao.getBookById(5);
-//        Book book3 = bookDao.getBookById(7);
-//        
-//        ShoppingCart cartSession=(ShoppingCart)request.getSession().getAttribute("cart");
-//        cartSession.addItem(book1);
-//        cartSession.addItem(book3);
-//        cartSession.addItem(book2);
-//        cartSession.addItem(book3);
-        
-        RequestDispatcher rd = request.getRequestDispatcher("frontend/shopping_cart.jsp");
-        rd.forward(request, response);
+        shoppingCart.addItem(book1);
+
+        String  cartPage=request.getContextPath().concat("/view-cart");
+        response.sendRedirect(cartPage);
     }
 }
