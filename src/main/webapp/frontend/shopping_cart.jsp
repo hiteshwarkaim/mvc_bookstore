@@ -31,7 +31,7 @@
      
      <c:if test="${cart.totalItems>0 }">
        	<div>
-       		<form>
+       		<form action="update-cart" method="post" id="cartForm">
 				<table id="table-1">
 					<thead>
 						<tr>
@@ -54,7 +54,10 @@
 								&nbsp;
 								${item.key.b_title}
 							</td>
-							<td>${item.value}</td>
+							<td>
+								
+								<input type="text" name="quantity${status.index+1}" value="${item.value}" size="4">
+							</td>
 							<td><fmt:formatNumber value="${item.key.price}" type="currency"/></td>
 							<td><fmt:formatNumber value="${item.value*item.key.price}" type="currency"/></td>
 							<td>
@@ -71,10 +74,46 @@
 					</tr>
 				</tbody>
 				</table>
-       		</form>
+       		
+       	</div>
+       	
+       	<div>
+       		<tr>
+       			<td></td>
+       			<td><button type="submit">Update</button></td>
+       			<td><a href="${pageContext.request.contextPath}">Continue Shopping</a> </td>
+       			<td><a href="">Checkout</a></td>
+       		</tr>
        	</div>
      </c:if>
-     
+     </form>
 	<jsp:include page="/components/footer.jsp"/>
 </body>
+
+<script type="text/javascript" src="static/js/jquery.validate.min.js"></script>
+		<script type="text/javascript">
+
+			$(document).ready(function(){
+				$("#cartForm").validate({
+						rules:{
+							<c:forEach items="${cart.items}" var="item" varStatus="status">
+								quantity${status.index+1}: {
+									required: true,
+									number:true,
+									min:1
+								},
+							</c:forEach>
+						},
+						messages:{
+							<c:forEach items="${cart.items}" var="item" varStatus="status">
+								quantity${status.index+1}: {
+									required:"Please enter quantity",
+									number:"Quantity must be a number",
+									min:"Quantity must be minimum one"
+								},
+							</c:forEach>
+						}
+					});
+			});
+		</script>
 </html>

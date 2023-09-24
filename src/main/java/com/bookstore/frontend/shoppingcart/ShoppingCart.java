@@ -60,6 +60,14 @@ public class ShoppingCart {
 		return cart.size();
 	}
 	
+	public void updateCart(int[] bookIds, int[] qunatities) {
+		for(int i=0;i<bookIds.length;i++) {
+			Book key=new Book(bookIds[i]);
+			Integer value=qunatities[i];
+			cart.put(key, value);
+		}
+	}
+	
 	public void clear() {
 		cart.clear();
 	}

@@ -51,7 +51,7 @@
             <%@include file="/components/footer.jsp" %>
 
         </div>
-        
+ <script type="text/javascript" src="static/js/jquery.validate.min.js"></script>
         <script type="text/javascript">
 			$(document).ready(function(){
 				$('#writeReviewButton').click(function(){
