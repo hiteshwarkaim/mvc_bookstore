@@ -40,9 +40,7 @@
 							<th>Quantity</th>
 							<th>Price</th>
 							<th>Subtotal</th>
-							<th>
-								<a href=""><strong>Clear Cart</strong></a>
-							</th>
+							<th></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -78,12 +76,16 @@
        	</div>
        	
        	<div>
-       		<tr>
-       			<td></td>
-       			<td><button type="submit">Update</button></td>
-       			<td><a href="${pageContext.request.contextPath}">Continue Shopping</a> </td>
-       			<td><a href="">Checkout</a></td>
+       		<table>
+       			<tr><td>&nbsp;</td></tr>
+       			<tr>
+	      			<td></td>
+	      			<td><button type="submit">Update</button></td>
+	      			<td><input type="button" id="clearCart" value="Clear Cart"/></td>
+	      			<td><a href="${pageContext.request.contextPath}">Continue Shopping</a> </td>
+	      			<td><a href="">Checkout</a></td>
        		</tr>
+       		</table>
        	</div>
      </c:if>
      </form>
@@ -94,6 +96,11 @@
 		<script type="text/javascript">
 
 			$(document).ready(function(){
+
+				$("#clearCart").click(function(){
+					window.location='clear-cart';
+				});
+				
 				$("#cartForm").validate({
 						rules:{
 							<c:forEach items="${cart.items}" var="item" varStatus="status">
