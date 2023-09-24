@@ -55,7 +55,7 @@
 								${item.key.b_title}
 							</td>
 							<td>
-								
+								<input type="hidden" name="bookId" value="${item.key.b_id }"/>
 								<input type="text" name="quantity${status.index+1}" value="${item.value}" size="4">
 							</td>
 							<td><fmt:formatNumber value="${item.key.price}" type="currency"/></td>

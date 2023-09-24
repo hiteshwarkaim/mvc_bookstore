@@ -12,6 +12,7 @@ import com.bookstore.dao.DB_Connection;
 import com.bookstore.entities.Book;
 import com.bookstore.entities.Category;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -29,25 +30,27 @@ public class UpdateCartServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        Integer bookId=Integer.parseInt(request.getParameter("bookId"));
+        String[] arrayBookIds=request.getParameterValues("bookId");
+        String[] arrayQuantities=new String[arrayBookIds.length];
         
-        Object cartSessionObject=request.getSession().getAttribute("cart");
-        
-        ShoppingCart shoppingCart=null;
-        
-        if(cartSessionObject!=null && cartSessionObject instanceof ShoppingCart) {
-        	shoppingCart=(ShoppingCart)cartSessionObject;
-        }
-        else {
-			shoppingCart=new ShoppingCart();
-			request.getSession().setAttribute("cart", shoppingCart);
+        for (int i = 1; i <= arrayQuantities.length; i++) {
+			String aQuantity=request.getParameter("quantity"+i);
+			arrayQuantities[i-1]=aQuantity;
 		}
-        
-        BookDao bookDao=new BookDao(DB_Connection.getConnection());
-        Book book1 = bookDao.getBookById(bookId);
-        
-        shoppingCart.addItem(book1);
 
+//        response.getWriter().println(arrayBookIds);
+//        response.getWriter().println(arrayQuantities);
+        
+//        response.getWriter().println(Arrays.asList(arrayBookIds));
+//        response.getWriter().println(Arrays.asList(arrayQuantities));
+        
+        
+        int[] bookIds = Arrays.stream(arrayBookIds).mapToInt(Integer::parseInt).toArray();
+        int[] quantities = Arrays.stream(arrayQuantities).mapToInt(Integer::parseInt).toArray();
+        
+        ShoppingCart cart=(ShoppingCart)request.getSession().getAttribute("cart");
+        cart.updateCart(bookIds, quantities);
+        
         String  cartPage=request.getContextPath().concat("/view-cart");
         response.sendRedirect(cartPage);
     }
