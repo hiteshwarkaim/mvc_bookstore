@@ -44,7 +44,7 @@
                 </thead>
                 <tbody>
                     
-                    <c:forEach var="order" items="${allOrders}" varStatus="status">
+                    <c:forEach var="order" items="${listOrders}" varStatus="status">
                         <tr>
                             <td>${status.index+1}</td>
                             <td>${order.order_id}</td>

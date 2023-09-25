@@ -272,7 +272,7 @@ public class OrderDao implements GenericDao<BookOrder>{
 	
 	public List<BookOrder> getBookOrderByCustomerId(int id){
 		List<BookOrder> orderList=new ArrayList<>();
-        BookOrder order=new BookOrder();
+        BookOrder order=null;
         try {
             query="select * from book_order where customer_id=? order by order_date desc";
             ps=this.con.prepareStatement(query);
@@ -280,21 +280,23 @@ public class OrderDao implements GenericDao<BookOrder>{
             rs=ps.executeQuery();
             while(rs.next())
             {
+            	order=new BookOrder();
+            	
             	 order.setOrder_id(rs.getInt("order_id"));
             	 
-            	 String query2="select * from Customer where customer_id=?";
-                 PreparedStatement ps2=this.con.prepareStatement(query2);
-                 ps2.setInt(1, rs.getInt("customer_id"));
-                 ResultSet rs2=ps2.executeQuery();
-                 Customer customer=null;
-                 if(rs2.next())
-                 {
-                 	customer=new Customer();
-                     customer.setCust_id(rs2.getInt("customer_id"));
-                     customer.setFullName(rs2.getString("fullname"));
-                 }
+//            	 String query2="select * from Customer where customer_id=?";
+//                 PreparedStatement ps2=this.con.prepareStatement(query2);
+//                 ps2.setInt(1, id);
+//                 ResultSet rs2=ps2.executeQuery();
+//                 Customer customer=null;
+//                 while(rs2.next())
+//                 {
+//                 	customer=new Customer();
+//                     customer.setCust_id(rs2.getInt("customer_id"));
+//                     customer.setFullName(rs2.getString("fullname"));
+//                 }
                  
-                 order.setCustomer(customer);
+//                 order.setCustomer(customer);
                  order.setOrderDate(rs.getDate("order_date"));
                  order.setShippingAddress(rs.getString("shipping_address"));
                  order.setRecipientName(rs.getString("recipient_name"));

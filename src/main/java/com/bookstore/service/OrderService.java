@@ -158,8 +158,24 @@ public class OrderService {
 		
 		List<BookOrder> bookOrderByCustomerId = orderDao.getBookOrderByCustomerId(customer.getCust_id());
 		request.setAttribute("listOrders", bookOrderByCustomerId);
+//		request.setAttribute("customer", customer);
+		
 		
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("frontend/order_list.jsp");
+        requestDispatcher.forward(request, response);
+	}
+
+
+	public void showOrderDetailForCustomer() throws IOException,ServletException{		
+		int orderId = Integer.parseInt(request.getParameter("id"));
+		
+		BookOrder bookOrderById = orderDao.getBookOrderById(orderId);
+		request.setAttribute("order", bookOrderById);
+		
+		List<OrderDetail> orderDetailById = orderDetailDao.getOrderDetailById(orderId);
+		request.setAttribute("orderDetailById", orderDetailById);
+		
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("frontend/order_detail.jsp");
         requestDispatcher.forward(request, response);
 	}
     

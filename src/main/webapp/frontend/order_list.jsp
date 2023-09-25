@@ -31,7 +31,6 @@
             <c:if test="${fn:length(listOrders) ==0 }">
             	<h3>You have not placed any order yet</h3>
             </c:if>
-            
             <c:if test="${fn:length(listOrders) >0 }">
 				<table border="1" width="1000">
                 <thead>
@@ -57,7 +56,7 @@
                             <td>${order.orderDate}</td>
                             <td>${order.status}</td>
                             <td>
-                            	<a href="view-order?id=${order.order_id}">View Detail</a> &nbsp;&nbsp; &nbsp;&nbsp; 
+                            	<a href="show-order-detail?id=${order.order_id}">View Detail</a> &nbsp;&nbsp; &nbsp;&nbsp; 
                             </td>
                         </tr>
                     </c:forEach>
