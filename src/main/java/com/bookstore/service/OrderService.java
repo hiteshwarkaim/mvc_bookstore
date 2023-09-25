@@ -151,6 +151,17 @@ public class OrderService {
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("order_detail.jsp");
         requestDispatcher.forward(request, response);
 	}
+
+
+	public void listOrdersByCustomer() throws IOException,ServletException{
+		Customer customer= (Customer)request.getSession().getAttribute("loggedCustomer");
+		
+		List<BookOrder> bookOrderByCustomerId = orderDao.getBookOrderByCustomerId(customer.getCust_id());
+		request.setAttribute("listOrders", bookOrderByCustomerId);
+		
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("frontend/order_list.jsp");
+        requestDispatcher.forward(request, response);
+	}
     
 //    public void createUser() throws ServletException,IOException{
 //        int status=0;

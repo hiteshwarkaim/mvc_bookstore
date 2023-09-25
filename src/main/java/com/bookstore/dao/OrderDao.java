@@ -269,5 +269,48 @@ public class OrderDao implements GenericDao<BookOrder>{
         }
         return order;
     }
+	
+	public List<BookOrder> getBookOrderByCustomerId(int id){
+		List<BookOrder> orderList=new ArrayList<>();
+        BookOrder order=new BookOrder();
+        try {
+            query="select * from book_order where customer_id=? order by order_date desc";
+            ps=this.con.prepareStatement(query);
+            ps.setInt(1,id);
+            rs=ps.executeQuery();
+            while(rs.next())
+            {
+            	 order.setOrder_id(rs.getInt("order_id"));
+            	 
+            	 String query2="select * from Customer where customer_id=?";
+                 PreparedStatement ps2=this.con.prepareStatement(query2);
+                 ps2.setInt(1, rs.getInt("customer_id"));
+                 ResultSet rs2=ps2.executeQuery();
+                 Customer customer=null;
+                 if(rs2.next())
+                 {
+                 	customer=new Customer();
+                     customer.setCust_id(rs2.getInt("customer_id"));
+                     customer.setFullName(rs2.getString("fullname"));
+                 }
+                 
+                 order.setCustomer(customer);
+                 order.setOrderDate(rs.getDate("order_date"));
+                 order.setShippingAddress(rs.getString("shipping_address"));
+                 order.setRecipientName(rs.getString("recipient_name"));
+                 order.setRecipientPhone(rs.getString("recipient_phone"));
+                 order.setPaymentMethod(rs.getString("payment_method"));
+                 order.setTotal(rs.getFloat("total"));
+                 order.setStatus(rs.getString("status"));
+                 order.setQty(rs.getInt("qty"));
+                 
+                 orderList.add(order);
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return orderList;
+    }
    
 }

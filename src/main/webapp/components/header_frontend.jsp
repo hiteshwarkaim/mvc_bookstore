@@ -153,7 +153,7 @@
 	                 
 	                 <c:if test="${loggedCustomer!=null}">
 						<li><a href="view-profile">${loggedCustomer.fullName}</a></li>
-	                    <li><a href="view-order">My Order</a></li>
+	                    <li><a href="view-orders">My Order</a></li>
 	                    <li><a href="view-cart">Cart</a></li>
 	                     <li><a href="logout">Signout</a></li>
 	                 </c:if>
