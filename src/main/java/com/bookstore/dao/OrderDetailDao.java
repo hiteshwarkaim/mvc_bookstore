@@ -46,35 +46,31 @@ public class OrderDetailDao implements GenericDao<OrderDetail>{
 	public int create(OrderDetail orderDetail) {
 		 int status=0;
 		 
-//	        try {
-//	           
-//	        	String query="insert into order_detail values(?,?,?,?)";
-//	            PreparedStatement ps=this.con.prepareStatement(query);
-//	            
-//	           
-//	            
-//	            
-//	            
-//	            
-//	            
-//	            
-//	            
-//	            
-//	            ps.setInt(1, order.getOrder_id());
-//	            
-//	            
-//	            ps2.setInt(2, orderDetail.getBook().getB_id());
-//	            ps2.setInt(3, orderDetail.getQuantity());
-//	            ps2.setFloat(4, orderDetail.getSubtotal());
-//	            
-//	            ps2.executeUpdate();
-//	            
-//	            
-//	            
-//	             
-//	        } catch (Exception e) {
-//	            e.printStackTrace();
-//	        }
+	        try {
+	           
+	        	String query="insert into order_detail values(?,?,?,?)";
+	            PreparedStatement ps=this.con.prepareStatement(query);
+	           
+	            
+	            System.out.println("orderid "+orderDetail.getOrder_id());
+	            System.out.println("bookid " +orderDetail.getBook().getB_id());
+	            System.out.println("qty "+orderDetail.getQuantity());
+	            System.out.println("subtotal "+orderDetail.getSubtotal());
+	            
+	            ps.setInt(1, orderDetail.getOrder_id());
+	            
+	            ps.setInt(2, orderDetail.getBook().getB_id());
+	            ps.setInt(3, orderDetail.getQuantity());
+	            ps.setFloat(4, orderDetail.getSubtotal());
+	            
+	            ps.executeUpdate();
+	            
+	            
+	            
+	             
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
 	        
 	        return status;
 		
@@ -187,9 +183,10 @@ public class OrderDetailDao implements GenericDao<OrderDetail>{
 //    }
 //	
 //	
-	public OrderDetail getOrderDetailById(int id){
-		OrderDetail orderDetail=null;
-        try {
+	public List<OrderDetail> getOrderDetailById(int id){
+		List<OrderDetail> orderDetailList=new ArrayList<OrderDetail>();
+        OrderDetail orderDetail=null;
+		try {
             query="select * from order_detail where order_id=?";
             ps=this.con.prepareStatement(query);
             ps.setInt(1,id);
@@ -258,6 +255,8 @@ public class OrderDetailDao implements GenericDao<OrderDetail>{
           		
           		orderDetail.setQuantity(qty);
           		orderDetail.setSubtotal(subtotal);
+          		
+          		orderDetailList.add(orderDetail);
 //                 
 //            	orderDetail.setOrder_id(rs.getInt("order_id"));//get order_id and set order_id
 //            	
@@ -298,7 +297,7 @@ public class OrderDetailDao implements GenericDao<OrderDetail>{
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return orderDetail;
+        return orderDetailList;
     }
    
 }

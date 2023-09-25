@@ -26,7 +26,7 @@
             </c:if>
            	
            	<div>
-           		<h2>Order Review:</h2>${order}
+           		<h2>Order Review:</h2>
            		<table>
            			<tr>
            				<td><strong>Ordered By:</strong></td>
@@ -34,7 +34,7 @@
            			</tr>
            			<tr>
            				<td><strong>Quantity:</strong></td>
-           				<td>${order.bookCopies}</td>
+           				<td>${order.qty}</td>
            			</tr>
            			<tr>
            				<td><strong>Total Amount:</strong></td>
@@ -80,17 +80,24 @@
 							<th>Quantity</th>
 							<th>Subtotal</th>
 						</tr>
-						${orderDetailById}
+						<c:forEach items="${orderDetailById}" var="orderDetail" varStatus="status">
 						<tr>
 							<td>${status.index+1}</td>
-							<td>${orderDetailById.book.b_title}</td>
-							<td>${orderDetailById.book.author}</td>
-							<td>${orderDetailById.book.price}</td>
-							<td>${orderDetailById.quantity}</td>
-							<td>${orderDetailById.subtotal}</td>
-							
+							<td>${orderDetail.book.b_title}</td>
+							<td>${orderDetail.book.author}</td>
+							<td>${orderDetail.book.price}</td>
+							<td>${orderDetail.quantity}</td>
+							<td>${orderDetail.subtotal}</td>
 						</tr>
-					
+						</c:forEach>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>Total</td>
+							<td><strong>${order.qty}</strong></td>
+							<td><strong>${order.total}</strong></td>
+						</tr>
 				</table>
            	</div>
 

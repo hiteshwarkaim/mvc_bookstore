@@ -67,6 +67,7 @@ public class OrderService {
 
 
 	public void placeOrder() throws IOException,ServletException {
+		
 		String recipientName=request.getParameter("recipientname");
 		String recipientPhone=request.getParameter("recipientphone");
 		String address=request.getParameter("recipientaddress");
@@ -75,37 +76,48 @@ public class OrderService {
 		String country=request.getParameter("country");
 		String paymentMethod=request.getParameter("paymentmethod");
 		String shippingAddress=address+","+city+"-"+zipcode+","+country;
-		
+
 		BookOrder order=new BookOrder();
 		order.setRecipientName(recipientName);
 		order.setRecipientPhone(recipientPhone);
 		order.setShippingAddress(shippingAddress);
 		order.setPaymentMethod(paymentMethod);
 		
+		int random = (int )(Math.random() * 10000 + 1);
+		order.setOrder_id(random);System.out.println("random :"+random);
+	
 		Customer customer= (Customer)request.getSession().getAttribute("loggedCustomer");
 		order.setCustomer(customer);
+		
 		ShoppingCart shoppingCart=(ShoppingCart)request.getSession().getAttribute("cart");
 		Map<Book, Integer> items = shoppingCart.getItems();
 		
 		Iterator<Book> iterator=items.keySet().iterator();
 		
 		orderDetails=new HashSet<OrderDetail>();
-		
+		Book book=null;
+		Integer totalQuantity=0;
 		while (iterator.hasNext()) {
-			Book book = (Book) iterator.next();
+			book = (Book) iterator.next();
 			Integer quantity=items.get(book);
 			float subtotal=quantity*book.getPrice();
+			
+			totalQuantity+=quantity;
 
 			orderDetail=new OrderDetail();
-//			orderDetail.setOrder_id(order.getOrder_id());
+			orderDetail.setOrder_id(order.getOrder_id());
 			orderDetail.setBook(book);
 			orderDetail.setBookOrder(order);
 			orderDetail.setQuantity(quantity);
 			orderDetail.setSubtotal(subtotal);
 			
+			
+			orderDetailDao.create(orderDetail);
 			orderDetails.add(orderDetail);
+			
 		}
 		order.setOrderDetails(orderDetails);
+		order.setQty(totalQuantity);
 		
 		
 //		Iterator<OrderDetail> iterator2 = orderDetails.iterator();
@@ -113,6 +125,7 @@ public class OrderService {
 //			System.out.println(iterator.next());
 //		}
 		
+		System.out.println(orderDetails);
 		
 		order.setTotal(shoppingCart.getTotalAmount());
 		orderDao.create(order);
@@ -126,17 +139,13 @@ public class OrderService {
 
 
 	public void viewOrderDetailForAdmin() throws IOException,ServletException{
-		int orderId = Integer.parseInt(request.getParameter("id"));
+		int orderId = Integer.parseInt(request.getParameter("id"));	
 		
 		BookOrder order = orderDao.getBookOrderById(orderId);
-		OrderDetail orderDetailById = orderDetailDao.getOrderDetailById(11);
 		request.setAttribute("order", order);
+		
+		List<OrderDetail> orderDetailById = orderDetailDao.getOrderDetailById(orderId);
 		request.setAttribute("orderDetailById", orderDetailById);
-		
-//		request.setAttribute("orderDetails11", orderDetails.size());
-//		request.setAttribute("order detail", order.getOrder_id());
-		
-		System.out.println("orderDetailById: "+orderDetailById);
 		
 		
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("order_detail.jsp");

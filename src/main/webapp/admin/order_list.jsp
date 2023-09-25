@@ -18,7 +18,6 @@
             
             <div>
                  <h1>Order Management</h1>    
-                 <a href="user_form.jsp">Create New User</a>
             </div> 
             
             <c:if test="${message !=null }">
@@ -50,7 +49,7 @@
                             <td>${status.index+1}</td>
                             <td>${order.order_id}</td>
                             <td>${order.customer.fullName}</td>
-                            <td>${order.bookCopies}</td>
+                            <td>${order.qty}</td>
                             <td>${order.orderDate}</td>
                              <td>${order.paymentMethod}</td>
                             <td>${order.total}</td>

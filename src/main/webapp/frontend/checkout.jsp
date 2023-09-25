@@ -32,6 +32,7 @@
 					<thead>
 						<tr>
 							<th>No</th>
+							<th>ID</th>
 							<th>Book</th>
 							<th>Author</th>
 							<th>Price</th>
@@ -43,6 +44,10 @@
 					 <c:forEach var="item" items="${cart.items}" varStatus="status">
 						<tr>
 							<td>${status.index+1}</td>
+							<td>
+								${item.key.b_id}
+								<input type="hidden" name="bookId" value="${item.key.b_id }"/>
+							</td>
 							<td>
 								<img src="data:image/jpg;base64,${item.key.base64Image}" alt="image" style="width: 100px;"/>
 								&nbsp;

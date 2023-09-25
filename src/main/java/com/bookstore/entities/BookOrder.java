@@ -19,8 +19,18 @@ public class BookOrder implements Serializable{
     private String paymentMethod;
     private float total;
     private String status;
+    private int qty;
     
-    private Set<OrderDetail> orderDetails=new HashSet<>();
+    
+    public int getQty() {
+		return qty;
+	}
+
+	public void setQty(int qty) {
+		this.qty = qty;
+	}
+
+	private Set<OrderDetail> orderDetails=new HashSet<>(0);
 
 	public int getOrder_id() {
 		return order_id;
@@ -101,16 +111,18 @@ public class BookOrder implements Serializable{
 	public void setOrderDetails(Set<OrderDetail> orderDetails) {
 		this.orderDetails = orderDetails;
 	}
+	
 
 	public BookOrder(int order_id, Customer customer, Date orderDate, String shippingAddress, String recipientName,
-			String recipientPhoto, String paymentMethod, float total, String status, Set<OrderDetail> orderDetails) {
+			String recipientPhone, String paymentMethod, float total, String status, 
+			Set<OrderDetail> orderDetails) {
 		super();
 		this.order_id = order_id;
 		this.customer = customer;
 		this.orderDate = orderDate;
 		this.shippingAddress = shippingAddress;
 		this.recipientName = recipientName;
-		this.recipientPhone = recipientPhoto;
+		this.recipientPhone = recipientPhone;
 		this.paymentMethod = paymentMethod;
 		this.total = total;
 		this.status = status;
@@ -132,13 +144,13 @@ public class BookOrder implements Serializable{
 		
 		return total;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "BookOrder [order_id=" + order_id + ", customer=" + customer + ", orderDate=" + orderDate
 				+ ", shippingAddress=" + shippingAddress + ", recipientName=" + recipientName + ", recipientPhone="
 				+ recipientPhone + ", paymentMethod=" + paymentMethod + ", total=" + total + ", status=" + status
-				+ ", orderDetails=" + orderDetails + "]";
+				+  ", orderDetails=" + orderDetails + "]";
 	}
 
 	@Override

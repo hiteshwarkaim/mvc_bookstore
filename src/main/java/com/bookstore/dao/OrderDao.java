@@ -48,22 +48,22 @@ public class OrderDao implements GenericDao<BookOrder>{
 		 
         try {
            
-            query="insert into book_order(customer_id,order_date,shipping_address,recipient_name,recipient_phone, payment_method,total,status) values(?,?,?,?,?,?,?,?)";
+            query="insert into book_order(order_id,customer_id,order_date,shipping_address,recipient_name,recipient_phone, payment_method,total,status,qty) values(?,?,?,?,?,?,?,?,?,?)";
             ps=this.con.prepareStatement(query);
             
-            ps.setInt(1, order.getCustomer().getCust_id());
-            ps.setObject(2, new Date());
-            ps.setString(3, order.getShippingAddress());
-            ps.setString(4, order.getRecipientName());
-            ps.setString(5, order.getRecipientPhone());
-            ps.setString(6, order.getPaymentMethod());
-            ps.setFloat(7, order.getTotal());
-            ps.setString(8, "Processing");
+            ps.setInt(1, order.getOrder_id());
+            ps.setInt(2, order.getCustomer().getCust_id());
+            ps.setObject(3, new Date());
+            ps.setString(4, order.getShippingAddress());
+            ps.setString(5, order.getRecipientName());
+            ps.setString(6, order.getRecipientPhone());
+            ps.setString(7, order.getPaymentMethod());
+            ps.setFloat(8, order.getTotal());
+            ps.setString(9, "Processing");
+            ps.setInt(10, order.getQty());
             
             status = ps.executeUpdate();
             
-            
-             
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -173,7 +173,8 @@ public class OrderDao implements GenericDao<BookOrder>{
                  order.setPaymentMethod(rs.getString("payment_method"));
                  order.setTotal(rs.getFloat("total"));
                  order.setStatus(rs.getString("status"));
-                
+                 order.setQty(rs.getInt("qty"));
+                 
                  orderList.add(order);
             }     
         } catch (Exception e) {
@@ -219,7 +220,7 @@ public class OrderDao implements GenericDao<BookOrder>{
                  order.setPaymentMethod(rs.getString("payment_method"));
                  order.setTotal(rs.getFloat("total"));
                  order.setStatus(rs.getString("status"));
-                 
+                 order.setQty(rs.getInt("qty"));
             }
             
         } catch (Exception e) {

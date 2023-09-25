@@ -44,8 +44,6 @@ public class OrderDetail implements Serializable{
 		return bookOrder;
 	}
 
-
-
 	public void setBookOrder(BookOrder bookOrder) {
 		this.bookOrder = bookOrder;
 	}
@@ -75,12 +73,4 @@ public class OrderDetail implements Serializable{
 	public void setOrder_id(int order_id) {
 		this.order_id = order_id;
 	}
-
-
-	@Override
-	public String toString() {
-		return "OrderDetail [order_id=" + order_id + ", book=" + book + ", bookOrder=" + bookOrder + ", quantity="
-				+ quantity + ", subtotal=" + subtotal + "]";
-	}
-
 }
