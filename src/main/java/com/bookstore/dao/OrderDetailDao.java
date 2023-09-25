@@ -225,6 +225,24 @@ public class OrderDetailDao implements GenericDao<OrderDetail>{
             		book.setB_title(rs1.getString("title"));
             		book.setAuthor(rs1.getString("author"));
             		book.setPrice(rs1.getFloat("price"));
+            		
+
+//                  //fetch image
+                 try {
+                      Blob b=rs1.getBlob("image");
+                     byte[] barr=b.getBytes(1, (int) b.length());
+                     Path path = Paths.get("D:/xtra/");
+                     File file = new File("D:/xtra/"+ path.getFileName());
+                     OutputStream fos=new FileOutputStream(file);
+                     fos.write(barr);
+                     fos.flush();
+                     fos.close();
+               } catch (FileNotFoundException e) {
+                     e.printStackTrace();
+                 }
+                  
+               
+                  book.setPic(rs1.getBytes("image"));
             	}
           		
           		orderDetail.setBook(book);

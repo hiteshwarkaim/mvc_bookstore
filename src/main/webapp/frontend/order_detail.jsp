@@ -77,7 +77,10 @@
 						<c:forEach items="${orderDetailById}" var="orderDetail" varStatus="status">
 						<tr>
 							<td>${status.index+1}</td>
-							<td>${orderDetail.book.b_title}</td>
+							<td>
+								<img src="data:image/jpg;base64,${orderDetail.book.base64Image}" alt="image" style="width: 100px;margin: 15px;"/>
+                        		${orderDetail.book.b_title}
+							</td>
 							<td>${orderDetail.book.author}</td>
 							<td>${orderDetail.book.price}</td>
 							<td>${orderDetail.quantity}</td>
