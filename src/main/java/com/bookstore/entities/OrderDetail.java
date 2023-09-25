@@ -8,7 +8,7 @@ package com.bookstore.entities;
 import java.io.Serializable;
 
 public class OrderDetail implements Serializable{
-	private OrderDetail id=new OrderDetail();
+	private int order_id;
 	private Book book;
 	private BookOrder bookOrder;
 	private int quantity;
@@ -21,39 +21,24 @@ public class OrderDetail implements Serializable{
 	}
 
 
-	public OrderDetail(OrderDetail id, Book book, BookOrder bookOrder, int quantity, float subtotal) {
+	public OrderDetail(int id, Book book, BookOrder bookOrder, int quantity, float subtotal) {
 		super();
-		this.id = id;
+		this.order_id = id;
 		this.book = book;
 		this.bookOrder = bookOrder;
 		this.quantity = quantity;
 		this.subtotal = subtotal;
 	}
 
-	public OrderDetail getId() {
-		return id;
-	}
-
-
-
-	public void setId(OrderDetail id) {
-		this.id = id;
-	}
-
-
-
+	
 	public Book getBook() {
 		return book;
 	}
 
 
-
 	public void setBook(Book book) {
 		this.book = book;
-		this.id.setBook(book);
 	}
-
-
 
 	public BookOrder getBookOrder() {
 		return bookOrder;
@@ -63,40 +48,39 @@ public class OrderDetail implements Serializable{
 
 	public void setBookOrder(BookOrder bookOrder) {
 		this.bookOrder = bookOrder;
-		this.id.setBookOrder(bookOrder);
 	}
-
-
-
-
 
 	public int getQuantity() {
 		return quantity;
 	}
 
-
-
-
-
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-
-
-
-
 
 	public float getSubtotal() {
 		return subtotal;
 	}
 
-
-
-
-
 	public void setSubtotal(float subtotal) {
 		this.subtotal = subtotal;
 	}
-	
-	
+
+
+	public int getOrder_id() {
+		return order_id;
+	}
+
+
+	public void setOrder_id(int order_id) {
+		this.order_id = order_id;
+	}
+
+
+	@Override
+	public String toString() {
+		return "OrderDetail [order_id=" + order_id + ", book=" + book + ", bookOrder=" + bookOrder + ", quantity="
+				+ quantity + ", subtotal=" + subtotal + "]";
+	}
+
 }

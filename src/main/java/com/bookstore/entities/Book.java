@@ -222,5 +222,14 @@ public class Book implements Serializable{
         }
         return true;
     }
+
+	@Override
+	public String toString() {
+		return "Book [b_id=" + b_id + ", b_title=" + b_title + ", author=" + author + ", desc=" + desc + ", isbn="
+				+ isbn + ", pic=" + Arrays.toString(pic) + ", price=" + price + ", publishDate=" + publishDate
+				+ ", lastUpdateTime=" + lastUpdateTime + ", category=" + category + ", reviews=" + reviews
+				+ ", orderDetails=" + orderDetails + ", base64Image=" + base64Image + ", stars=" + stars + "]";
+	}
    
+    
 }

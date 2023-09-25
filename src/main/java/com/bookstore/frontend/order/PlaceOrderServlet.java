@@ -14,16 +14,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "CheckOutServlet", urlPatterns = {"/checkout"})
-public class CheckOutServlet extends HttpServlet {
+@WebServlet(name = "PlaceOrderServlet", urlPatterns = {"/place-order"})
+public class PlaceOrderServlet extends HttpServlet {
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             
         	OrderService service=new OrderService(request, response);
-        	service.showCheckoutForm();
+        	service.placeOrder();
         }
     }
 }

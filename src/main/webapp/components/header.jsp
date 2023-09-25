@@ -40,7 +40,7 @@
                         </a> 
                      </div>
                     <div>
-                        <a href="#">
+                        <a href="list-order">
                             <img src="../static/images/order.png" alt="alt" width="70" height="70"/> <br>Orders
                         </a>  
                      </div>

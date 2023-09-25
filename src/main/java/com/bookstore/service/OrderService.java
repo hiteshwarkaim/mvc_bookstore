@@ -7,11 +7,20 @@ package com.bookstore.service;
 
 import com.bookstore.dao.DB_Connection;
 import com.bookstore.dao.OrderDao;
-import com.bookstore.dao.UserDao;
+import com.bookstore.dao.OrderDetailDao;
+import com.bookstore.entities.Book;
 import com.bookstore.entities.BookOrder;
-import com.bookstore.entities.User;
+import com.bookstore.entities.Customer;
+import com.bookstore.entities.OrderDetail;
+import com.bookstore.frontend.shoppingcart.ShoppingCart;
+
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -20,27 +29,32 @@ import javax.servlet.http.HttpServletResponse;
 public class OrderService {
 
     private OrderDao orderDao;
+    private OrderDetailDao orderDetailDao;
     private HttpServletRequest request;
     private HttpServletResponse response;
+    private Set<OrderDetail> orderDetails=null;
+    OrderDetail orderDetail=null;
     
     public OrderService(HttpServletRequest request,HttpServletResponse response) {
         this.request=request;
         this.response=response;
         orderDao=new OrderDao(DB_Connection.getConnection());
+        orderDetailDao=new OrderDetailDao(DB_Connection.getConnection());
+        
     }
     
     
-    public void getAllUsers() throws IOException,ServletException{
-    	getAllUsers(null);
+    public void getAllOrders() throws IOException,ServletException{
+    	getAllOrders(null);
     }
     
-    public void getAllUsers(String message) throws IOException,ServletException{
-        List<BookOrder> allUsers = orderDao.listAll();
-        request.setAttribute("allUsers", allUsers);
+    public void getAllOrders(String message) throws IOException,ServletException{
+        List<BookOrder> allOrders = orderDao.listAll();System.out.println(allOrders);
+        request.setAttribute("allOrders", allOrders);
         
         if(message!=null)
         	request.setAttribute("message", message);
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("user_list.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("order_list.jsp");
         requestDispatcher.forward(request, response);
 
     }
@@ -48,6 +62,84 @@ public class OrderService {
 
 	public void showCheckoutForm() throws IOException,ServletException{
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("frontend/checkout.jsp");
+        requestDispatcher.forward(request, response);
+	}
+
+
+	public void placeOrder() throws IOException,ServletException {
+		String recipientName=request.getParameter("recipientname");
+		String recipientPhone=request.getParameter("recipientphone");
+		String address=request.getParameter("recipientaddress");
+		String city=request.getParameter("city");
+		String zipcode=request.getParameter("zipcode");
+		String country=request.getParameter("country");
+		String paymentMethod=request.getParameter("paymentmethod");
+		String shippingAddress=address+","+city+"-"+zipcode+","+country;
+		
+		BookOrder order=new BookOrder();
+		order.setRecipientName(recipientName);
+		order.setRecipientPhone(recipientPhone);
+		order.setShippingAddress(shippingAddress);
+		order.setPaymentMethod(paymentMethod);
+		
+		Customer customer= (Customer)request.getSession().getAttribute("loggedCustomer");
+		order.setCustomer(customer);
+		ShoppingCart shoppingCart=(ShoppingCart)request.getSession().getAttribute("cart");
+		Map<Book, Integer> items = shoppingCart.getItems();
+		
+		Iterator<Book> iterator=items.keySet().iterator();
+		
+		orderDetails=new HashSet<OrderDetail>();
+		
+		while (iterator.hasNext()) {
+			Book book = (Book) iterator.next();
+			Integer quantity=items.get(book);
+			float subtotal=quantity*book.getPrice();
+
+			orderDetail=new OrderDetail();
+//			orderDetail.setOrder_id(order.getOrder_id());
+			orderDetail.setBook(book);
+			orderDetail.setBookOrder(order);
+			orderDetail.setQuantity(quantity);
+			orderDetail.setSubtotal(subtotal);
+			
+			orderDetails.add(orderDetail);
+		}
+		order.setOrderDetails(orderDetails);
+		
+		
+//		Iterator<OrderDetail> iterator2 = orderDetails.iterator();
+//		while (iterator2.hasNext()) {
+//			System.out.println(iterator.next());
+//		}
+		
+		
+		order.setTotal(shoppingCart.getTotalAmount());
+		orderDao.create(order);
+		shoppingCart.clear();
+		
+		String message="Your order is placed";
+		request.setAttribute("message", message);
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("frontend/message.jsp");
+        requestDispatcher.forward(request, response);
+	}
+
+
+	public void viewOrderDetailForAdmin() throws IOException,ServletException{
+		int orderId = Integer.parseInt(request.getParameter("id"));
+		
+		BookOrder order = orderDao.getBookOrderById(orderId);
+		OrderDetail orderDetailById = orderDetailDao.getOrderDetailById(11);
+		request.setAttribute("order", order);
+		request.setAttribute("orderDetailById", orderDetailById);
+		
+//		request.setAttribute("orderDetails11", orderDetails.size());
+//		request.setAttribute("order detail", order.getOrder_id());
+		
+		System.out.println("orderDetailById: "+orderDetailById);
+		
+		
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("order_detail.jsp");
         requestDispatcher.forward(request, response);
 	}
     

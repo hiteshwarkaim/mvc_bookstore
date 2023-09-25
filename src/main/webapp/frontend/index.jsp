@@ -11,10 +11,10 @@
 <title>Book World - Online Store</title>
 
 </head>
-<body>
+<body align="center">
 	<jsp:include page="/components/header_frontend.jsp"/>
 	
-	<div align="center">
+	<div>
 		 <h2>New arrival</h2>
             <c:forEach items="${listNewBook}" var="book">
                 <div style="display: inline-block">

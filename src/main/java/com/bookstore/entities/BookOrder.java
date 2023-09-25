@@ -122,6 +122,17 @@ public class BookOrder implements Serializable{
 		//TODO Auto-generated constructor stub
 	}
 
+	@Transient
+	public int getBookCopies() {
+		int total=0;
+		
+		for(OrderDetail orderDetail:orderDetails) {
+			total+=orderDetail.getQuantity();
+		}
+		
+		return total;
+	}
+	
 	@Override
 	public String toString() {
 		return "BookOrder [order_id=" + order_id + ", customer=" + customer + ", orderDate=" + orderDate
