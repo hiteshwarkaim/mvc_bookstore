@@ -44,12 +44,11 @@
                 </thead>
                 <tbody>
                     
-                    <c:forEach var="order" items="${listOrders}" varStatus="status">
+                    <c:forEach var="order" items="${allOrders}" varStatus="status">
                         <tr>
                             <td>${status.index+1}</td>
                             <td>${order.order_id}</td>
                             <td>${order.customer.fullName}</td>
-                            <td>${order.qty}</td>
                             <td>${order.orderDate}</td>
                              <td>${order.paymentMethod}</td>
                             <td>${order.total}</td>

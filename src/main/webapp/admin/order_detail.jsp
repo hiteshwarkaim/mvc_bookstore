@@ -34,7 +34,7 @@
            			</tr>
            			<tr>
            				<td><strong>Quantity:</strong></td>
-           				<td>${order.qty}</td>
+           				<td>${qty}</td>
            			</tr>
            			<tr>
            				<td><strong>Total Amount:</strong></td>
@@ -95,7 +95,7 @@
 							<td></td>
 							<td></td>
 							<td>Total</td>
-							<td><strong>${order.qty}</strong></td>
+							<td><strong>${qty}</strong></td>
 							<td><strong>${order.total}</strong></td>
 						</tr>
 				</table>

@@ -52,6 +52,7 @@ public class OrderService {
         List<BookOrder> allOrders = orderDao.listAll();System.out.println(allOrders);
         request.setAttribute("allOrders", allOrders);
         
+		
         if(message!=null)
         	request.setAttribute("message", message);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("order_list.jsp");
@@ -144,6 +145,13 @@ public class OrderService {
 		List<OrderDetail> orderDetailById = orderDetailDao.getOrderDetailById(orderId);
 		request.setAttribute("orderDetailById", orderDetailById);
 		
+		int qty=0;
+		for(int i=0;i<orderDetailById.size();i++) {
+			qty+=orderDetailById.get(i).getQuantity();
+		}
+		
+//		System.out.println(orderDetailById.get(1).getQuantity());
+		request.setAttribute("qty", qty);
 		
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("order_detail.jsp");
         requestDispatcher.forward(request, response);
