@@ -19,7 +19,7 @@
             <div>
                  <h2>Details of Order ID: ${order.order_id}</h2>    
             </div> 
-            
+           
            	<div>
            		<h2>Order Review:</h2>
            		<table>
@@ -33,7 +33,7 @@
            			</tr>
            			<tr>
            				<td><strong>Quantity:</strong></td>
-           				<td>0</td>
+           				<td>${qty}</td>
            			</tr>
            			<tr>
            				<td><strong>Total Amount:</strong></td>
@@ -92,7 +92,7 @@
 							<td></td>
 							<td></td>
 							<td>Total</td>
-							<td><strong>${order.qty}</strong></td>
+							<td><strong>${qty}</strong></td>
 							<td><strong>${order.total}</strong></td>
 						</tr>
 				</table>
