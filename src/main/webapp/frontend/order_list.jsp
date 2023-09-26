@@ -37,7 +37,6 @@
                     <tr>
                         <th>Index</th>
                         <th>Order ID</th>
-                        <th>Quantity</th>
                         <th>Amount</th>
                         <th>Order Date</th>
                         <th>Status</th>
@@ -51,7 +50,6 @@
                         <tr>
                             <td>${status.index+1}</td>
                             <td>${order.order_id}</td>
-                            <td>${order.qty}</td>
                             <td>${order.total}</td>
                             <td>${order.orderDate}</td>
                             <td>${order.status}</td>

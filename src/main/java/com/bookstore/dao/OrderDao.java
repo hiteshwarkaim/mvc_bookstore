@@ -48,19 +48,18 @@ public class OrderDao implements GenericDao<BookOrder>{
 		 
         try {
            
-            query="insert into book_order(order_id,customer_id,order_date,shipping_address,recipient_name,recipient_phone, payment_method,total,status,qty) values(?,?,?,?,?,?,?,?,?,?)";
+            query="insert into book_order(customer_id,order_date,shipping_address,recipient_name,recipient_phone, payment_method,total,status) values(?,?,?,?,?,?,?,?)";
             ps=this.con.prepareStatement(query);
             
-            ps.setInt(1, order.getOrder_id());
-            ps.setInt(2, order.getCustomer().getCust_id());
-            ps.setObject(3, new Date());
-            ps.setString(4, order.getShippingAddress());
-            ps.setString(5, order.getRecipientName());
-            ps.setString(6, order.getRecipientPhone());
-            ps.setString(7, order.getPaymentMethod());
-            ps.setFloat(8, order.getTotal());
-            ps.setString(9, "Processing");
-            ps.setInt(10, order.getQty());
+//            ps.setInt(1, order.getOrder_id());
+            ps.setInt(1, order.getCustomer().getCust_id());
+            ps.setObject(2, new Date());
+            ps.setString(3, order.getShippingAddress());
+            ps.setString(4, order.getRecipientName());
+            ps.setString(5, order.getRecipientPhone());
+            ps.setString(6, order.getPaymentMethod());
+            ps.setFloat(7, order.getTotal());
+            ps.setString(8, "Processing");
             
             status = ps.executeUpdate();
             
@@ -173,7 +172,7 @@ public class OrderDao implements GenericDao<BookOrder>{
                  order.setPaymentMethod(rs.getString("payment_method"));
                  order.setTotal(rs.getFloat("total"));
                  order.setStatus(rs.getString("status"));
-                 order.setQty(rs.getInt("qty"));
+            
                  
                  orderList.add(order);
             }     
@@ -220,7 +219,7 @@ public class OrderDao implements GenericDao<BookOrder>{
                  order.setPaymentMethod(rs.getString("payment_method"));
                  order.setTotal(rs.getFloat("total"));
                  order.setStatus(rs.getString("status"));
-                 order.setQty(rs.getInt("qty"));
+              
             }
             
         } catch (Exception e) {
@@ -304,7 +303,6 @@ public class OrderDao implements GenericDao<BookOrder>{
                  order.setPaymentMethod(rs.getString("payment_method"));
                  order.setTotal(rs.getFloat("total"));
                  order.setStatus(rs.getString("status"));
-                 order.setQty(rs.getInt("qty"));
                  
                  orderList.add(order);
             }
@@ -314,5 +312,25 @@ public class OrderDao implements GenericDao<BookOrder>{
         }
         return orderList;
     }
-   
+
+	public int lastRecord(){
+        int orderid=0;
+        try {
+            query="SELECT * FROM book_order ORDER BY order_id DESC LIMIT 1";
+            ps=this.con.prepareStatement(query);
+            
+            rs=ps.executeQuery();
+            
+            if(rs.next())
+            {
+            	orderid = rs.getInt("order_id");
+            	System.out.println(orderid);
+            
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return orderid;
+    }
 }

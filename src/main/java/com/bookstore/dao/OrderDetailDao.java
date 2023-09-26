@@ -52,10 +52,10 @@ public class OrderDetailDao implements GenericDao<OrderDetail>{
 	            PreparedStatement ps=this.con.prepareStatement(query);
 	           
 	            
-	            System.out.println("orderid "+orderDetail.getOrder_id());
-	            System.out.println("bookid " +orderDetail.getBook().getB_id());
-	            System.out.println("qty "+orderDetail.getQuantity());
-	            System.out.println("subtotal "+orderDetail.getSubtotal());
+//	            System.out.println("orderid "+orderDetail.getOrder_id());
+//	            System.out.println("bookid " +orderDetail.getBook().getB_id());
+//	            System.out.println("qty "+orderDetail.getQuantity());
+//	            System.out.println("subtotal "+orderDetail.getSubtotal());
 	            
 	            ps.setInt(1, orderDetail.getOrder_id());
 	            

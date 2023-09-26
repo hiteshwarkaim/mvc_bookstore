@@ -33,7 +33,7 @@
            			</tr>
            			<tr>
            				<td><strong>Quantity:</strong></td>
-           				<td>${order.qty}</td>
+           				<td>0</td>
            			</tr>
            			<tr>
            				<td><strong>Total Amount:</strong></td>

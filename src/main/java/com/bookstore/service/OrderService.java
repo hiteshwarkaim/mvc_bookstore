@@ -83,8 +83,9 @@ public class OrderService {
 		order.setShippingAddress(shippingAddress);
 		order.setPaymentMethod(paymentMethod);
 		
-		int random = (int )(Math.random() * 10000 + 1);
-		order.setOrder_id(random);System.out.println("random :"+random);
+//		int random = (int )(Math.random() * 10000 + 1);
+		
+//		order.setOrder_id(1);
 	
 		Customer customer= (Customer)request.getSession().getAttribute("loggedCustomer");
 		order.setCustomer(customer);
@@ -92,20 +93,25 @@ public class OrderService {
 		ShoppingCart shoppingCart=(ShoppingCart)request.getSession().getAttribute("cart");
 		Map<Book, Integer> items = shoppingCart.getItems();
 		
+		order.setTotal(shoppingCart.getTotalAmount());
+		order.setOrderDetails(orderDetails);
+		
+		orderDao.create(order);
+		
+		
+		int lastRecord = orderDao.lastRecord();
+		
 		Iterator<Book> iterator=items.keySet().iterator();
 		
-		orderDetails=new HashSet<OrderDetail>();
+//		orderDetails=new HashSet<OrderDetail>();
 		Book book=null;
-		Integer totalQuantity=0;
 		while (iterator.hasNext()) {
 			book = (Book) iterator.next();
 			Integer quantity=items.get(book);
 			float subtotal=quantity*book.getPrice();
-			
-			totalQuantity+=quantity;
 
-			orderDetail=new OrderDetail();
-			orderDetail.setOrder_id(order.getOrder_id());
+			orderDetail=new OrderDetail();System.out.println("last "+lastRecord);
+			orderDetail.setOrder_id(lastRecord);
 			orderDetail.setBook(book);
 			orderDetail.setBookOrder(order);
 			orderDetail.setQuantity(quantity);
@@ -113,23 +119,14 @@ public class OrderService {
 			
 			
 			orderDetailDao.create(orderDetail);
-			orderDetails.add(orderDetail);
+			
+//			orderDetails.add(orderDetail);
 			
 		}
-		order.setOrderDetails(orderDetails);
-		order.setQty(totalQuantity);
-		
-		
-//		Iterator<OrderDetail> iterator2 = orderDetails.iterator();
-//		while (iterator2.hasNext()) {
-//			System.out.println(iterator.next());
-//		}
-		
-		System.out.println(orderDetails);
-		
-		order.setTotal(shoppingCart.getTotalAmount());
-		orderDao.create(order);
 		shoppingCart.clear();
+		
+		
+		
 		
 		String message="Your order is placed";
 		request.setAttribute("message", message);

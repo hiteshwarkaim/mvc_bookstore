@@ -19,16 +19,9 @@ public class BookOrder implements Serializable{
     private String paymentMethod;
     private float total;
     private String status;
-    private int qty;
     
     
-    public int getQty() {
-		return qty;
-	}
-
-	public void setQty(int qty) {
-		this.qty = qty;
-	}
+   
 
 	private Set<OrderDetail> orderDetails=new HashSet<>(0);
 
