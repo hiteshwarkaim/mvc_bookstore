@@ -194,6 +194,42 @@ public class OrderService {
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("frontend/order_detail.jsp");
         requestDispatcher.forward(request, response);
 	}
+
+
+	public void showEditOrderForm() throws IOException,ServletException{
+		int orderId = Integer.parseInt(request.getParameter("id"));
+		
+		
+		
+		
+		List<OrderDetail> listAll = orderDetailDao.listAll();
+		request.getSession().setAttribute("listBooks", listAll);
+		
+		List<OrderDetail> orderDetailById = orderDetailDao.getOrderDetailById(orderId);
+		request.setAttribute("orderDetailById", orderDetailById);
+		
+		int qty=0;
+		for(int i=0;i<orderDetailById.size();i++) {
+			qty+=orderDetailById.get(i).getQuantity();
+		}
+		
+//		System.out.println(orderDetailById.get(1).getQuantity());
+		request.setAttribute("qty", qty);
+		
+		BookOrder bookOrderById = orderDao.getBookOrderById(orderId);
+		
+		
+		Object isPendingBook = request.getSession().getAttribute("NewBookPendingToAddToOrder");
+		if(isPendingBook==null) {
+			BookOrder bookOrder=new BookOrder();
+			request.getSession().setAttribute("order", bookOrderById);
+		}
+		else {
+			request.getSession().removeAttribute("NewBookPendingToAddToOrder");
+		}
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("order_form.jsp");
+        requestDispatcher.forward(request, response);
+	}
     
 //    public void createUser() throws ServletException,IOException{
 //        int status=0;

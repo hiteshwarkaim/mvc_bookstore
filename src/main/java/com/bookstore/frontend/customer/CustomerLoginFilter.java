@@ -20,7 +20,7 @@ import javax.servlet.http.HttpSession;
 @WebFilter(filterName = "CustomerLoginFilter", urlPatterns = {"/*"}) //* means it intercept all request came after admin URL
 public class CustomerLoginFilter implements Filter {
     
-	private static final String[] requiredURLs= { "/view_profile","/edit_profile","/update_profile","/write-review","/checkout","/place-order"};
+	private static final String[] requiredURLs= { "/view_profile","/edit_profile","/update_profile","/write-review","/checkout","/place-order","/view-order","/show-order-detail"};
     private FilterConfig filterConfig = null;
     
     public CustomerLoginFilter() {

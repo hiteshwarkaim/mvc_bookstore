@@ -43,91 +43,166 @@ public class OrderDetailDao implements GenericDao<OrderDetail>{
     }
 
     @Override
-	public int create(OrderDetail orderDetail) {
-		 int status=0;
-		 
+   	public int create(OrderDetail orderDetail) {
+   		 int status=0;
+   		 
+   	        try {
+   	           
+   	        	String query="insert into order_detail values(?,?,?,?)";
+   	            PreparedStatement ps=this.con.prepareStatement(query);
+   	           
+   	            
+//   	            System.out.println("orderid "+orderDetail.getOrder_id());
+//   	            System.out.println("bookid " +orderDetail.getBook().getB_id());
+//   	            System.out.println("qty "+orderDetail.getQuantity());
+//   	            System.out.println("subtotal "+orderDetail.getSubtotal());
+   	            
+   	            ps.setInt(1, orderDetail.getOrder_id());
+   	            
+   	            ps.setInt(2, orderDetail.getBook().getB_id());
+   	            ps.setInt(3, orderDetail.getQuantity());
+   	            ps.setFloat(4, orderDetail.getSubtotal());
+   	            
+   	            ps.executeUpdate();
+   	            
+   	            
+   	            
+   	             
+   	        } catch (Exception e) {
+   	            e.printStackTrace();
+   	        }
+   	        
+   	        return status;
+   		
+   	}
+    
+   	public int create(OrderDetail orderDetail, int orderId) {
+   		 int status=0;
+   		 
+   	        try {
+   	           
+   	        	String query="insert into order_detail values(?,?,?,?)";
+   	            PreparedStatement ps=this.con.prepareStatement(query);
+   	           
+   	            ps.setInt(1, orderId);
+   	            ps.setInt(2, orderDetail.getBook().getB_id());
+   	            ps.setInt(3, orderDetail.getQuantity());
+   	            ps.setFloat(4, orderDetail.getSubtotal());
+   	            
+   	            ps.executeUpdate();
+   	             
+   	        } catch (Exception e) {
+   	            e.printStackTrace();
+   	        }
+   	        
+   	        return status;
+   	}
+
+	
+
+   	@Override
+	public int delete(int bookId) {
+   		int status=0;
+  		 
 	        try {
 	           
-	        	String query="insert into order_detail values(?,?,?,?)";
+	        	String query="delete from order_detail where book_id=?";
 	            PreparedStatement ps=this.con.prepareStatement(query);
-	           
-	            
-//	            System.out.println("orderid "+orderDetail.getOrder_id());
-//	            System.out.println("bookid " +orderDetail.getBook().getB_id());
-//	            System.out.println("qty "+orderDetail.getQuantity());
-//	            System.out.println("subtotal "+orderDetail.getSubtotal());
-	            
-	            ps.setInt(1, orderDetail.getOrder_id());
-	            
-	            ps.setInt(2, orderDetail.getBook().getB_id());
-	            ps.setInt(3, orderDetail.getQuantity());
-	            ps.setFloat(4, orderDetail.getSubtotal());
-	            
+	           ps.setInt(1, bookId);
 	            ps.executeUpdate();
-	            
-	            
-	            
 	             
 	        } catch (Exception e) {
 	            e.printStackTrace();
 	        }
 	        
 	        return status;
-		
 	}
-
 	
 
 	@Override
-	public int delete(int id) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
 	public List<OrderDetail> listAll() {
-		return null;
-//		List<OrderDetail> orderList=new ArrayList<>();
-//        BookOrder order=null;
-//        try {
-//            query="select * from book_order";
-//            ps=this.con.prepareStatement(query);
-//            rs = ps.executeQuery();
-//            
-//            Customer customer=null;
-//            ResultSet rs2=null;
-//            while(rs.next())
-//            {
-//            	 order =new BookOrder();
-//            	 order.setOrder_id(rs.getInt("order_id"));
-//            	 
-//            	 String query2="select * from Customer where customer_id=?";
-//                 PreparedStatement ps2=this.con.prepareStatement(query2);
-//                 ps2.setInt(1, rs.getInt("customer_id"));
-//                 rs2=ps2.executeQuery();
-//               
-//                 while(rs2.next())
-//                 {
-//                 	 customer=new Customer();
-//                     customer.setCust_id(rs2.getInt("customer_id"));
-//                     customer.setFullName(rs2.getString("fullname"));
-//                 }
-//                 
-//                 order.setCustomer(customer);
-//                 order.setOrderDate(rs.getDate("order_date"));
-//                 order.setShippingAddress(rs.getString("shipping_address"));
-//                 order.setRecipientName(rs.getString("recipient_name"));
-//                 order.setRecipientPhone(rs.getString("recipient_phone"));
-//                 order.setPaymentMethod(rs.getString("payment_method"));
-//                 order.setTotal(rs.getFloat("total"));
-//                 order.setStatus(rs.getString("status"));
-//                
-//                 orderList.add(order);
-//            }     
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return orderList;
+		List<OrderDetail> orderDetailList=new ArrayList<OrderDetail>();
+        OrderDetail orderDetail=null;
+		try {
+            query="select * from order_detail";
+            ps=this.con.prepareStatement(query);
+            rs=ps.executeQuery();
+            
+            int orderId=0;
+            int bookId=0;
+            int qty=0;
+            int subtotal=0;
+            while(rs.next())
+            {
+            	orderDetail=new OrderDetail();
+            	 
+            	orderId=rs.getInt("order_id");
+            	bookId=rs.getInt("book_id");
+            	qty=rs.getInt("quantity");
+            	subtotal=rs.getInt("subtotal");
+            	
+            	
+            	orderDetail.setOrder_id(orderId);//1
+            	
+            	
+            	String query1 ="select * from Book";
+            	PreparedStatement ps1=this.con.prepareStatement(query1);
+              	ResultSet rs1=ps1.executeQuery();
+          		Book book=null;
+            	while(rs1.next()) 
+            	{
+            		book=new Book();
+            		book.setB_id(bookId);
+            		book.setB_title(rs1.getString("title"));
+            		book.setAuthor(rs1.getString("author"));
+            		book.setPrice(rs1.getFloat("price"));
+            		
+
+//                  //fetch image
+	                 try {
+	                      Blob b=rs1.getBlob("image");
+	                     byte[] barr=b.getBytes(1, (int) b.length());
+	                     Path path = Paths.get("D:/xtra/");
+	                     File file = new File("D:/xtra/"+ path.getFileName());
+	                     OutputStream fos=new FileOutputStream(file);
+	                     fos.write(barr);
+	                     fos.flush();
+	                     fos.close();
+	                 } catch (FileNotFoundException e) {
+	                     e.printStackTrace();
+	                 }
+	                  
+               
+                  book.setPic(rs1.getBytes("image"));
+            	}
+          		
+          		orderDetail.setBook(book);	//2
+            	
+          		
+          		String query2 ="select * from Book_order";
+            	PreparedStatement ps2=this.con.prepareStatement(query2);
+              	ps2.setInt(1,orderId);
+              	ResultSet rs2=ps2.executeQuery();
+          		BookOrder bookOrder=null;
+            	while(rs2.next()) {
+            		bookOrder=new BookOrder();
+            		bookOrder.setOrder_id(orderId);
+            	}
+          		
+          		orderDetail.setBookOrder(bookOrder);//3
+            	
+          		
+          		
+          		
+          		orderDetail.setQuantity(qty);//4
+          		orderDetail.setSubtotal(subtotal);//5
+          		
+          		orderDetailList.add(orderDetail);
+            }
+         }  
+		catch(Exception e) {}
+		
+		return orderDetailList;
 	}
 
 	@Override
@@ -137,9 +212,27 @@ public class OrderDetailDao implements GenericDao<OrderDetail>{
 	}
 
 	@Override
-	public int update(OrderDetail t) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int update(OrderDetail orderDetail) {
+		 int status=0;
+		 
+	        try {
+	           
+	        	String query="update order_detail set book_id=?,quantity=?,subtotal=? where order_id=?";
+	            PreparedStatement ps=this.con.prepareStatement(query);
+	            ps.setInt(1, orderDetail.getBook().getB_id());
+	            ps.setInt(2, orderDetail.getQuantity());
+	            ps.setFloat(3, orderDetail.getSubtotal());
+//	            ps.setInt(4, orderId);
+	            
+	            ps.executeUpdate();
+	            
+	            
+	             
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	        
+	        return status;
 	}
 	
 //	public BookOrder getBookOrderById(int id){
