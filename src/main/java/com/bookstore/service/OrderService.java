@@ -174,7 +174,9 @@ public class OrderService {
 	public void showOrderDetailForCustomer() throws IOException,ServletException{		
 		int orderId = Integer.parseInt(request.getParameter("id"));
 		
-		BookOrder bookOrderById = orderDao.getBookOrderById(orderId);
+		Customer customer= (Customer)request.getSession().getAttribute("loggedCustomer");
+		
+		BookOrder bookOrderById = orderDao.get(orderId, customer.getCust_id());
 		request.setAttribute("order", bookOrderById);
 		
 		List<OrderDetail> orderDetailById = orderDetailDao.getOrderDetailById(orderId);

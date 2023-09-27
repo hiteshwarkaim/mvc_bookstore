@@ -16,6 +16,12 @@
     <%@include file="/components/header_frontend.jsp" %>
         <div class="">
             
+            <c:if test="${order==null }">
+            	<h1>Sorry your are not allowed to see others order.</h1>	
+            </c:if>
+            
+            <c:if test="${order!=null }">
+            
             <div>
                  <h2>Details of Order ID: ${order.order_id}</h2>    
             </div> 
@@ -97,7 +103,7 @@
 						</tr>
 				</table>
            	</div>
-
+	</c:if>
             <%@include file="/components/footer.jsp" %>
 
         </div>

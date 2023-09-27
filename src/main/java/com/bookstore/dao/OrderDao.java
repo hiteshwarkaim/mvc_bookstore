@@ -333,4 +333,47 @@ public class OrderDao implements GenericDao<BookOrder>{
         }
         return orderid;
     }
+	
+	public BookOrder get(int orderId, int custId) {
+			BookOrder order=null;
+		    try {
+	            query="SELECT * FROM book_order where order_id=? and customer_id=?";
+	            ps=this.con.prepareStatement(query);
+	            ps.setInt(1, orderId);
+	            ps.setInt(2, custId);
+	            
+	            rs=ps.executeQuery();
+	            
+	            if(rs.next())
+	            {
+	            	 
+	            	 String query2="select * from Customer where customer_id=?";
+	                 PreparedStatement ps2=this.con.prepareStatement(query2);
+	                 ps2.setInt(1, custId);
+	                 ResultSet rs2=ps2.executeQuery();
+	                 Customer customer=null;
+	                 if(rs2.next())
+	                 {
+	                 	customer=new Customer();
+	                     customer.setCust_id(rs2.getInt("customer_id"));
+	                     customer.setFullName(rs2.getString("fullname"));
+	                 }
+	                 
+	                 
+	                 order.setCustomer(customer);
+	                 order.setOrderDate(rs.getDate("order_date"));
+	                 order.setShippingAddress(rs.getString("shipping_address"));
+	                 order.setRecipientName(rs.getString("recipient_name"));
+	                 order.setRecipientPhone(rs.getString("recipient_phone"));
+	                 order.setPaymentMethod(rs.getString("payment_method"));
+	                 order.setTotal(rs.getFloat("total"));
+	                 order.setStatus(rs.getString("status"));
+	              
+	            }
+	            
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	        return order;
+	}
 }
