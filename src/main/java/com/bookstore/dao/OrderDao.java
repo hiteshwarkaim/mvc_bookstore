@@ -125,9 +125,29 @@ public class OrderDao implements GenericDao<BookOrder>{
 	}
 
 	@Override
-	public int update(BookOrder t) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int update(BookOrder order) {
+		int status=0;
+		 
+        try {
+           
+            query="update book_order set order_date=?,shipping_address=?,recipient_name=?,recipient_phone=?, payment_method=?,status=? where order_id=?";
+            ps=this.con.prepareStatement(query);
+            
+            ps.setObject(1, new Date());
+            ps.setString(2, order.getShippingAddress());
+            ps.setString(3, order.getRecipientName());
+            ps.setString(4, order.getRecipientPhone());
+            ps.setString(5, order.getPaymentMethod());
+            ps.setString(6, order.getStatus());
+            ps.setInt(7, order.getOrder_id());
+            
+            status = ps.executeUpdate();
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return status;
 	}
 
 	@Override

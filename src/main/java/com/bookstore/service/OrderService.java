@@ -268,6 +268,34 @@ public class OrderService {
 		getAllOrders("order deleted");
 		
 	}
+
+
+	public void updateOrderAdmin() throws IOException,ServletException{
+		
+		int orderId = Integer.parseInt(request.getParameter("orderId"));
+		
+		String recipientName=request.getParameter("recipientName");
+		String recipientPhone=request.getParameter("recipientPhone");
+		String shippingAddress=request.getParameter("shippingAddress");
+		String paymentMethod=request.getParameter("paymentMethod");
+		String status=request.getParameter("status");
+
+		BookOrder order=new BookOrder();
+		order.setOrder_id(orderId);
+		order.setRecipientName(recipientName);
+		order.setRecipientPhone(recipientPhone);
+		order.setShippingAddress(shippingAddress);
+		order.setPaymentMethod(paymentMethod);
+		order.setStatus(status);
+		
+		orderDao.update(order);
+		getAllOrders("Order updated successfully");
+		
+		
+	}
+	
+	
+	
     
 //    public void createUser() throws ServletException,IOException{
 //        int status=0;

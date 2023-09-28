@@ -17,7 +17,8 @@
         <div class="">
             
             <div>
-                 <h2>Edit Order ID: ${order.order_id}</h2>    
+                 <h2>Edit Order ID: ${order.order_id}</h2>   
+                 
             </div> 
             <c:if test="${message !=null }">
             	<div align="center">
@@ -28,6 +29,7 @@
            	<div>
            		<h2>Order Review:</h2>
 				<form id="form-1" action="update-order" method="post">
+				<input type="hidden" name="orderId" value="${order.order_id}"/>
 					<table>
            			<tr>
            				<td><strong>Ordered By:</strong></td>
@@ -42,7 +44,7 @@
            				<td><input type="text" name="recipientPhone" value="${order.recipientPhone}"> </td>
            			</tr>
            			<tr>
-           				<td><strong>Ship To:</strong></td>
+           				<td><strong>Shipping Address:</strong></td>
            				<td><input type="text" name="shippingAddress" value="${order.shippingAddress}"> </td>
            			</tr>
            			<tr>
@@ -107,7 +109,7 @@
            	</div>
            	<div>
            		<a href="javascript:showAddBookPopup()">Add Book</a> &nbsp;&nbsp;&nbsp;&nbsp;
-           		<input type="submit" value="Add"/>&nbsp;&nbsp;&nbsp;&nbsp;
+           		<input type="submit" value="Update"/>&nbsp;&nbsp;&nbsp;&nbsp;
            		<input type="reset" value="Cancel"/>
            	</div>
 		</form>
