@@ -130,7 +130,7 @@
     		</div>
     		<div class="header-links">
     			<ul>
-					<li><a href="register-customer">Home</a></li>
+					<li><a href="${pageContext.request.contextPath}">Home</a></li>
                     <li><a href="login-customer">Contact-Us</a></li>
                     <li><a href="">About-Us</a></li>
                 </ul>

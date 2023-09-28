@@ -33,24 +33,29 @@ public class DeleteBookFromOrderServlet extends HttpServlet {
         	int bookId=Integer.parseInt(request.getParameter("id"));
         	
         	BookOrder order =	(BookOrder)request.getSession().getAttribute("order");
-        
+        System.out.println(order);
         	OrderDetailDao orderDetailDao=new OrderDetailDao(DB_Connection.getConnection());
-        	Set<OrderDetail> orderDetails = order.getOrderDetails();
-        	Iterator<OrderDetail> iterator=orderDetails.iterator();
+        	orderDetailDao.delete(bookId);
         	
-        	while(iterator.hasNext()) {
-        		OrderDetail orderDetail=iterator.next();
-        		
-        		if(orderDetail.getBook().getB_id()==bookId) {
-        			
-        			float newTotal=order.getTotal()-orderDetail.getSubtotal();
-        			order.setTotal(newTotal);
-        			orderDetailDao.delete(bookId);
-        		}
-        	}
+//        	Set<OrderDetail> orderDetails = order.getOrderDetails();
+//        	Iterator<OrderDetail> iterator=orderDetails.iterator();
+////        	
+//        	while(iterator.hasNext()) {
+//        		OrderDetail orderDetail=iterator.next();
+//        		
+//        		if(orderDetail.getBook().getB_id()==bookId) {
+//        			
+//        			float newTotal=order.getTotal()-orderDetail.getSubtotal();
+//        			order.setTotal(newTotal);
+//        			
+//        		}
+//        	}
+////        	
+        	String  cartPage=request.getContextPath().concat("/admin/edit-order?id="+order.getOrder_id());
+            response.sendRedirect(cartPage);
         	
-        	RequestDispatcher requestDispatcher = request.getRequestDispatcher("order_form.jsp");
-            requestDispatcher.forward(request, response);
+//        	RequestDispatcher requestDispatcher = request.getRequestDispatcher("order_list.jsp");
+//            requestDispatcher.forward(request, response);
         }
         
     }

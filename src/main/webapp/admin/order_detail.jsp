@@ -38,7 +38,7 @@
            			</tr>
            			<tr>
            				<td><strong>Total Amount:</strong></td>
-           				<td><fmt:formatNumber value="${order.total}" type="currency"/></td>
+           				<td><fmt:formatNumber value="${total}" type="currency"/></td>
            			</tr>
            			<tr>
            				<td><strong>Recipient Name:</strong></td>
@@ -96,7 +96,7 @@
 							<td></td>
 							<td>Total</td>
 							<td><strong>${qty}</strong></td>
-							<td><strong>${order.total}</strong></td>
+							<td><strong>${total}</strong></td>
 						</tr>
 				</table>
            	</div>

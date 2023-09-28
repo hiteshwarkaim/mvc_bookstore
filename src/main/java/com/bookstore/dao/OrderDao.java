@@ -132,8 +132,25 @@ public class OrderDao implements GenericDao<BookOrder>{
 
 	@Override
 	public int delete(int id) {
-		// TODO Auto-generated method stub
-		return 0;
+		int status=0;
+		 
+        try {
+           
+        	String query2="delete from order_detail where order_id=?";
+        	PreparedStatement ps2=this.con.prepareStatement(query2);
+        	ps2.setInt(1, id);
+        	ps2.executeUpdate();
+        	
+            query="delete from book_order where order_id=?";
+            ps=this.con.prepareStatement(query);
+            ps.setInt(1, id);
+            status = ps.executeUpdate();
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return status;
 	}
 
 	@Override
@@ -352,6 +369,7 @@ public class OrderDao implements GenericDao<BookOrder>{
 	                 ps2.setInt(1, custId);
 	                 ResultSet rs2=ps2.executeQuery();
 	                 Customer customer=null;
+	                 order=new BookOrder();
 	                 if(rs2.next())
 	                 {
 	                 	customer=new Customer();
@@ -359,7 +377,7 @@ public class OrderDao implements GenericDao<BookOrder>{
 	                     customer.setFullName(rs2.getString("fullname"));
 	                 }
 	                 
-	                 
+	                 order.setOrder_id(rs.getInt("order_id"));
 	                 order.setCustomer(customer);
 	                 order.setOrderDate(rs.getDate("order_date"));
 	                 order.setShippingAddress(rs.getString("shipping_address"));

@@ -101,7 +101,7 @@
 							<td></td>
 							<td>Total</td>
 							<td><strong>${qty}</strong></td>
-							<td><strong>${order.total}</strong></td>
+							<td><strong>${total}</strong></td>
 						</tr>
 				</table>
            	</div>

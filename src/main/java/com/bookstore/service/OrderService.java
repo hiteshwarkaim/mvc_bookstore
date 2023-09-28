@@ -153,6 +153,15 @@ public class OrderService {
 //		System.out.println(orderDetailById.get(1).getQuantity());
 		request.setAttribute("qty", qty);
 		
+		float total=0.0f;
+		for(int i=0;i<orderDetailById.size();i++) {
+			int qty1=orderDetailById.get(i).getQuantity();
+			float price=orderDetailById.get(i).getBook().getPrice();
+			
+			total+=qty1*price;
+		}
+		request.setAttribute("total", total);
+		
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("order_detail.jsp");
         requestDispatcher.forward(request, response);
 	}
@@ -190,6 +199,15 @@ public class OrderService {
 //		System.out.println(orderDetailById.get(1).getQuantity());
 		request.setAttribute("qty", qty);
 		
+		float total=0.0f;
+		for(int i=0;i<orderDetailById.size();i++) {
+			int qty1=orderDetailById.get(i).getQuantity();
+			float price=orderDetailById.get(i).getBook().getPrice();
+			
+			total+=qty1*price;
+		}
+		request.setAttribute("total", total);
+		
 		
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("frontend/order_detail.jsp");
         requestDispatcher.forward(request, response);
@@ -216,6 +234,16 @@ public class OrderService {
 //		System.out.println(orderDetailById.get(1).getQuantity());
 		request.setAttribute("qty", qty);
 		
+		float total=0.0f;
+		for(int i=0;i<orderDetailById.size();i++) {
+			int qty1=orderDetailById.get(i).getQuantity();
+			float price=orderDetailById.get(i).getBook().getPrice();
+			
+			total+=qty1*price;
+		}
+		request.setAttribute("total", total);
+		
+		
 		BookOrder bookOrderById = orderDao.getBookOrderById(orderId);
 		
 		
@@ -229,6 +257,16 @@ public class OrderService {
 		}
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("order_form.jsp");
         requestDispatcher.forward(request, response);
+	}
+
+
+	public void deleteOrderAdmin() throws IOException,ServletException{
+		int orderId = Integer.parseInt(request.getParameter("id"));
+		
+		int delete = orderDao.delete(orderId);
+
+		getAllOrders("order deleted");
+		
 	}
     
 //    public void createUser() throws ServletException,IOException{

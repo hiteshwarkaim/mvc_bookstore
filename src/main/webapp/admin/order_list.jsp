@@ -67,7 +67,7 @@
 
         </div>
 		<script>
-                function confirmDelete(userId) {
+                function confirmDelete(orderId) {
                     if(confirm("are sure to delete: "+orderId+"?"))
                     {
                         window.location='delete-order?id=' + orderId;

@@ -43,7 +43,7 @@
            			</tr>
            			<tr>
            				<td><strong>Total Amount:</strong></td>
-           				<td><fmt:formatNumber value="${order.total}" type="currency"/></td>
+           				<td><fmt:formatNumber value="${total}" type="currency"/></td>
            			</tr>
            			
            			<tr>
@@ -91,6 +91,7 @@
 							<td>${orderDetail.book.price}</td>
 							<td>${orderDetail.quantity}</td>
 							<td>${orderDetail.subtotal}</td>
+							<td>AMount ${orderDetail.quantity} * {orderDetail.subtotal}</td>
 						</tr>
 						</c:forEach>
 						<tr>
@@ -99,7 +100,7 @@
 							<td></td>
 							<td>Total</td>
 							<td><strong>${qty}</strong></td>
-							<td><strong>${order.total}</strong></td>
+							<td><strong>${total}</strong></td>
 						</tr>
 				</table>
            	</div>

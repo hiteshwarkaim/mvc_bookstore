@@ -20,7 +20,6 @@ public class BookOrder implements Serializable{
     private float total;
     private String status;
     
-    
    
 
 	private Set<OrderDetail> orderDetails=new HashSet<>(0);
