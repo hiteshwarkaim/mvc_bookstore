@@ -55,7 +55,7 @@
                             <td>${review.reviewDate}</td>
                             <td> 
                                 <a href="edit-review?id=${review.review_id}">Edit</a> &nbsp;&nbsp; 
-                                <a>Remove</a>
+                                <a href="delete-review?id=${review.review_id}">Remove</a>
                             </td>
                         </tr>
                     </c:forEach>

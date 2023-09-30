@@ -129,8 +129,8 @@ public class ReviewService {
 
 
 	public void submitReview() throws IOException,ServletException{
-		int bookId = Integer.parseInt(request.getParameter("bookId"));System.out.println("bookId:"+bookId);
-		int rating = Integer.parseInt(request.getParameter("rating"));System.out.println("rating: "+rating);
+		int bookId = Integer.parseInt(request.getParameter("bookId"));
+		int rating = Integer.parseInt(request.getParameter("rating"));
 		String headline=request.getParameter("headline");
 		String comment=request.getParameter("comment");
 		
@@ -158,5 +158,14 @@ public class ReviewService {
 		
 	}
 
+
+
+	public void deleteReview() throws IOException,ServletException{
+		int reviewId = Integer.parseInt(request.getParameter("id"));
+		
+		reviewDao.delete(reviewId);
+		
+		getAllReview("Deleted Review");
+	}
 
 }
