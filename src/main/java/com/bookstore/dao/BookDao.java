@@ -18,7 +18,9 @@ import java.util.List;
 import java.util.Set;
 
 import com.bookstore.entities.Book;
+import com.bookstore.entities.BookOrder;
 import com.bookstore.entities.Category;
+import com.bookstore.entities.OrderDetail;
 import com.bookstore.entities.Review;
 
 public class BookDao implements GenericDao<Book>{
@@ -353,6 +355,62 @@ public class BookDao implements GenericDao<Book>{
         }
         return booksList;
      }
+	  
+	  public ArrayList<Integer> listBestSellingBookIds(){
+          ArrayList<Integer> al=new ArrayList<Integer>();
+        try 
+        {
+            query="select book_id from order_detail group by book_id order by sum(quantity) desc";
+            ps=this.con.prepareStatement(query);
+            rs=ps.executeQuery();
+            while(rs.next())
+            { 
+            	int bookId=rs.getInt("book_id");
+           	
+				al.add(bookId);
+				 
+            }
+        } 
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+        return al;
+     }
+	  
+	  public List<Book> listBestSellingBook(List<Integer> ids){
+          List<Book> booksList=new ArrayList<>();
+         
+        try {
+        	for(int id:ids) {
+	        	query="select * from book where book_id=?";
+	        	ps=this.con.prepareStatement(query);
+	            ps.setInt(1, id);
+	            rs=ps.executeQuery();
+	            while(rs.next())
+	            {
+	                Book book=new Book();
+	                Category category=new Category();
+	                
+	                book.setB_id(rs.getInt("book_id"));
+	                book.setB_title(rs.getString("title"));
+	                book.setAuthor(rs.getString("author"));
+	                book.setDesc(rs.getString("description"));
+	                book.setIsbn(rs.getString("isbn"));
+	                book.setPic(rs.getBytes("image"));
+	                book.setPrice(rs.getFloat("price"));
+	                book.setPublishDate(rs.getDate("publish_date"));
+	                book.setLastUpdateTime(rs.getDate("last_update_time"));
+	               
+	                booksList.add(book);
+	           }
+	            
+        	}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return booksList;
+     }
+	  
 	  
 	  public List<Book> searchBook(String str){
           List<Book> booksList=new ArrayList<>();

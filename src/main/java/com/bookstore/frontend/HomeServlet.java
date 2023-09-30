@@ -19,6 +19,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sound.midi.Soundbank;
 
 @WebServlet(name = "HomeServlet", urlPatterns = {""})
 public class HomeServlet extends HttpServlet {
@@ -33,6 +34,11 @@ public class HomeServlet extends HttpServlet {
         
         List<Book> listNewBook = bookDao.listNewBook();
         request.setAttribute("listNewBook", listNewBook);
+        
+        List<Integer> ids = bookDao.listBestSellingBookIds();
+        
+        List<Book> listBestSellingBook = bookDao.listBestSellingBook(ids);
+        request.setAttribute("listBestSellingBook", listBestSellingBook);
         
         RequestDispatcher rd = request.getRequestDispatcher("frontend/index.jsp");
         rd.forward(request, response);

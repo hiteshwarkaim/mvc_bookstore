@@ -32,7 +32,25 @@
                     <div>Rs. ${book.price}</div>
                 </div>
             </c:forEach>
+            
+            <br><br>
 		<h2>Best Selling books </h2>
+			<c:forEach items="${listBestSellingBook}" var="book">
+                <div style="display: inline-block">
+                    <div>
+                        <a href="view-book?id=${book.b_id}">
+                            <img src="data:image/jpg;base64,${book.base64Image}" alt="image" style="width: 200px;margin: 15px;"/>
+                        </a>
+                    </div>
+                    <div>
+                        <strong>
+                            <a href="view-book?id=${book.b_id}">${book.b_title}</a>
+                        </strong>
+                    </div>
+                    <div>by ${book.author}</div>
+                    <div>Rs. ${book.price}</div>
+                </div>
+            </c:forEach>
 		<h2>Top books</h2>
 	</div>
 	
