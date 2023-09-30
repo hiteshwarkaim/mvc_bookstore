@@ -91,7 +91,6 @@
 							<td>${orderDetail.book.price}</td>
 							<td>${orderDetail.quantity}</td>
 							<td>${orderDetail.subtotal}</td>
-							<td>AMount ${orderDetail.quantity} * {orderDetail.subtotal}</td>
 						</tr>
 						</c:forEach>
 						<tr>
