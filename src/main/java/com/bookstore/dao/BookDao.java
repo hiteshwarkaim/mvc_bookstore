@@ -327,13 +327,15 @@ public class BookDao implements GenericDao<Book>{
 	  
 	  public List<Book> listNewBook(){
           List<Book> booksList=new ArrayList<>();
-         
+          Set<Review> reviews=new HashSet<Review>();
+          Review review=null;
         try {
             query="select * from book order by publish_date desc";
             ps=this.con.prepareStatement(query);
             rs=ps.executeQuery();
             while(rs.next())
             {
+            	review= new Review();
                 Book book=new Book();
                 Category category=new Category();
                 
@@ -346,8 +348,14 @@ public class BookDao implements GenericDao<Book>{
                 book.setPrice(rs.getFloat("price"));
                 book.setPublishDate(rs.getDate("publish_date"));
                 book.setLastUpdateTime(rs.getDate("last_update_time"));
-               
+                
+                
+                review.setBook(book);
+                reviews.add(review);
+                book.setReviews(reviews);
+                
                 booksList.add(book);
+                
            }
             
         } catch (Exception e) {

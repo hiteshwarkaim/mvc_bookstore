@@ -11,7 +11,7 @@
 <body>
 	<div align="center">
             <%@include file="/components/header_frontend.jsp" %>
-          
+       
             <div style="width: 80%;">
                 <table>
                     <tr>
@@ -45,6 +45,37 @@
                         </td>
                     </tr>
                    
+                   <tr>
+                   	<td colspan="3">
+                   		<table>
+                   			<c:forEach items="${findByBookId}" var="review">
+                   				<tr>
+                   					<td>
+                   						<c:forTokens items="${review.stars}" delims="," var="star">
+					                    	<c:if test="${star eq 'on'}">
+												<img src="./static/images/star.png" height="18" width="18"/>
+				                    		</c:if>
+				                    		<c:if test="${star eq 'off'}">
+												<img src="./static/images/star1.png" height="18" width="18"/>
+				                    		</c:if>
+					                    </c:forTokens>
+                   					</td>
+                   					<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                   					<td>
+                   						${review.headline }
+                   					</td>
+                   				</tr>
+                   				
+                   				<tr>
+                   					<td></td>
+                   					<td></td>
+                   					<td>${review.comment }</td>
+                   				</tr>
+                   				<br>
+                   			</c:forEach>
+                   		</table>
+                   	</td>
+                   </tr>
                 </table>
             </div>
             

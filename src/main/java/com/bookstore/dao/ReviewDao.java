@@ -15,7 +15,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class ReviewDao implements GenericDao<Review>{
 
@@ -193,28 +195,71 @@ public class ReviewDao implements GenericDao<Review>{
         }
         return review;
         }
-//    
-//	public Review findByCustomerAndBook(int customerId, int bookId) {
-//		Review review=new Review();
-//        try {
-//            query="select * from Review where customer_id=? and book_id=?";
-//            ps=this.con.prepareStatement(query);
-//            ps.setInt(1,customerId);
-//            ps.setInt(2,bookId);
-//            rs=ps.executeQuery();
-//            while(rs.next())
-//            {
-//            	review.setReview_id(rs.getInt("review_id"));
-//            	review.setHeadline(rs.getString("headline"));
-//            	review.setComment(rs.getString("comment"));
-//            	review.setRating(rs.getInt("rating"));
-//            	review.setReviewDate(rs.getTimestamp("review_time"));
-//                
-//            }
-//            
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return review;
-//	}
+    
+	public List<Review> findByBookId(int bookId) {
+		List<Review> reviewList=new ArrayList<Review>();
+		Review review=null;
+        try {
+            query="select * from Review where book_id=?";
+            ps=this.con.prepareStatement(query);
+            ps.setInt(1,bookId);
+            rs=ps.executeQuery();
+            while(rs.next())
+            {
+            	review=new Review();
+            	review.setReview_id(rs.getInt("review_id"));
+            	review.setHeadline(rs.getString("headline"));
+            	review.setComment(rs.getString("comment"));
+            	review.setRating(rs.getInt("rating"));
+            	review.setReviewDate(rs.getTimestamp("review_time"));
+                
+            	reviewList.add(review);
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return reviewList;
+	}
+	
+	public Set<Integer> getAllReviewIntegersIds(){
+		Set<Integer> list=new HashSet<Integer>();
+		Review review=null;
+		try {
+            query="select book_id from Review";
+            ps=this.con.prepareStatement(query);
+            rs=ps.executeQuery();
+            while(rs.next())
+            {
+            	int id=rs.getInt("book_id");
+
+            	list.add(id);
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+	}
+	public List<Integer> getAllRating(){
+		List<Integer> list=new ArrayList<Integer>();
+		Review review=null;
+		try {
+            query="select book_id from Review";
+            ps=this.con.prepareStatement(query);
+            rs=ps.executeQuery();
+            while(rs.next())
+            {
+            	int rating=rs.getInt("book_id");
+
+            	list.add(rating);
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+	}
+	
+	
 }

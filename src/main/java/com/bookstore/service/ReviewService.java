@@ -52,6 +52,15 @@ public class ReviewService {
         requestDispatcher.forward(request, response);
 
     }
+    public void findByCustomerAndBook() throws IOException,ServletException{
+        
+    	
+        
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("review_list.jsp");
+        requestDispatcher.forward(request, response);
+
+    }
+    
       
 //    public void createCategory() throws ServletException,IOException{
 //        
@@ -122,7 +131,7 @@ public class ReviewService {
 		Book bookById = bookDao.getBookById(id);
 		request.setAttribute("book", bookById);
 		
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("frontend/review_form.jsp");
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("frontend/review_form_front.jsp");
 		requestDispatcher.forward(request, response);
 	}
 

@@ -175,26 +175,33 @@ public class Book implements Serializable{
 //    }
 //    
 //    @Transient
-//    public String getStars() {
+//    public String getRatingString(float averageRating) {
 //    	String result="";
 //    	
-//    	int numberOfStarsOn=(int)stars;;
+//    	int numberOfStarsOn=(int)averageRating;;
 //    	
 //    	for (int i = 1; i <= numberOfStarsOn; i++) {
 //			result+="on,";
 //		}
 //    	
-//    	for (int i = numberOfStarsOn+1; i <= 5; i++) {
+//    	int next=numberOfStarsOn+1;
+//    	
+//    	if(averageRating>numberOfStarsOn)
+//    	{
+//    		result+="half,";
+//    		next++;
+//    	}
+//    	for (int i = next; i <= 5; i++) {
 //			result+="off,";
 //		}
 //    	
 //    	return result.substring(0, result.length()-1);
 //    }	
-    
+//    
 //    @Transient
 //    public String getRatingStars() {
-//    	getAverageRating();
-//    	return getStars();
+//     float averageRating =	getAverageRating();
+//    	return getRatingString(averageRating);
 //    }
     
 

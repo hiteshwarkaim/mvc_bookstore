@@ -3,8 +3,11 @@ package com.bookstore.service;
 import com.bookstore.dao.BookDao;
 import com.bookstore.dao.CategoryDao;
 import com.bookstore.dao.DB_Connection;
+import com.bookstore.dao.ReviewDao;
 import com.bookstore.entities.Book;
 import com.bookstore.entities.Category;
+import com.bookstore.entities.Review;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.SQLException;
@@ -257,9 +260,12 @@ public class BookService {
          int id = Integer.parseInt(request.getParameter("id"));
          
          Book book = bookDao.getBookById(id);
-         
          request.setAttribute("book", book);
-         
+        
+         ReviewDao reviewDao=new ReviewDao(DB_Connection.getConnection());
+         List<Review> findByBookId = reviewDao.findByBookId(id);
+         request.setAttribute("findByBookId", findByBookId);
+          
          RequestDispatcher requestDispatcher = request.getRequestDispatcher("frontend/book_detail.jsp");
          requestDispatcher.forward(request, response);
          

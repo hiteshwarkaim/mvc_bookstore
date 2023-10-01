@@ -5,6 +5,7 @@
  */
 package com.bookstore.entities;
 
+import java.beans.Transient;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -61,6 +62,24 @@ public class Review {
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
+	
+	@Transient
+    public String getStars() {
+    	String result="";
+    	
+    	int numberOfStarsOn=(int)rating;
+    	
+    	for (int i = 1; i <= numberOfStarsOn; i++) {
+			result+="on,";
+		}
+    	
+    	for (int i = numberOfStarsOn+1; i <= 5; i++) {
+			result+="off,";
+		}
+    	
+    	return result.substring(0, result.length()-1);
+    }	
+	
 	@Override
 	public String toString() {
 		return "Review [review_id=" + review_id + ", rating=" + rating + ", headline=" + headline + ", comment="

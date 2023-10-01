@@ -3,7 +3,7 @@
   <groupId>BookStore1</groupId>
   <artifactId>BookStore1</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>war</packaging>
+   <packaging>war</packaging>
   <build>
     <testSourceDirectory>test</testSourceDirectory>
     <plugins>
