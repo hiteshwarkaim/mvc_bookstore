@@ -49,7 +49,8 @@
                    	<td colspan="3">
                    		<table>
                    			<c:forEach items="${findByBookId}" var="review">
-                   				<tr>
+                   				
+                   					<tr>
                    					<td>
                    						<c:forTokens items="${review.stars}" delims="," var="star">
 					                    	<c:if test="${star eq 'on'}">
@@ -60,18 +61,24 @@
 				                    		</c:if>
 					                    </c:forTokens>
                    					</td>
-                   					<td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                   					<td>&nbsp;</td>
                    					<td>
-                   						${review.headline }
+                   						- <strong>${review.headline}</strong>
                    					</td>
                    				</tr>
                    				
                    				<tr>
+                   					<td>on ${review.reviewDate }</td>
+                   					<td></td>
+                   					<td><i>${review.comment }</i></td>
+                   				</tr>
+                   				<tr>
+                   					<td><br></td>
                    					<td></td>
                    					<td></td>
-                   					<td>${review.comment }</td>
                    				</tr>
                    				<br>
+                   				
                    			</c:forEach>
                    		</table>
                    	</td>

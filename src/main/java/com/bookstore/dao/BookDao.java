@@ -466,4 +466,50 @@ public class BookDao implements GenericDao<Book>{
           }
           return count;
 	  }
+
+	  
+	
+	  
+	public List<Book> listFavoredBooks() {
+		 List<Book> booksList=new ArrayList<>();
+         
+	        try {
+		        	query="select r.book_id,count(r.book_id) as reviewcount, avg(r.rating) as avgrating from review r group by r.book_id having avg(r.rating)>=4.0 order by reviewcount desc,avgrating desc";
+		        	ps=this.con.prepareStatement(query);
+		            rs=ps.executeQuery();
+		            while(rs.next())
+		            {
+		                Book book=new Book();
+		                Category category=new Category();
+		                
+		               String query1="select * from book where book_id=?";
+		               PreparedStatement ps1=this.con.prepareStatement(query1);
+			            ps1.setInt(1, rs.getInt("book_id"));
+			            ResultSet rs1=ps1.executeQuery();
+			            while(rs1.next())
+			            {
+			                book=new Book();
+			                category=new Category();
+			                
+			                book.setB_id(rs1.getInt("book_id"));
+			                book.setB_title(rs1.getString("title"));
+			                book.setAuthor(rs1.getString("author"));
+			                book.setDesc(rs1.getString("description"));
+			                book.setIsbn(rs1.getString("isbn"));
+			                book.setPic(rs1.getBytes("image"));
+			                book.setPrice(rs1.getFloat("price"));
+			                book.setPublishDate(rs1.getDate("publish_date"));
+			                book.setLastUpdateTime(rs1.getDate("last_update_time"));
+			               
+			                booksList.add(book);
+			           }
+		               
+		           }
+		         
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	        return booksList;
+		
+	}
 }

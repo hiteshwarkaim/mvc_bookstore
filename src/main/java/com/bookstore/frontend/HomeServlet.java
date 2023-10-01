@@ -42,6 +42,14 @@ public class HomeServlet extends HttpServlet {
         request.setAttribute("listNewBook", listNewBook);
         
         
+        List<Book> listFavoredBooks = bookDao.listFavoredBooks();
+        request.setAttribute("listFavoredBooks", listFavoredBooks);
+        
+        List<Integer> ids = bookDao.listBestSellingBookIds();
+        
+        List<Book> listBestSellingBook = bookDao.listBestSellingBook(ids);
+        request.setAttribute("listBestSellingBook", listBestSellingBook);
+        
 //        ReviewDao reviewDao=new ReviewDao(DB_Connection.getConnection());
 //        Set<Integer> allReviewIds = reviewDao.getAllReviewIntegersIds();
 //        
@@ -54,10 +62,7 @@ public class HomeServlet extends HttpServlet {
 //        int avgRating=sum/allRating.size();
         
         
-        List<Integer> ids = bookDao.listBestSellingBookIds();
         
-        List<Book> listBestSellingBook = bookDao.listBestSellingBook(ids);
-        request.setAttribute("listBestSellingBook", listBestSellingBook);
         
         RequestDispatcher rd = request.getRequestDispatcher("frontend/index.jsp");
         rd.forward(request, response);
